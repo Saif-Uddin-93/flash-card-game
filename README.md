@@ -23,8 +23,6 @@ FILL IN SECTION
 
 ![Add image here](./assets/imgs/code-quiz.gif)
 
-Scores are saved on the browsers local storage so the player would need to delete them manually using the developer tool or by clearing cache.
-
 ## Credits
 
 FILL IN SECTION
