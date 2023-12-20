@@ -1,4 +1,60 @@
-*{
+* {
     margin: 0;
     padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+
+}
+
+#flipchart {
+    display: flex;
+    content: " ";
+    border: 1px black solid;
+    height: 50rem;
+    width: 50rem;
+    top: 10rem;
+    padding-bottom: 50rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    font-weight: bold;
+    & #question-number {
+        border: 1px black solid;
+        height: 2.5rem;
+        width: 10rem;
+        top: -6rem;
+        padding-top: 0.4rem;
+    }
+    & #top-bar {
+        border: 1px black solid;
+        height: 2.5rem;
+        width: 48rem;
+        top: -3rem;
+        /* padding-top: 0.4rem; */
+    }
+    & #hint {
+        border: 1px black solid;
+        height: 5rem;
+        width: 10rem;
+        top: 1rem;
+        right: 39rem;
+        padding-top: 1.5rem;
+    }
+    & #question {
+        border: 1px black solid;
+        height: 20rem;
+        width: 48rem;
+        top: 15rem;
+    }
+    & #play-btn {
+        
+        border: 1px black solid;
+        height: 5rem;
+        width: 10rem;
+        
+       /*  margin-bottom: 50rem; */
+    }
 }
