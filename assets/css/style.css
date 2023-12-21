@@ -31,14 +31,6 @@ body {
     border: 0;
 }
 
-.icon {
-    height: 1.5rem;    
-}
-
-.icon:hover {
-    cursor: pointer;
-}
-
 /* CARD BODY */
 .card-body {
     display: flex;
@@ -48,77 +40,72 @@ body {
     font-size: 3rem;
 }
 
-/* CARD BUTTONS */
+/* CONTROLS */
 .btn {
     height: 2rem;
 }
 
-.play-btn:hover {
-    cursor: pointer;
-    fill: rgb(52, 124, 76);
-}
-
 .card-footer {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
+.control {
+    position: relative;
+}
+
+.icon {
+    height: 1.5rem;    
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+/* ICONS */
+.settings svg{
+    position: absolute;
+    height: 1.5rem;
+    right: .5rem;
+    top: .5rem;
+}
+
+
+.settings:hover {
+    cursor: pointer;
+    color: rgb(122, 160, 35);
+}
+======
 .hide {
     display:none;
 }
 
 
-/* main {
-    display: flex;
-    justify-content: center;
 
+.hint:hover {
+    cursor: pointer;
 }
 
-#flipchart {
+.q-exit svg {
+    height: 1.5rem;
+}
+
+.q-exit:hover {
+    cursor: pointer;
+    color: #ff0000;
+}
+
+/* ANSWERS */
+.q-answers {
     display: flex;
-    content: " ";
-    border: 1px black solid;
-    height: 50rem;
-    width: 50rem;
-    top: 10rem;
-    padding-bottom: 50rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-    font-weight: bold;
-    & #question-number {
-        border: 1px black solid;
-        height: 2.5rem;
-        width: 10rem;
-        top: -6rem;
-        padding-top: 0.4rem;
-    }
-    & #top-bar {
-        border: 1px black solid;
-        height: 2.5rem;
-        width: 48rem;
-        top: -3rem;
-       
-    }
-    & #hint {
-        border: 1px black solid;
-        height: 5rem;
-        width: 10rem;
-        top: 1rem;
-        right: 39rem;
-        padding-top: 1.5rem;
-    }
-    & #question {
-        border: 1px black solid;
-        height: 20rem;
-        width: 48rem;
-        top: 15rem;
-    }
-    & #play-btn {
-        
-        border: 1px black solid;
-        height: 5rem;
-        width: 10rem;
-        
-      
-    }
-} */
+    padding-top: 3rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+.q-answers > div {
+    border: 1px solid #d2d2d2;
+}
+
+.q-answers > div:hover {
+    cursor: pointer;
+    background: #d2d2d2;
+}
