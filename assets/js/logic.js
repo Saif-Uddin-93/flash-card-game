@@ -19,9 +19,9 @@ function nextBtn() {
 
 addGlobalEventListener("click", prevBtn, "#prev-btn");
 function prevBtn() {
-    trackQ--;
+    if(trackQ>0)trackQ--;
     if(trackQ<0){
-        trackQ = 0;
+        trackQ = -1;
         return;
     }
     console.log(trackQ);
