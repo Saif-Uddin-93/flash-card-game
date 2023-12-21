@@ -1,3 +1,4 @@
+/* ---- MT START---- */
 
 /* IMPORT GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
@@ -69,17 +70,10 @@ body {
     top: .5rem;
 }
 
-
 .settings:hover {
     cursor: pointer;
     color: rgb(122, 160, 35);
 }
-======
-.hide {
-    display:none;
-}
-
-
 
 .hint:hover {
     cursor: pointer;
@@ -109,3 +103,11 @@ body {
     cursor: pointer;
     background: #d2d2d2;
 }
+
+/* ---- MT END---- */
+/* ---- SU START---- */
+
+.hide {
+    display:none;
+}
+/* ---- SU END---- */
