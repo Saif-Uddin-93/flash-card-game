@@ -69,10 +69,17 @@ body {
     top: .5rem;
 }
 
+
 .settings:hover {
     cursor: pointer;
     color: rgb(122, 160, 35);
 }
+======
+.hide {
+    display:none;
+}
+
+
 
 .hint:hover {
     cursor: pointer;
