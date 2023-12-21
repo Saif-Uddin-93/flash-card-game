@@ -1,20 +1,14 @@
+Timer.setTime(30);
 let trackQ = -1;
+
 // add logic to difficulty() for selecting the difficulty options at start of game
 let difficulty = ()=> "easy"
 
-addGlobalEventListener("click", playBtn, ".play-btn");
-addGlobalEventListener("click", nextBtn, ".next-btn");
-addGlobalEventListener("click", prevBtn, ".prev-btn");
-addGlobalEventListener("click", loadHint, "#hint");
+//addGlobalEventListener("click", playBtn, ".play-btn");
+addGlobalEventListener("click", ".next-btn", nextBtn);
+addGlobalEventListener("click", ".prev-btn", prevBtn);
+addGlobalEventListener("click", "#q-hint", loadHint);
 
-function playBtn() {
-    /* let timerBool = htmlElement(".play-btn").dataset.timer
-    console.log(timerBool)
-    if (!timerBool){ */
-        Timer.start();
-        //htmlElement(".play-btn").dataset.timer = "true"
-    //}
-}
 
 function nextBtn() {
     trackQ++;
@@ -35,7 +29,7 @@ function prevBtn() {
 }
 
 function loadQuestion(level=difficulty(), questionNo=trackQ){
-    changeText("#hint", "Hint");
+    changeText("#q-hint", "Hint");
     changeText("#q-number", `${questionNo+1}/${questions[level].length}`);
     const q=questions[level][questionNo].question;
     console.log(q);
@@ -44,7 +38,7 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
 
 function loadHint(level=difficulty()){
     const h=questions[level][trackQ].hint;
-    changeText("#hint", h);
+    changeText("#q-hint", h);
     Timer.deductTime(10);
 }
 

@@ -1,17 +1,21 @@
-// e.g htmlElement("selector")
+// e.g htmlElement("#id")
+// e.g htmlElement(".class")
+// e.g htmlElement("tag")
 const htmlElement = (id) => document.querySelector(id);
 
 // e.g cssClass("#id", "add", "myClass")
-const cssClass = (selector="", action="", cssClass="", element=$(selector)) => {
+// e.g cssClass(".class", "remove", "myClass")
+// e.g cssClass("tag", "toggle", "myClass")
+const cssClass = (selector="", action="", cssClass="", element=htmlElement(selector)) => {
   switch (action) {
     case "add":
-      element.addClass(cssClass);
+      element.classList.add(cssClass);
       break;
     case "remove":
-      element.removeClass(cssClass);
+      element.classList.remove(cssClass);
       break;
     case "toggle":
-      element.toggleClass(cssClass);
+      element.classList.toggle(cssClass);
       break;
     default:
       break;
@@ -19,11 +23,13 @@ const cssClass = (selector="", action="", cssClass="", element=$(selector)) => {
 }
   
 // e.g changeText("#id", "lorem ipso")
-//const changeText = (selector="", txt="", element=$(selector)) => element.text(txt);
+// e.g changeText(".class", "lorem ipso")
+// e.g changeText("tag", "lorem ipso")
 const changeText = (selector="", txt="", element=htmlElement(selector)) => element.textContent=txt;
+//const changeText = (selector="", txt="", element=$(selector)) => element.text(txt);
 
-// e.g addGlobalEventListener("click", nextQ, "#id")
-function addGlobalEventListener(typeOfEvent="", callback, selector="", stopPropagation=true) {
+// e.g addGlobalEventListener("click", "selector", nextQ)
+function addGlobalEventListener(typeOfEvent="", selector="", callback, stopPropagation=true) {
   document.addEventListener(typeOfEvent, (eventObj) => {
     if (eventObj.target.matches(selector)) callback();
     if (stopPropagation) eventObj.stopPropagation();
@@ -31,7 +37,7 @@ function addGlobalEventListener(typeOfEvent="", callback, selector="", stopPropa
 }
 
 // Timer object 
-const timeElement = htmlElement("#timer")
+const timeElement = htmlElement("#q-timer")
 const Timer = {
   timerInterval: undefined,
   timeoutInterval: undefined,
@@ -39,7 +45,7 @@ const Timer = {
   timeoutClr: ()=> clearTimeout(Timer.timeoutInterval),
   setActive : (bool = timeElement.dataset.active)=> timeElement.dataset.active = bool.toString(), 
   active : ()=> String(timeElement.dataset.active),
-  setTime : (time = Timer.getTime())=> timeElement.textContent = time,
+  setTime : (time = Timer.getTime())=> timeElement.textContent = `${time}s`,
   getTime : ()=> parseInt(timeElement.textContent),
   start : (ms=1000)=> {Timer.timerInterval = setInterval(Timer.countdown, ms); Timer.setActive(true)},
   stop : ()=> {clearInterval(Timer.timerInterval); Timer.setActive(false)},
@@ -47,7 +53,6 @@ const Timer = {
   countdown: ()=> {Timer.deductTime(1); if(Timer.getTime()<1) Timer.outOfTime();},
   outOfTime: ()=> {Timer.setTime(0); endScreen();},
 }
-Timer.setTime(100);
 
 // e.g soundVar("path/to/soundFile.wav")
 const soundVar = (src="", audio=document.createElement("audio"), set=audio.setAttribute("src", src)) => audio
@@ -61,5 +66,4 @@ const soundsLibrary = {
   play : (stop = soundsLibrary.stop())=> ({
     correct : ()=> soundsLibrary.sounds.correct.play(),
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
-  //newSound: (key="", src="") => soundsLibrary.sounds[key]=soundVar(src),
 }
