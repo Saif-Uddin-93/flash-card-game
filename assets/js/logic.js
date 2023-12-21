@@ -8,7 +8,7 @@ let trackQ = -1;
 
 let diffuculty = "easy"
 
-addGlobalEventListener("click", nextBtn, "#next-btn");
+addGlobalEventListener("click", nextBtn, ".next-btn");
 function nextBtn() {
     trackQ++;
     trackQ = trackQ===questions[diffuculty].length ? trackQ-1 : trackQ;
@@ -17,7 +17,7 @@ function nextBtn() {
     loadQuestion(diffuculty);
 }
 
-addGlobalEventListener("click", prevBtn, "#prev-btn");
+addGlobalEventListener("click", prevBtn, ".prev-btn");
 function prevBtn() {
     if(trackQ>0)trackQ--;
     if(trackQ<0){
