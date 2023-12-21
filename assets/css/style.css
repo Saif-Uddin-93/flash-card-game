@@ -1,9 +1,69 @@
-* {
-    margin: 0;
-    padding: 0;
+
+/* IMPORT GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-main {
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* CARD HEADER */
+.q-bar {
+    height: .75rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.q-header {
+    font-size: 1rem;
+}
+
+.card-header {
+    background: transparent;
+    border: 0;
+}
+
+.icon {
+    height: 1.5rem;    
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+/* CARD BODY */
+.card-body {
+    display: flex;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+/* CARD BUTTONS */
+.btn {
+    height: 2rem;
+}
+
+.play-btn:hover {
+    cursor: pointer;
+    fill: rgb(52, 124, 76);
+}
+
+.card-footer {
+    visibility: hidden;
+}
+
+
+/* main {
     display: flex;
     justify-content: center;
 
@@ -33,7 +93,7 @@ main {
         height: 2.5rem;
         width: 48rem;
         top: -3rem;
-        /* padding-top: 0.4rem; */
+       
     }
     & #hint {
         border: 1px black solid;
@@ -55,6 +115,6 @@ main {
         height: 5rem;
         width: 10rem;
         
-       /*  margin-bottom: 50rem; */
+      
     }
-}
+} */

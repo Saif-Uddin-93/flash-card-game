@@ -1,4 +1,4 @@
-question = {
+questions = {
   easy: [
     {
       "How do you declare a variable in JavaScript?": "Variables are declared using keywords like var, let, or const, followed by the variable name.",
