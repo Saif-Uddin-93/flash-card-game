@@ -13,6 +13,7 @@ function nextBtn() {
     trackQ++;
     trackQ = trackQ===questions[diffuculty].length ? trackQ-1 : trackQ;
     console.log(trackQ);
+    changeText("#q-number", `${trackQ+1}/${questions[diffuculty].length}`)
     loadQuestion(diffuculty);
 }
 
@@ -24,6 +25,7 @@ function prevBtn() {
         return;
     }
     console.log(trackQ);
+    changeText("#q-number", `${trackQ+1}/${questions[diffuculty].length}`)
     loadQuestion(diffuculty);
 }
 
