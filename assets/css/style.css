@@ -62,6 +62,10 @@ body {
     visibility: hidden;
 }
 
+.hide {
+    display:none;
+}
+
 
 /* main {
     display: flex;
