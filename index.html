@@ -55,7 +55,7 @@
                 <div class="row justify-content-around">
                     <div id="hint" class="col-sm-2 col-lg-2">Hint</div>
                     <div class="col-sm-4 col-lg-8">
-                        <img id="translate" class="icon" src="./assets/svg/translate.svg" alt="icon translate button">
+                        <div id="timer" class="timer">0</div> <!-- class="icon" src="./assets/svg/translate.svg" alt="icon translate button"> -->
                     </div>
                     <div class="col-sm-2 col-lg-2">
                         <img id="settings" class="icon" src="./assets/svg/settings.svg" alt="icon settings">                       
@@ -86,6 +86,7 @@
                 </div>
                 <div class="col-md-2">
                     <svg 
+                        data-timer="false"
                         class="btn play-btn"
                         stroke="currentColor" 
                         fill="currentColor" 

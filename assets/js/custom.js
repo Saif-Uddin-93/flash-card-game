@@ -25,22 +25,23 @@ const changeText = (selector="", txt="", element=htmlElement(selector)) => eleme
 // e.g addGlobalEventListener("click", nextQ, "#id")
 function addGlobalEventListener(typeOfEvent="", callback, selector="", stopPropagation=true) {
   document.addEventListener(typeOfEvent, (eventObj) => {
-    if (eventObj.target.matches(selector)) callback(eventObj);
+    if (eventObj.target.matches(selector)) callback();
     if (stopPropagation) eventObj.stopPropagation();
   })
 }
 
-/* // Timer object 
+// Timer object 
+const timeElement = htmlElement("#timer")
 const Timer = {
   timerInterval: undefined,
   timeoutInterval: undefined,
-  timeoutSet: (callBack)=> Timer.timeoutInterval = setTimeout(callBack, 1000),
+  timeoutSet: (callBack, ms=1000)=> Timer.timeoutInterval = setTimeout(callBack, ms),
   timeoutClr: ()=> clearTimeout(Timer.timeoutInterval),
   setActive : (bool = timeElement.dataset.active)=> timeElement.dataset.active = bool.toString(), 
   active : ()=> String(timeElement.dataset.active),
   setTime : (time = Timer.getTime())=> timeElement.textContent = time,
   getTime : ()=> parseInt(timeElement.textContent),
-  start : ()=> {Timer.timerInterval = setInterval(Timer.countdown, 1000); Timer.setActive(true)},
+  start : (ms=1000)=> {Timer.timerInterval = setInterval(Timer.countdown, ms); Timer.setActive(true)},
   stop : ()=> {clearInterval(Timer.timerInterval); Timer.setActive(false)},
   deductTime : (time)=> timeElement.textContent=Timer.getTime()-time,
   countdown: ()=> {Timer.deductTime(1); if(Timer.getTime()<1) Timer.outOfTime();},
@@ -48,7 +49,7 @@ const Timer = {
 }
 Timer.setTime(100);
 
-// soundVar("path/to/soundFile.wav")
+// e.g soundVar("path/to/soundFile.wav")
 const soundVar = (src="", audio=document.createElement("audio"), set=audio.setAttribute("src", src)) => audio
 const correct = soundVar("assets/sfx/correct.wav");
 const incorrect = soundVar("assets/sfx/incorrect.wav");
@@ -61,4 +62,4 @@ const soundsLibrary = {
     correct : ()=> soundsLibrary.sounds.correct.play(),
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
   //newSound: (key="", src="") => soundsLibrary.sounds[key]=soundVar(src),
-} */
+}
