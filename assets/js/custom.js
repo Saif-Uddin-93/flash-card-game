@@ -67,3 +67,9 @@ const soundsLibrary = {
     correct : ()=> soundsLibrary.sounds.correct.play(),
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
 }
+
+/* MT */
+// slider for Q/A font size 
+$("#q-slider").on("input", function () {
+  $('#q-a').css("font-size", $(this).val() + "px");
+});
