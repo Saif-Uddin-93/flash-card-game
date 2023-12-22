@@ -105,6 +105,27 @@ body {
     color: white !important;
     background-color: #6c757d !important;
 }
+
+/* MODALS */
+.settings-header {
+    margin-bottom: .5rem;
+}
+
+.setting-container {
+    padding: 1rem;    
+}
+
+.modal-header {
+    position: relative;
+}
+
+.app-version {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* transform: translateX(-50%); */
+}
+
 /* ---- MT END---- */
 
 
