@@ -33,13 +33,14 @@ function prevBtn() {
 }
 
 function loadQuestion(level=difficulty(), questionNo=trackQ){
-    changeText("#footer-msg", "msg");
+    //changeText("#footer-msg", "msg");
+    cssStyle("#footer-msg","visibility","hidden")
     changeText("#q-number", `${questionNo+1}/${questions[level].length}`);
     // set initial time for question
     Timer.setTime(30);
     const q=questions[level][questionNo].question;
     console.log(q);
-    changeText("#question-answer", q);
+    changeText("#q-a", q);
 }
 
 function loadAnswers(){
@@ -50,6 +51,8 @@ function loadAnswers(){
 function loadHint(level=difficulty()){
     const h=questions[level][trackQ].hint;
     changeText("#footer-msg", h);
+    cssStyle("#footer-msg","visibility","visible")
+    //cssClass("#footer-msg", "toggle", "card-footer")
     Timer.deductTime(10);
 }
 
