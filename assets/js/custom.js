@@ -21,6 +21,9 @@ const cssClass = (selector="", action="", cssClass="", element=htmlElement(selec
       break;
   }
 }
+
+// e.g cssStyle("#footer-msg","visibility","hidden")
+const cssStyle = (selector="", style="", value="") => htmlElement(selector).style[style] = value;
   
 // e.g changeText("#id", "lorem ipso")
 // e.g changeText(".class", "lorem ipso")
@@ -72,4 +75,6 @@ const soundsLibrary = {
 // slider for Q/A font size 
 $("#q-slider").on("input", function () {
   $('#q-a').css("font-size", $(this).val() + "px");
+  /* SU: storing font size to local storage */
+  localStorage.setItem("q-font-size", $(this).val())
 });
