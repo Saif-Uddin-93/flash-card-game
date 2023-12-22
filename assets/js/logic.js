@@ -1,14 +1,14 @@
+// set initial time for timer
 Timer.setTime(30);
+// question number tracker
 let trackQ = -1;
 
 // add logic to difficulty() for selecting the difficulty options at start of game
-let difficulty = ()=> "easy"
+let difficulty = ()=> "advanced"
 
-//addGlobalEventListener("click", playBtn, ".play-btn");
 addGlobalEventListener("click", ".next-btn", nextBtn);
 addGlobalEventListener("click", ".prev-btn", prevBtn);
 addGlobalEventListener("click", "#q-hint", loadHint);
-
 
 function nextBtn() {
     trackQ++;
