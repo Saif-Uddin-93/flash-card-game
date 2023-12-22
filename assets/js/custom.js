@@ -73,3 +73,9 @@ const soundsLibrary = {
 $("#q-slider").on("input", function () {
   $('#q-a').css("font-size", $(this).val() + "px");
 });
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   // Trigger the Trivia Level Modal on page load
+//   var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+//   myModal.show();
+// });
