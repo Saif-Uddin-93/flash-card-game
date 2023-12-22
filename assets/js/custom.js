@@ -49,9 +49,9 @@ const Timer = {
   getTime : ()=> parseInt(timeElement.textContent),
   start : (ms=1000)=> {Timer.timerInterval = setInterval(Timer.countdown, ms); Timer.setActive(true)},
   stop : ()=> {clearInterval(Timer.timerInterval); Timer.setActive(false)},
-  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time,
+  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time<1 ? `${0}s` : `${Timer.getTime()-time}s`,
   countdown: ()=> {Timer.deductTime(1); if(Timer.getTime()<1) Timer.outOfTime();},
-  outOfTime: ()=> {Timer.setTime(0); endScreen();},
+  outOfTime: ()=> {Timer.setTime(0); nextBtn()/* endScreen() */;},
 }
 
 // e.g soundVar("path/to/soundFile.wav")
