@@ -79,8 +79,12 @@ $("#q-slider").on("input", function () {
   localStorage.setItem("q-font-size", $(this).val())
 });
 
-/* document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
    // Trigger the Trivia Level Modal on page load
-   var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-   myModal.show();
- }); */
+   //var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+   //myModal.show();
+   // SU: loading question font size from local storage
+   if (localStorage.getItem("q-font-size")) {
+     htmlElement("#q-slider").setAttribute("value",localStorage.getItem("q-font-size"))
+   }
+ });

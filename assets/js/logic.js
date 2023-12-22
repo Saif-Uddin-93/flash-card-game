@@ -1,9 +1,6 @@
 // question number tracker
 let trackQ = -1;
 
-// add logic to difficulty() for selecting the difficulty options at start of game
-let difficulty = ()=> "easy"
-
 addGlobalEventListener("click", ".next-btn", nextBtn);
 addGlobalEventListener("click", ".prev-btn", prevBtn);
 //addGlobalEventListener("click", "#q-hint", loadHint);
@@ -34,7 +31,6 @@ function prevBtn() {
 }
 
 function loadQuestion(level=difficulty(), questionNo=trackQ){
-    //changeText("#footer-msg", "msg");
     cssStyle("#footer-msg","visibility","hidden")
     changeText("#q-number", `${questionNo+1}/${apiResult["results"].length/* questions[level].length */}`);
     // set initial time for question
@@ -45,12 +41,42 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
     //loadAnswers();
 }
 
-/* function loadAnswers(level=difficulty(), questionNo=trackQ){
-    const answersList = document.querySelector("#q-answers");
+function loadAnswers(level=difficulty(), questionNo=trackQ){
+    const answersList = document.getElementsByClassName("options");
 
-    const a=questions[level][questionNo].answer;
-    console.log(answersList, a)
-} */
+    const answerCorrect=apiResult["results"][questionNo]["correct_answer"];//questions[level][questionNo].answer;
+    const listWrong = apiResult["results"][questionNo]["incorrect_answers"]
+    console.log(answersList, answerCorrect)
+
+    /* function loop (i=0, usedIndecies=[], newCharIndex=0)
+    {
+        let tempList = [];
+        let answerWrong = getRandom(listWrong[Math.floor(Math.random()*listWrong.length)]);
+        if(listWrong.length!==listWrong.length){tempList[i]=answerWrong;}
+        i++;
+        if (i===passLength)
+        {
+            console.log("before:",pass.join(''));
+            for(let index=0; index<characters().length; index++){
+                if(!containsCharacters(pass.join(''), characters()[index])){
+                    do newCharIndex = Math.floor(Math.random(passLength)*passLength);
+                    while(usedIndecies.includes(newCharIndex));
+                    pass[newCharIndex] = getRandom(characters()[index]);
+                    usedIndecies.push(newCharIndex);
+                    console.log(pass[newCharIndex]);
+                    console.log(usedIndecies);
+                }
+                if(index===characters().length-1){
+                    pass = pass.join('');
+                    console.log("after:",pass);
+                }
+            }
+        }
+        else if (i<passLength) loop(i, pass.join(''));
+    }
+    loop(); */
+
+}
 
 /* function loadHint(level=difficulty()){
     const h=questions[level][trackQ].hint;

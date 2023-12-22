@@ -1,5 +1,18 @@
-const apiResult = 
-{
+const questionAmount = 10;
+const category = 18;
+// add logic to difficulty() for selecting the difficulty options at start of game
+const difficulty = ()=> "easy";
+const qType = "multiple";
+let apiResult = "";
+
+const apiURL = `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty()}&type=${qType}`
+
+fetch(apiURL)
+.then(response => response.json())
+.then(result => apiResult = result)
+
+
+/* {
     "response_code":0,
     "results":[
         {
@@ -92,4 +105,4 @@ const apiResult =
             "incorrect_answers":["Music Player","Multi Pass","Micro Point"]
         }
     ]
-}
+} */
