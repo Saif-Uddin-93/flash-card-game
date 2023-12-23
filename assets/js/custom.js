@@ -68,6 +68,24 @@ const soundsLibrary = {
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+   // Trigger the Trivia Level Modal on page load
+   //var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+   //myModal.show();
+   
+   // SU: attempt to fix slider jumping when page loads
+   //const qSlider = document.createElement("input");
+   const qSlider = htmlElement("#q-slider");
+   //qSlider.setAttribute("type","range");
+   //qSlider.setAttribute("min","32");
+   //qSlider.setAttribute("max","64");
+   qSlider.setAttribute("value", localStorage.getItem("q-font-size")||"48");
+   $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+   //qSlider.setAttribute("id","q-slider");
+   //qSlider.setAttribute("step","4");
+   //htmlElement(".small-font").after(qSlider)
+});
+
 /* MT */
 // slider for Q/A font size 
 $("#q-slider").on("input", function () {
@@ -75,13 +93,6 @@ $("#q-slider").on("input", function () {
   /* SU: storing font size to local storage */
   localStorage.setItem("q-font-size", $(this).val())
 });
-
-
-/* document.addEventListener('DOMContentLoaded', function () {
-   // Trigger the Trivia Level Modal on page load
-   var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-   myModal.show();
- }); */
 
 // get the questions from API
 const getQuestions = (mode, number) => {
@@ -93,4 +104,3 @@ const getQuestions = (mode, number) => {
 }
 
 // getQuestions('easy', 10)
-

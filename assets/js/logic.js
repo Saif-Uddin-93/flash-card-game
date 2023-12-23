@@ -1,9 +1,6 @@
 // question number tracker
 let trackQ = -1;
 
-// add logic to difficulty() for selecting the difficulty options at start of game
-let difficulty = ()=> "easy"
-
 addGlobalEventListener("click", ".next-btn", nextBtn);
 addGlobalEventListener("click", ".prev-btn", prevBtn);
 //addGlobalEventListener("click", "#q-hint", loadHint);
@@ -14,7 +11,7 @@ function nextBtn() {
     {
         trackQ = apiResult["results"].length-1;//questions[difficulty()].length-1;
         endScreen(); 
-        return
+        return;
     }
     trackQ = trackQ===apiResult["results"].length /* questions[difficulty()].length */ ? trackQ-1 : trackQ;
     console.log(trackQ);
@@ -34,7 +31,6 @@ function prevBtn() {
 }
 
 function loadQuestion(level=difficulty(), questionNo=trackQ){
-    //changeText("#footer-msg", "msg");
     cssStyle("#footer-msg","visibility","hidden")
     changeText("#q-number", `${questionNo+1}/${apiResult["results"].length/* questions[level].length */}`);
     // set initial time for question
@@ -42,15 +38,26 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
     const q=apiResult["results"][questionNo]["question"];//questions[level][questionNo].question;
     console.log(q);
     changeText("#q-a", q);
-    //loadAnswers();
+    loadAnswers();
 }
 
-/* function loadAnswers(level=difficulty(), questionNo=trackQ){
-    const answersList = document.querySelector("#q-answers");
-
-    const a=questions[level][questionNo].answer;
-    console.log(answersList, a)
-} */
+function loadAnswers(level=difficulty(), questionNo=trackQ){
+    const answersList = document.getElementsByClassName("options");
+    const answerCorrect=apiResult["results"][questionNo]["correct_answer"];//questions[level][questionNo].answer;
+    const listWrong = apiResult["results"][questionNo]["incorrect_answers"]
+    console.log(answersList, answerCorrect, listWrong)
+    loop(0);
+    function loop (i=0, usedIndecies=[], newIndex=0)
+    {
+        do newIndex = Math.floor(Math.random()*answersList.length)
+        while(usedIndecies.includes(newIndex))
+        usedIndecies.push(newIndex);
+        answersList[newIndex].textContent=listWrong[i];
+        i++;
+        if(i<answersList.length)loop(i, usedIndecies);
+        if(i===answersList.length)answersList[newIndex].textContent=answerCorrect;
+    }
+}
 
 /* function loadHint(level=difficulty()){
     const h=questions[level][trackQ].hint;
