@@ -94,6 +94,10 @@ body {
 }
 
 /* ANSWERS */
+#q-answers {
+    display: none;
+}
+
 .q-answers {
     display: flex;
     padding-top: 3rem;
@@ -136,6 +140,76 @@ body {
     margin: 0;
     padding: 0 .5rem;
 }
+
+.mode-container {   
+    display: block;
+    position: absolute;     
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;    
+    background: white;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.mode {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+}
+
+.mode-number {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 50%;
+    top: 15%;
+    transform: translateX(-50%);
+
+  }
+
+  .mode-header {
+    padding-bottom: .9rem;
+  }
+  
+  .mode-input {
+    text-align: center;
+    width: 3.5rem; 
+    appearance: textfield;
+    -moz-appearance: textfield; /* Firefox */
+    font-size: 2rem;
+    border-radius: 5px;
+  }
+  
+  .mode-input::-webkit-inner-spin-button,
+  .mode-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .arrow-up,
+  .arrow-down {
+    position: absolute;
+    /* top: 30px; */
+    right: 1.3rem;
+    cursor: pointer;
+    padding: 5px;
+    user-select: none;
+  }
+  
+  .arrow-up {
+    top: 32px;
+  }
+  
+  .arrow-down {
+    top: 60px; 
+  }
+
 
 /* ---- MT END---- */
 

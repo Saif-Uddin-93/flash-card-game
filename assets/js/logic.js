@@ -70,3 +70,5 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
 function endScreen(){
     console.log("THE END!!")
 }
+
+
