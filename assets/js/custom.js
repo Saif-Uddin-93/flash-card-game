@@ -21,6 +21,9 @@ const cssClass = (selector="", action="", cssClass="", element=htmlElement(selec
       break;
   }
 }
+
+// e.g cssStyle("#footer-msg","visibility","hidden")
+const cssStyle = (selector="", style="", value="") => htmlElement(selector).style[style] = value;
   
 // e.g changeText("#id", "lorem ipso")
 // e.g changeText(".class", "lorem ipso")
@@ -49,9 +52,9 @@ const Timer = {
   getTime : ()=> parseInt(timeElement.textContent),
   start : (ms=1000)=> {Timer.timerInterval = setInterval(Timer.countdown, ms); Timer.setActive(true)},
   stop : ()=> {clearInterval(Timer.timerInterval); Timer.setActive(false)},
-  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time,
+  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time<1 ? `${0}s` : `${Timer.getTime()-time}s`,
   countdown: ()=> {Timer.deductTime(1); if(Timer.getTime()<1) Timer.outOfTime();},
-  outOfTime: ()=> {Timer.setTime(0); endScreen();},
+  outOfTime: ()=> {Timer.setTime(0); nextBtn()/* endScreen() */;},
 }
 
 // e.g soundVar("path/to/soundFile.wav")
@@ -93,14 +96,3 @@ $("#q-slider").on("input", function () {
   /* SU: storing font size to local storage */
   localStorage.setItem("q-font-size", $(this).val())
 });
-
-// get the questions from API
-const getQuestions = (mode, number) => {
-  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;  
-
-  fetch(url)
-  .then(response => response.json())
-  .then(data => console.log(data.results))
-}
-
-// getQuestions('easy', 10)
