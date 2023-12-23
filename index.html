@@ -47,7 +47,7 @@
     <!-- card -->
     <div class="container w-75 text-center mt-5">           
         <section id="main">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-8">    
                     <div class="q-container">
                         <div class="row">
@@ -83,7 +83,24 @@
                         <div id="footer-msg" class="card-footer">
                             msg
                         </div>
-                    </div>
+
+                        <div class="mode-container text-center">
+
+                            <div class="mode-number">
+                                <label class="mode-header">Number of Questions</label>
+                                <input id="mode-number" type="number" min="1" max="50" step="1" class="mode-input" value="1">
+                                <div class="arrow-up">▲</div>
+                                <div class="arrow-down">▼</div>
+                            </div>
+
+                            <div id="mode-level" class="mode w-25">
+                                <button class="btn btn-primary m-2">Easy</button>
+                                <button class="btn btn-primary m-2">Medium</button>
+                                <button class="btn btn-primary m-2">Hard</button>
+                            </div>
+
+                        </div>
+                    </div>                    
             
                     <!-- controls -->
                     <div class="control">
@@ -101,23 +118,26 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 q-answers" id="q-answers">
-                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option1">Answer 1</label>
+                
+                <div class="col-md-4" id="q-answers">
+                    <section class="q-answers">                    
+                        <!-- <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="option1">Answer 1</label>
 
-                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option2">Answer 2</label>                   
+                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="option2">Answer 2</label>                   
 
-                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option3">Answer 3</label>
+                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="option3">Answer 3</label>
 
-                    <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option4">Answer 4</label>
+                        <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="option4">Answer 4</label>
 
-                    <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option5">Answer 5</label>
-                    
+                        <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="option5">Answer 5</label>  -->
+                    </section>                   
                 </div>           
+
             </div>
         </section>       
      
@@ -175,28 +195,6 @@
             </div>
         </div>
     </div>  
-    
-    <!-- Trivia Level Modal -->
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Launch static backdrop modal
-    </button> -->
-    
-    <!--  Trivia Level Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="d-flex justify-content-center modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Mode</h1>                   
-                </div>
-                <div class="d-flex flex-column modal-body w-75 mx-auto p-5">
-                    <button class="btn btn-primary m-2">Easy</button>
-                    <button class="btn btn-primary m-2">Intermediate</button>
-                    <button class="btn btn-primary m-2">Advanced</button>
-                </div>              
-            </div>
-        </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
