@@ -21,9 +21,6 @@ const cssClass = (selector="", action="", cssClass="", element=htmlElement(selec
       break;
   }
 }
-
-// e.g cssStyle("#footer-msg","visibility","hidden")
-const cssStyle = (selector="", style="", value="") => htmlElement(selector).style[style] = value;
   
 // e.g changeText("#id", "lorem ipso")
 // e.g changeText(".class", "lorem ipso")
@@ -52,9 +49,9 @@ const Timer = {
   getTime : ()=> parseInt(timeElement.textContent),
   start : (ms=1000)=> {Timer.timerInterval = setInterval(Timer.countdown, ms); Timer.setActive(true)},
   stop : ()=> {clearInterval(Timer.timerInterval); Timer.setActive(false)},
-  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time<1 ? `${0}s` : `${Timer.getTime()-time}s`,
+  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time,
   countdown: ()=> {Timer.deductTime(1); if(Timer.getTime()<1) Timer.outOfTime();},
-  outOfTime: ()=> {Timer.setTime(0); nextBtn()/* endScreen() */;},
+  outOfTime: ()=> {Timer.setTime(0); endScreen();},
 }
 
 // e.g soundVar("path/to/soundFile.wav")
@@ -70,6 +67,24 @@ const soundsLibrary = {
     correct : ()=> soundsLibrary.sounds.correct.play(),
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+   // Trigger the Trivia Level Modal on page load
+   //var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+   //myModal.show();
+   
+   // SU: attempt to fix slider jumping when page loads
+   //const qSlider = document.createElement("input");
+   const qSlider = htmlElement("#q-slider");
+   //qSlider.setAttribute("type","range");
+   //qSlider.setAttribute("min","32");
+   //qSlider.setAttribute("max","64");
+   qSlider.setAttribute("value", localStorage.getItem("q-font-size")||"48");
+   $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+   //qSlider.setAttribute("id","q-slider");
+   //qSlider.setAttribute("step","4");
+   //htmlElement(".small-font").after(qSlider)
+});
 
 /* MT */
 // slider for Q/A font size 
@@ -168,3 +183,4 @@ $('.arrow-down').on('click', function(){
       inputField.val(newNum);
   }
 });
+
