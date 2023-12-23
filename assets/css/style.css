@@ -47,7 +47,7 @@ body {
 }
 
 .card-footer {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .control {
