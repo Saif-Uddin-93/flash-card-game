@@ -2,15 +2,15 @@ const questionAmount = 10;
 const category = 18;
 // add logic to difficulty() for selecting the difficulty options at start of game
 const difficulty = ()=> "easy";
-const qType = "multiple";
+//const qType = "multiple";// qType must not change
 let apiResult = "";
 
-const apiURL = `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty()}&type=${qType}`
+const apiURL = `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty()}&type=multiple`//${qType}`
 
 fetch(apiURL)
 .then(response => response.json())
 .then(result => apiResult = result)
-
+.catch(console.log(`need to wait 5 seconds before loading new quiz`))
 
 /* {
     "response_code":0,

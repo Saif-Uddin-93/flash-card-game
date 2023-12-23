@@ -11,7 +11,7 @@ function nextBtn() {
     {
         trackQ = apiResult["results"].length-1;//questions[difficulty()].length-1;
         endScreen(); 
-        return
+        return;
     }
     trackQ = trackQ===apiResult["results"].length /* questions[difficulty()].length */ ? trackQ-1 : trackQ;
     console.log(trackQ);
@@ -38,44 +38,25 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
     const q=apiResult["results"][questionNo]["question"];//questions[level][questionNo].question;
     console.log(q);
     changeText("#q-a", q);
-    //loadAnswers();
+    loadAnswers();
 }
 
 function loadAnswers(level=difficulty(), questionNo=trackQ){
     const answersList = document.getElementsByClassName("options");
-
     const answerCorrect=apiResult["results"][questionNo]["correct_answer"];//questions[level][questionNo].answer;
     const listWrong = apiResult["results"][questionNo]["incorrect_answers"]
-    console.log(answersList, answerCorrect)
-
-    /* function loop (i=0, usedIndecies=[], newCharIndex=0)
+    console.log(answersList, answerCorrect, listWrong)
+    loop(0);
+    function loop (i=0, usedIndecies=[], newIndex=0)
     {
-        let tempList = [];
-        let answerWrong = getRandom(listWrong[Math.floor(Math.random()*listWrong.length)]);
-        if(listWrong.length!==listWrong.length){tempList[i]=answerWrong;}
+        do newIndex = Math.floor(Math.random()*answersList.length)
+        while(usedIndecies.includes(newIndex))
+        usedIndecies.push(newIndex);
+        answersList[newIndex].textContent=listWrong[i];
         i++;
-        if (i===passLength)
-        {
-            console.log("before:",pass.join(''));
-            for(let index=0; index<characters().length; index++){
-                if(!containsCharacters(pass.join(''), characters()[index])){
-                    do newCharIndex = Math.floor(Math.random(passLength)*passLength);
-                    while(usedIndecies.includes(newCharIndex));
-                    pass[newCharIndex] = getRandom(characters()[index]);
-                    usedIndecies.push(newCharIndex);
-                    console.log(pass[newCharIndex]);
-                    console.log(usedIndecies);
-                }
-                if(index===characters().length-1){
-                    pass = pass.join('');
-                    console.log("after:",pass);
-                }
-            }
-        }
-        else if (i<passLength) loop(i, pass.join(''));
+        if(i<answersList.length)loop(i, usedIndecies);
+        if(i===answersList.length)answersList[newIndex].textContent=answerCorrect;
     }
-    loop(); */
-
 }
 
 /* function loadHint(level=difficulty()){
