@@ -1,16 +1,19 @@
-// const questionAmount = 10;
-// const category = 18;
-// // add logic to difficulty() for selecting the difficulty options at start of game
-// const difficulty = ()=> "easy";
-// //const qType = "multiple";// qType must not change
-// let apiResult = "";
+const difficulty = (lvl) => lvl||"easy";
+let apiResult = {};
+function callAPI(level, amount){
+    const questionAmount = amount;
+    const category = 18;
+    difficulty(level);
+    
+    //const qType = "multiple";// qType must not change
 
-// const apiURL = `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty()}&type=multiple`//${qType}`
+    const apiURL = `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${level||"easy"}&type=multiple`//${qType}`
 
-// fetch(apiURL)
-// .then(response => response.json())
-// .then(result => apiResult = result)
-// .catch(console.log(`need to wait 5 seconds before loading new quiz`))
+    fetch(apiURL)
+    .then(response => response.json())
+    .then(result => apiResult = result)
+    //.catch(console.log(`need to wait 5 seconds before loading new quiz`))
+}
 
 /* {
     "response_code":0,
