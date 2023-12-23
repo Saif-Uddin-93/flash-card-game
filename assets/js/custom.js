@@ -184,3 +184,14 @@ $('.arrow-down').on('click', function(){
   }
 });
 
+
+// flip the card on HINT click
+$('#flashcard-hint').on('click', function(){
+
+  $('.flashcard-inner').addClass('flashcard-flip');
+  
+  setTimeout(function(){
+    $('.flashcard-inner').removeClass('flashcard-flip');
+  }, 2000);
+
+});
