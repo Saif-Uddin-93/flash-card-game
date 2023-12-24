@@ -52,6 +52,7 @@ body {
 
 .control {
     position: relative;
+    visibility: hidden;
 }
 
 .icon {
@@ -94,10 +95,6 @@ body {
 }
 
 /* ANSWERS */
-#q-answers {
-    display: none;
-}
-
 .q-answers {
     display: flex;
     padding-top: 3rem;
@@ -260,8 +257,17 @@ body {
 /* ---- MT END---- */
 
 
+
 /* ---- SU START---- */
-/* .hide {
-    display:none;
-} */
+.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .hide.visible {
+    visibility: visible;
+    opacity: 1;
+  }
+  
 /* ---- SU END---- */

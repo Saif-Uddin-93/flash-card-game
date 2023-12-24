@@ -36,7 +36,7 @@
                     <div class="q-container">
                         <div class="row">
                             <div id="q-points" class="col-md-1 q-points">points</div>
-                            <div id="q-number" class="col-md-10 q-header">1/20</div>
+                            <div id="q-number" class="col-md-10 q-header">1/?</div>
                             <div id="q-exit" class="col-md-1 q-exit">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 352 512"  xmlns="http://www.w3.org/2000/svg"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>                             
                             </div>
@@ -63,17 +63,16 @@
                             </div>
                         </div>
                         <div id="q-a" class="card-body">
-                            Q/A
+                            Get Ready!
                         </div>
                         <div id="footer-msg" class="card-footer">
                             msg
                         </div>
-
                         <div class="mode-container text-center">
 
                             <div class="mode-number">
                                 <label class="mode-header">Number of Questions</label>
-                                <input id="mode-number" type="number" min="1" max="50" step="1" class="mode-input" value="1">
+                                <input id="mode-number" type="number" min="1" max="50" step="1" class="mode-input" value="10">
                                 <div class="arrow-up">▲</div>
                                 <div class="arrow-down">▼</div>
                             </div>
@@ -103,25 +102,23 @@
                     </div>
                 </div>
 
-                <div class="col-md-4" id="q-answers">
-                    <section class="q-answers">  
-                        <!-- <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="option1">Answer 1</label>
+                <div class="col-md-4 q-answers" id="q-answers">
+                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+                    <label class="btn btn-outline-secondary options hide" for="option1">Answer 1</label>
 
-                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="option2">Answer 2</label>                   
+                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                    <label class="btn btn-outline-secondary options hide" for="option2">Answer 2</label>                   
 
-                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="option3">Answer 3</label>
+                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+                    <label class="btn btn-outline-secondary options hide" for="option3">Answer 3</label>
 
-                        <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="option4">Answer 4</label>
+                    <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+                    <label class="btn btn-outline-secondary options hide" for="option4">Answer 4</label>
 
-                        <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="option5">Answer 5</label> -->
-                    </section>
-                </div>           
-
+                    <!-- <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off">
+                    <label class="btn btn-outline-secondary options" for="option5">Answer 5</label> -->
+                    
+                </div>
             </div>
         </section>       
      
@@ -187,7 +184,7 @@
     </button> -->
     
     <!--  Trivia Level Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="d-flex justify-content-center modal-header">
@@ -200,14 +197,12 @@
                 </div>              
             </div>
         </div>
-    </div>  
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./assets/js/custom.js"></script>
-    <script src="./assets/js/api_response.js"></script>
-    <script src="./assets/js/questions.js"></script>
     <script src="./assets/js/logic.js"></script> 
 </body>
 </html>

@@ -21,6 +21,9 @@ const cssClass = (selector="", action="", cssClass="", element=htmlElement(selec
       break;
   }
 }
+
+// e.g cssStyle("#footer-msg","visibility","hidden")
+const cssStyle = (selector="", style="", value="") => htmlElement(selector).style[style] = value;
   
 // e.g changeText("#id", "lorem ipso")
 // e.g changeText(".class", "lorem ipso")
@@ -31,7 +34,7 @@ const changeText = (selector="", txt="", element=htmlElement(selector)) => eleme
 // e.g addGlobalEventListener("click", "selector", nextQ)
 function addGlobalEventListener(typeOfEvent="", selector="", callback, stopPropagation=true) {
   document.addEventListener(typeOfEvent, (eventObj) => {
-    if (eventObj.target.matches(selector)) callback();
+    if (eventObj.target.matches(selector)) callback(eventObj);
     if (stopPropagation) eventObj.stopPropagation();
   })
 }
@@ -41,7 +44,7 @@ const timeElement = htmlElement("#q-timer")
 const Timer = {
   timerInterval: undefined,
   timeoutInterval: undefined,
-  timeoutSet: (callBack, ms=1000)=> Timer.timeoutInterval = setTimeout(callBack, ms),
+  timeoutSet: (callBack, ms=1)=> Timer.timeoutInterval = setTimeout(callBack, ms*1000),
   timeoutClr: ()=> clearTimeout(Timer.timeoutInterval),
   setActive : (bool = timeElement.dataset.active)=> timeElement.dataset.active = bool.toString(), 
   active : ()=> String(timeElement.dataset.active),
@@ -49,9 +52,9 @@ const Timer = {
   getTime : ()=> parseInt(timeElement.textContent),
   start : (ms=1000)=> {Timer.timerInterval = setInterval(Timer.countdown, ms); Timer.setActive(true)},
   stop : ()=> {clearInterval(Timer.timerInterval); Timer.setActive(false)},
-  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time,
+  deductTime : (time)=> timeElement.textContent=Timer.getTime()-time<1 ? `${0}s` : `${Timer.getTime()-time}s`,
   countdown: ()=> {Timer.deductTime(1); if(Timer.getTime()<1) Timer.outOfTime();},
-  outOfTime: ()=> {Timer.setTime(0); endScreen();},
+  outOfTime: ()=> {Timer.setTime(0); nextBtn()/* endScreen() */;},
 }
 
 // e.g soundVar("path/to/soundFile.wav")
@@ -73,17 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
    //var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
    //myModal.show();
    
-   // SU: attempt to fix slider jumping when page loads
-   //const qSlider = document.createElement("input");
    const qSlider = htmlElement("#q-slider");
-   //qSlider.setAttribute("type","range");
-   //qSlider.setAttribute("min","32");
-   //qSlider.setAttribute("max","64");
    qSlider.setAttribute("value", localStorage.getItem("q-font-size")||"48");
    $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
-   //qSlider.setAttribute("id","q-slider");
-   //qSlider.setAttribute("step","4");
-   //htmlElement(".small-font").after(qSlider)
 });
 
 /* MT */
@@ -94,8 +89,7 @@ $("#q-slider").on("input", function () {
   localStorage.setItem("q-font-size", $(this).val())
 });
 
-
-let questionsData = [];
+/* let questionsData = [];
 // Initial fetch and display
 let currentIndex = 0;
 
@@ -107,6 +101,10 @@ const getQuestions = (mode, number) => {
   }
 
   const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
+  if (questionsData.length > 0) {
+    // If questionsData is already available, return it immediately
+    return Promise.resolve(questionsData);
+  }
 
   return fetch(url)
     .then((response) => response.json())
@@ -118,24 +116,27 @@ const getQuestions = (mode, number) => {
       console.log("Error fetching questions:", err);
       throw err;
     });
-};
+}; */
 
 // Function remove HTML entities and display the actual characters
 function decodeHTML(html) {
   var doc = new DOMParser().parseFromString(html, "text/html");
   return doc.documentElement.textContent;
+  /* var tempElement = document.createElement('div');
+  tempElement.innerHTML = html;
+  return tempElement.textContent || tempElement.innerText; */
 }
 
 
-// Function to display a question
+/* // Function to display a question
 const displayQuestion = (index) => {
   const questionText = decodeHTML(questionsData[index].question)
-  $('#q-a').text(questionText);
+  $('#q-a').html(questionText);
 };
-
+ */
 
 // Function to generate answers
-const generateAnswers = (arr) => {
+/* const generateAnswers = (arr) => {
   const answers = $('.q-answers');
 
   arr.forEach((answer, index) => {
@@ -143,55 +144,52 @@ const generateAnswers = (arr) => {
     const label = $('<label>').attr('for', `option${index + 1}`).addClass('btn btn-outline-secondary').text(answer);
     answers.append(input, label);
   })
-}
+} */
 
 // render the questions
 $('#mode-level').on('click', 'button',function (){
 
-    const modeNumber = $('#mode-number').val();
-    const mode = $(this).text().toLowerCase();
+  //const modeNumber = $('#mode-number').val();
+  const mode = $(this).text().toLowerCase();
+  const questions = $("#mode-number").val();
+ 
+  callAPI(mode, questions);
+  console.log(mode, questions);
+  $('.mode-container').css('display', 'none');// hide the modal
+  cssStyle(".control", "visibility", "visible");
+  changeText("#q-number", `0/${questions}`);
+  //nextBtn();
+  /* 
+  getQuestions(mode, modeNumber)
+  .then((data) => {
+      console.log(data)
+      $('#q-a').text(displayQuestion(currentIndex)); // show the first question
 
-    getQuestions(mode, modeNumber)
-    .then((data) => {
-        console.log(data)
-        $('#q-a').text(displayQuestion(currentIndex)); // show the first question
+      generateAnswers(data.results[0].incorrect_answers)
 
-        generateAnswers(data.results[0].incorrect_answers)
+      $('.mode-container').css('display', 'none');// hide the modal
 
-        $('.mode-container').css('display', 'none');// hide the modal
-
-        $('#q-answers').fadeIn(500, function () {   
-          $('#main .row').removeClass('justify-content-center');
-        });
-    })
-    .catch((err) => console.error("Error:", err));
+      $('#q-answers').fadeIn(500, function () {   
+        $('#main .row').removeClass('justify-content-center');
+      });
+  })
+  .catch((err) => console.error("Error:", err)); */
+  
 });
 
 
 $('.arrow-up').on('click', function(){ 
-  let inputField = $('#mode-number');  
-  let currentNum = parseInt(inputField.val());
-  let newNum = currentNum + 1;
-  if(newNum <= Number(inputField.attr('max'))) inputField.val(newNum);
+let inputField = $('#mode-number');  
+let currentNum = parseInt(inputField.val());
+let newNum = currentNum + 1;
+if(newNum <= Number(inputField.attr('max'))) inputField.val(newNum);
 });
 
 $('.arrow-down').on('click', function(){ 
-  let inputField = $('#mode-number');
-  let currentNum = parseInt(inputField.val());
-  let newNum = currentNum - 1;
-  if (newNum >= inputField.attr('min')) {
-      inputField.val(newNum);
-  }
-});
-
-
-// flip the card on HINT click
-$('#flashcard-hint').on('click', function(){
-
-  $('.flashcard-inner').addClass('flashcard-flip');
-  
-  setTimeout(function(){
-    $('.flashcard-inner').removeClass('flashcard-flip');
-  }, 2000);
-
+let inputField = $('#mode-number');
+let currentNum = parseInt(inputField.val());
+let newNum = currentNum - 1;
+if (newNum >= inputField.attr('min')) {
+    inputField.val(newNum);
+}
 });
