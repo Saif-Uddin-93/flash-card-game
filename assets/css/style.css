@@ -95,10 +95,6 @@ body {
 }
 
 /* ANSWERS */
-#q-answers {
-    display: none;
-}
-
 .q-answers {
     display: flex;
     padding-top: 3rem;

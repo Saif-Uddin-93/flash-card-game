@@ -61,8 +61,6 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
     loadAnswers();
 }
 
-let timerActive = false
-
 function loadAnswers(level=difficulty(), questionNo=trackQ){
     const listWrong = apiResult.results[questionNo].incorrect_answers
     const answerCorrect=decodeHTML(apiResult.results[questionNo].correct_answer);//questions[level][questionNo].answer;
@@ -103,7 +101,7 @@ function checkAnswer(eventObj){
     });
 }
 
-function loadMsg(msg, hint=true){
+function loadMsg(msg, hint=false){
     msg = (typeof msg)!=="string" ? "MESSAGE!" : msg
     changeText("#footer-msg", msg);
     cssStyle("#footer-msg","visibility","visible")
@@ -113,4 +111,3 @@ function loadMsg(msg, hint=true){
 function endScreen(){
     console.log("THE END!!")
 }
-

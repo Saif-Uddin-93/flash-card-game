@@ -89,7 +89,7 @@ $("#q-slider").on("input", function () {
   localStorage.setItem("q-font-size", $(this).val())
 });
 
-let questionsData = [];
+/* let questionsData = [];
 // Initial fetch and display
 let currentIndex = 0;
 
@@ -106,8 +106,6 @@ const getQuestions = (mode, number) => {
     return Promise.resolve(questionsData);
   }
 
-  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
-
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -118,7 +116,7 @@ const getQuestions = (mode, number) => {
       console.log("Error fetching questions:", err);
       throw err;
     });
-};
+}; */
 
 // Function remove HTML entities and display the actual characters
 function decodeHTML(html) {
