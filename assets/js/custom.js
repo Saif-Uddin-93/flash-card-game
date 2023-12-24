@@ -101,6 +101,12 @@ const getQuestions = (mode, number) => {
   }
 
   const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
+  if (questionsData.length > 0) {
+    // If questionsData is already available, return it immediately
+    return Promise.resolve(questionsData);
+  }
+
+  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
 
   return fetch(url)
     .then((response) => response.json())

@@ -113,3 +113,4 @@ function loadMsg(msg, hint=true){
 function endScreen(){
     console.log("THE END!!")
 }
+

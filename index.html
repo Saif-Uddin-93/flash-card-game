@@ -17,22 +17,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">                        
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Flipcards
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Javascript</a></li>
-                  <li><a class="dropdown-item" href="#">Linux</a></li>
-                  <li><a class="dropdown-item" href="#">Bash</a></li>
-                  <li><a class="dropdown-item" href="#">Docker</a></li>
-                  <li><a class="dropdown-item" href="#">DevOps</a></li>
-                  <li><a class="dropdown-item" href="#">CMS</a></li>
-                  <li><a class="dropdown-item" href="#">Code</a></li>
-                  <li><a class="dropdown-item" href="#">SQL</a></li>
-                </ul>
-              </li> -->
-             
               <li class="nav-item">
                 <a class="nav-link" href="./index.html">Quiz</a>
               </li>
@@ -47,7 +31,7 @@
     <!-- card -->
     <div class="container w-75 text-center mt-5">           
         <section id="main">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-8">    
                     <div class="q-container">
                         <div class="row">
@@ -100,7 +84,24 @@
                             </div>
 
                         </div>
-                    </div>
+
+                        <div class="mode-container text-center">
+
+                            <div class="mode-number">
+                                <label class="mode-header">Number of Questions</label>
+                                <input id="mode-number" type="number" min="1" max="50" step="1" class="mode-input" value="1">
+                                <div class="arrow-up">▲</div>
+                                <div class="arrow-down">▼</div>
+                            </div>
+
+                            <div id="mode-level" class="mode w-25">
+                                <button class="btn btn-primary m-2">Easy</button>
+                                <button class="btn btn-primary m-2">Medium</button>
+                                <button class="btn btn-primary m-2">Hard</button>
+                            </div>
+
+                        </div>
+                    </div>                    
             
                     <!-- controls -->
                     <div class="control">
@@ -135,6 +136,7 @@
                     <label class="btn btn-outline-secondary options" for="option5">Answer 5</label> -->
                     
                 </div>           
+
             </div>
         </section>       
      
