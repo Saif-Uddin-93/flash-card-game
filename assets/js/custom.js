@@ -71,23 +71,60 @@ const soundsLibrary = {
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
 }
 
+// --------- >Settings> ---------
+const settings={
+  sfxElement: htmlElement("#setting-sound"),
+  soundFX: (save)=> {
+    if(!save){
+      return localStorage.getItem("flash-card-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("flash-card-sfx")}
+    else {
+      return settings.sfxElement.checked
+    }},
+  colourMode: () =>{/* code to edit CSS for light & dark theme goes here */},
+  clearLocal: ()=> localStorage.clear(),
+  save: (btn)=> {
+    localStorage.setItem("flash-card-sfx", settings.soundFX(true))
+    console.log("flash-card-sfx", settings.soundFX(true));
+
+    btn.target.classList.add("saved");
+    btn.target.textContent = "Saved!";
+    Timer.timeoutSet(()=>{
+      btn.target.classList.remove("saved");
+      btn.target.textContent = "Save changes";  }, 1)
+  },
+  loadSettings:()=>{
+    settings.sfxElement.checked = settings.soundFX();
+    $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
+    $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+  },
+  localSettings: ()=> {
+    console.log("clicked!")
+    if(localStorage.getItem("flash-card-sfx")==="false"){
+      settings.sfxElement.checked = false;
+    }else if (localStorage.getItem("flash-card-sfx")==="true"){
+      settings.sfxElement.checked = true;
+    }
+  },
+}
+// --------- <Settings< ---------
+
+/* MT */
 document.addEventListener('DOMContentLoaded', function () {
    // Trigger the Trivia Level Modal on page load
    //var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
    //myModal.show();
    
-   const qSlider = htmlElement("#q-slider");
-   qSlider.setAttribute("value", localStorage.getItem("q-font-size")||"48");
-   $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+   /* SU: loading font size moved to settings.loadSettings()*/
+   settings.loadSettings();
 });
 
-/* MT */
 // slider for Q/A font size 
 $("#q-slider").on("input", function () {
   $('#q-a').css("font-size", $(this).val() + "px");
   /* SU: storing font size to local storage */
   localStorage.setItem("q-font-size", $(this).val())
 });
+
 
 /* let questionsData = [];
 // Initial fetch and display
@@ -146,7 +183,7 @@ const displayQuestion = (index) => {
   })
 } */
 
-// render the questions
+// render the questions after selecting mode
 $('#mode-level').on('click', 'button',function (){
 
   //const modeNumber = $('#mode-number').val();

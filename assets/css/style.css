@@ -260,14 +260,22 @@ body {
 
 /* ---- SU START---- */
 .hide {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+  /* visibility: hidden; */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hide.visible {
+  /* visibility: visible; */
+  opacity: 1;
+}
+
+#save-settings {
+  &.saved {
+    /* content: "Saved!" !important; */
+    padding-left: 37px !important;
+    padding-right: 38px !important;
   }
-  
-  .hide.visible {
-    visibility: visible;
-    opacity: 1;
-  }
+}
   
 /* ---- SU END---- */
