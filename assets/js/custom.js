@@ -82,24 +82,37 @@ const settings={
     else {
       return settings.sfxElement.checked
     }},
-  colourMode: (save)=> {
-    /* if(!save){
-      return localStorage.getItem("flash-card-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("flash-card-sfx")}
+  colourMode: (save, theme)=> {
+    if(!save){
+      console.log(`${theme} has attr: ${settings[theme].hasAttribute("checked")}`)
+      console.log(localStorage.getItem(theme)===null ? settings[theme].hasAttribute("checked") : localStorage.getItem(theme))
+
+      return localStorage.getItem(theme)===null ? settings[theme].hasAttribute("checked") : localStorage.getItem(theme)}
     else {
-      return settings.sfxElement.checked
-    } */},
+      return settings[theme].hasAttribute("checked");
+    }},
   lightMode: ()=> {
-    /* Apply light mode CSS */
-    
+    //Apply light mode CSS
+    settings.darkElement.checked = false;
+    $("#setting-appearance-dark").removeAttr("checked");
+    $("#setting-appearance-light").attr("checked", "true");
+    settings.lightElement.checked = true;
+    console.log(`${"lightElement"} has attr: ${settings["lightElement"].hasAttribute("checked")}`)
   },
   darkMode: ()=> {
-    /* Apply dark mode CSS */
+    //Apply dark mode CSS
+    settings.lightElement.checked = false;
+    $("#setting-appearance-light").removeAttr("checked");
+    $("#setting-appearance-dark").attr("checked", "true");
+    settings.darkElement.checked = true;
+    console.log(`${"darkElement"} has attr: ${settings["darkElement"].hasAttribute("checked")}`)
   },
   clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
   save: (btn)=> {
     localStorage.setItem("flash-card-sfx", settings.soundFX(true))
-    console.log("flash-card-sfx", settings.soundFX(true));
-
+    localStorage.setItem("lightElement", settings.colourMode(true, "lightElement"))
+    localStorage.setItem("darkElement", settings.colourMode(true, "darkElement"))
+    
     btn.target.classList.add("saved");
     btn.target.textContent = "Saved!";
     Timer.timeoutSet(()=>{
@@ -109,14 +122,22 @@ const settings={
   loadSettings: ()=>{
     settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
     settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;
-    /* settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
-    settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked; */
+    
+    settings.lightElement.checked = settings.colourMode(false, "lightElement")==="true"||true?true:settings.lightElement.checked;
+    settings.lightElement.checked = settings.colourMode(false, "lightElement")==="false"||false?false:settings.lightElement.checked;
+
+    settings.darkElement.checked = settings.colourMode(false, "darkElement")==="true"||true?true:settings.darkElement.checked;
+    settings.darkElement.checked = settings.colourMode(false, "darkElement")==="false"||false?false:settings.darkElement.checked;
+
     $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
     $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
   },
   closeSettings: ()=>{
     if(localStorage.getItem("flash-card-sfx")===null){
       settings.sfxElement.checked = true
+    }
+    if(localStorage.getItem("lightElement")===null){
+      settings.lightMode();
     }
   }
 }
