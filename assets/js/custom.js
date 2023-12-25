@@ -74,14 +74,28 @@ const soundsLibrary = {
 // --------- >Settings> ---------
 const settings={
   sfxElement: htmlElement("#setting-sound"),
+  lightElement: htmlElement("#setting-appearance-light"),
+  darkElement: htmlElement("#setting-appearance-dark"),
   soundFX: (save)=> {
     if(!save){
       return localStorage.getItem("flash-card-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("flash-card-sfx")}
     else {
       return settings.sfxElement.checked
     }},
-  colourMode: () =>{/* code to edit CSS for light & dark theme goes here */},
-  clearLocal: ()=> localStorage.clear(),
+  colourMode: (save)=> {
+    /* if(!save){
+      return localStorage.getItem("flash-card-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("flash-card-sfx")}
+    else {
+      return settings.sfxElement.checked
+    } */},
+  lightMode: ()=> {
+    /* Apply light mode CSS */
+    
+  },
+  darkMode: ()=> {
+    /* Apply dark mode CSS */
+  },
+  clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
   save: (btn)=> {
     localStorage.setItem("flash-card-sfx", settings.soundFX(true))
     console.log("flash-card-sfx", settings.soundFX(true));
@@ -92,19 +106,19 @@ const settings={
       btn.target.classList.remove("saved");
       btn.target.textContent = "Save changes";  }, 1)
   },
-  loadSettings:()=>{
-    settings.sfxElement.checked = settings.soundFX();
+  loadSettings: ()=>{
+    settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
+    settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;
+    /* settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
+    settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked; */
     $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
     $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
   },
-  localSettings: ()=> {
-    console.log("clicked!")
-    if(localStorage.getItem("flash-card-sfx")==="false"){
-      settings.sfxElement.checked = false;
-    }else if (localStorage.getItem("flash-card-sfx")==="true"){
-      settings.sfxElement.checked = true;
+  closeSettings: ()=>{
+    if(localStorage.getItem("flash-card-sfx")===null){
+      settings.sfxElement.checked = true
     }
-  },
+  }
 }
 // --------- <Settings< ---------
 
@@ -125,36 +139,6 @@ $("#q-slider").on("input", function () {
   localStorage.setItem("q-font-size", $(this).val())
 });
 
-
-/* let questionsData = [];
-// Initial fetch and display
-let currentIndex = 0;
-
-// Function to get questions
-const getQuestions = (mode, number) => {
-  if (questionsData.length > 0) {
-    // If questionsData is already available, return it immediately
-    return Promise.resolve(questionsData);
-  }
-
-  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
-  if (questionsData.length > 0) {
-    // If questionsData is already available, return it immediately
-    return Promise.resolve(questionsData);
-  }
-
-  return fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      questionsData = data.results; // Store the fetched data
-      return data; // Return the data so it can be used elsewhere
-    })
-    .catch((err) => {
-      console.log("Error fetching questions:", err);
-      throw err;
-    });
-}; */
-
 // Function remove HTML entities and display the actual characters
 function decodeHTML(html) {
   var doc = new DOMParser().parseFromString(html, "text/html");
@@ -163,25 +147,6 @@ function decodeHTML(html) {
   tempElement.innerHTML = html;
   return tempElement.textContent || tempElement.innerText; */
 }
-
-
-/* // Function to display a question
-const displayQuestion = (index) => {
-  const questionText = decodeHTML(questionsData[index].question)
-  $('#q-a').html(questionText);
-};
- */
-
-// Function to generate answers
-/* const generateAnswers = (arr) => {
-  const answers = $('.q-answers');
-
-  arr.forEach((answer, index) => {
-    const input = $('<input>').attr('type', 'radio').attr('name', 'options').addClass('btn-check').attr('id', `option${index + 1}`).attr('autocomplete', 'off');
-    const label = $('<label>').attr('for', `option${index + 1}`).addClass('btn btn-outline-secondary').text(answer);
-    answers.append(input, label);
-  })
-} */
 
 // render the questions after selecting mode
 $('#mode-level').on('click', 'button',function (){
@@ -214,7 +179,6 @@ $('#mode-level').on('click', 'button',function (){
   
 });
 
-
 $('.arrow-up').on('click', function(){ 
 let inputField = $('#mode-number');  
 let currentNum = parseInt(inputField.val());
@@ -230,3 +194,54 @@ if (newNum >= inputField.attr('min')) {
     inputField.val(newNum);
 }
 });
+
+/* let questionsData = [];
+// Initial fetch and display
+let currentIndex = 0;
+
+// Function to get questions
+const getQuestions = (mode, number) => {
+  if (questionsData.length > 0) {
+    // If questionsData is already available, return it immediately
+    return Promise.resolve(questionsData);
+  }
+
+  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
+  if (questionsData.length > 0) {
+    // If questionsData is already available, return it immediately
+    return Promise.resolve(questionsData);
+  }
+
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      questionsData = data.results; // Store the fetched data
+      return data; // Return the data so it can be used elsewhere
+    })
+    .catch((err) => {
+      console.log("Error fetching questions:", err);
+      throw err;
+    });
+}; */
+
+
+
+/* // Function to display a question
+const displayQuestion = (index) => {
+  const questionText = decodeHTML(questionsData[index].question)
+  $('#q-a').html(questionText);
+};
+ */
+
+// Function to generate answers
+/* const generateAnswers = (arr) => {
+  const answers = $('.q-answers');
+
+  arr.forEach((answer, index) => {
+    const input = $('<input>').attr('type', 'radio').attr('name', 'options').addClass('btn-check').attr('id', `option${index + 1}`).attr('autocomplete', 'off');
+    const label = $('<label>').attr('for', `option${index + 1}`).addClass('btn btn-outline-secondary').text(answer);
+    answers.append(input, label);
+  })
+} */
+
+

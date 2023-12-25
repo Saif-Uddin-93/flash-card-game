@@ -3,15 +3,18 @@ addGlobalEventListener("click", ".prev-btn", prevBtn);
 addGlobalEventListener("click", "#q-hint", loadMsg);
 addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
+addGlobalEventListener("click", ".settings", settings.loadSettings)
 addGlobalEventListener("click", "#save-settings", settings.save)
-addGlobalEventListener("click", ".settings", settings.localSettings)
+addGlobalEventListener("click", ".close-btn", settings.closeSettings)
+addGlobalEventListener("click", "#setting-appearance-light", settings.lightMode)
+addGlobalEventListener("click", "#setting-appearance-dark", settings.darkMode)
 
 // --------- >API> ---------
 const difficulty = (lvl) => lvl||"easy";
 let apiResult = {};
 function callAPI(level, amount){
     const questionAmount = amount;
-    const category = 18;
+    const category = 18;// 18 is computer science
     difficulty(level);
     //const qType = "multiple";// qType must not change
     
@@ -94,12 +97,14 @@ function checkAnswer(eventObj){
         $("#q-points").text(`points ${points}`);
         loadMsg("Correct!", false);
         console.log(settings.soundFX());
-        if(settings.soundFX()=="true")soundsLibrary.play().correct();
+        console.log(settings.sfxElement.checked);
+        if(settings.sfxElement.checked)soundsLibrary.play().correct();
         Timer.timeoutSet(clearAnswers, 2);
     }else{
         loadMsg("Wrong!", false);
         console.log(settings.soundFX());
-        if(settings.soundFX()=="true")soundsLibrary.play().incorrect();
+        console.log(settings.sfxElement.checked);
+        if(settings.sfxElement.checked)soundsLibrary.play().incorrect();
         Timer.timeoutSet(clearAnswers, 2);
     }
     clearAnswers();
