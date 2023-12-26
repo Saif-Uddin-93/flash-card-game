@@ -1,4 +1,4 @@
-// flip the card on HINT click
+// Flip the card on HINT click
 $('#flashcard-hint').on('click', function(){
 
   $('.flashcard-inner').addClass('flashcard-flip');
@@ -62,3 +62,4 @@ $('#flashcard-start').on('click', function() {
   $('#flashcard-outer').hide();
   
 });
+

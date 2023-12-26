@@ -32,8 +32,14 @@
      <div class="container w-50 text-center mt-5">
       <section class="flashcard-container">         
            <div class="row">
-               <div id="flashcard-points" class="col-md-1 q-points">points</div>
-               <div id="flashcard-number" class="col-md-10 q-header">1/20</div>
+               <div id="flashcard-settings" class="col-md-1 q-points">
+
+                <!-- settings icon -->
+                <button id="f-settings" class="f-settings" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M413.967 276.8c1.06-6.235 1.06-13.518 1.06-20.8s-1.06-13.518-1.06-20.8l44.667-34.318c4.26-3.118 5.319-8.317 2.13-13.518L418.215 115.6c-2.129-4.164-8.507-6.235-12.767-4.164l-53.186 20.801c-10.638-8.318-23.394-15.601-36.16-20.801l-7.448-55.117c-1.06-4.154-5.319-8.318-10.638-8.318h-85.098c-5.318 0-9.577 4.164-10.637 8.318l-8.508 55.117c-12.767 5.2-24.464 12.482-36.171 20.801l-53.186-20.801c-5.319-2.071-10.638 0-12.767 4.164L49.1 187.365c-2.119 4.153-1.061 10.399 2.129 13.518L96.97 235.2c0 7.282-1.06 13.518-1.06 20.8s1.06 13.518 1.06 20.8l-44.668 34.318c-4.26 3.118-5.318 8.317-2.13 13.518L92.721 396.4c2.13 4.164 8.508 6.235 12.767 4.164l53.187-20.801c10.637 8.318 23.394 15.601 36.16 20.801l8.508 55.117c1.069 5.2 5.318 8.318 10.637 8.318h85.098c5.319 0 9.578-4.164 10.638-8.318l8.518-55.117c12.757-5.2 24.464-12.482 36.16-20.801l53.187 20.801c5.318 2.071 10.637 0 12.767-4.164l42.549-71.765c2.129-4.153 1.06-10.399-2.13-13.518l-46.8-34.317zm-158.499 52c-41.489 0-74.46-32.235-74.46-72.8s32.971-72.8 74.46-72.8 74.461 32.235 74.461 72.8-32.972 72.8-74.461 72.8z"></path></svg>                               
+                </button>
+               </div>
+               <div id="flashcard-number" class="col-md-10 q-header">1/-</div>
                <div id="flashcard-exit" class="col-md-1 q-exit">
                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 352 512"  xmlns="http://www.w3.org/2000/svg"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>                             
                </div>
@@ -45,6 +51,7 @@
         <div class="row">
           <div class="col">
 
+            <!-- Flashcard -->
             <div class="flashcard">
               <div class="flashcard-inner">
                 <div class="flashcard-front">
@@ -63,15 +70,19 @@
                     </div>              
                   </div> 
                 </div>
+
+                <!-- Hint -->
                 <div class="flashcard-back">           
                   <p class="flashcard-back-hint" id="flashcard-back-hint">Hint</p>
                 </div>
+
+                <!-- Messages -->
                 <div id="flashcard-msg" class="card-footer">
                   msg
                 </div>
 
-                <div class="flashcard-start" id="flashcard-outer">
-                
+                <!-- Categories start screen -->
+                <div class="flashcard-start" id="flashcard-outer">                
                   <div class="categories-container">
                     <div class="categories" id="categories">
                       <div class="category cat-active category1" data-cat="animals">
@@ -92,6 +103,8 @@
                       <div class="category category6" data-cat="clothing">
                         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>
                       </div>
+
+                      <!-- Start button -->
                       <div class="btn btn-primary start-button" id="flashcard-start">START</div>
                     </div>
                   </div>
@@ -113,6 +126,60 @@
         
       </section>
     </div>
+
+     <!-- Settings Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Settings</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">  
+                      <div class="col">
+                          <div class="setting-container">
+                              <p class="settings-header">Apperance</p>
+                              <div class="form-check form-check-inline seeting-apperance">
+                                  <input class="form-check-input" type="radio" name="seeting-apperance" id="seeting-apperance" checked>
+                                  <label class="form-check-label" for="seeting-apperance"> 
+                                  Light
+                                  </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="seeting-apperance" id="seeting-apperance">
+                                  <label class="form-check-label" for="seeting-apperance">
+                                  Dark
+                                  </label>
+                              </div> 
+                          </div>                        
+                          <div class="setting-container">
+                              <p class="settings-header">Local Storage</p>
+                              <button id="clear-storage" class="btn btn-primary">Clear...</button>
+                          </div>                        
+                      </div>
+                      <div class="col">  
+                          <div class="setting-container">
+                              <p class="settings-header">Sound</p>               
+                              <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="setting-sound" checked>
+                                  <label class="form-check-label" for="setting-sound">On/Off</label>
+                              </div>
+                          </div>                             
+                          <div class="d-flex flex-column setting-container align-self-end h-50">
+                              <p>Version 1.0</p>                            
+                          </div>                      
+                      </div>
+                  </div>          
+                  <div class="modal-footer">                       
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>  
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
