@@ -35,9 +35,12 @@ $('#flashcard-start').on('click', function() {
   
   const activeCategory =  $('.cat-active').data('cat');
 
+  // Show the spinner when fetching the image
+  $('#loading-container').show();
+
   // get the first word and hint 
   const {word, hint} = getCategory(activeCategory)[0];  
-  console.log(word, hint)
+  
   // BECASUE OF FETCH LIMIT API KEY WILL BE ADDED ONCE I GET ALL WORKING
   // const apiKey = '';
   // const url = `https://api.pexels.com/v1/search?query=${word}&per_page=1`;
@@ -50,6 +53,7 @@ $('#flashcard-start').on('click', function() {
   // })
   // .then(response => response.json())
   // .then(data => {
+  //   console.log(data)
   //   const {src, alt} = data.photos[0];
 
   //   // Show image on the screen in the flashcard      
@@ -57,7 +61,17 @@ $('#flashcard-start').on('click', function() {
   //   $('#flashcard-back-hint').text(hint);
   
   // })
-  // .catch(error => console.error('Error fetching image:', error));
+  // .catch(error => console.error('Error fetching image:', error))
+  // .finally(() => {
+  //   // Hide the spinner once the fetch is complete (whether successful or not)
+  //   $('#loading-container').hide();
+  // });
+
+  // TEMP imitate fetch
+  setTimeout(()=> {
+    $('#loading-container').hide();
+  }, 1000)
+
 
   $('#flashcard-outer').hide();
   
