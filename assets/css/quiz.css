@@ -191,12 +191,14 @@
   background-color: white;
 }
 
-.options, #footer-msg {
+.options {
   &:hover{
     color: white;
     background-color: #6C757D !important
   }
+}
 
+.options, #footer-msg {
   &.correct {
     background-color: var(--correct-bg) !important;
     color: white !important;
