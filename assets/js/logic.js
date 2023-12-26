@@ -5,7 +5,7 @@ addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
 addGlobalEventListener("click", ".q-settings", settings.loadSettings)
 addGlobalEventListener("click", "#save-settings", settings.save)
-//addGlobalEventListener("click", ".close-btn", settings.closeSettings)
+addGlobalEventListener("click", ".close-settings", settings.loadSettings)
 
 // --------- >API/*  */> ---------
 const difficulty = (lvl) => lvl||"easy";
