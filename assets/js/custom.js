@@ -179,17 +179,20 @@ $('#mode-level').on('click', 'button',function (){
 
 
 $('.arrow-up').on('click', function(){ 
-let inputField = $('#mode-number');  
-let currentNum = parseInt(inputField.val());
-let newNum = currentNum + 1;
-if(newNum <= Number(inputField.attr('max'))) inputField.val(newNum);
+  let inputField = $('#mode-number');  
+  let currentNum = parseInt(inputField.val());
+  let newNum = currentNum + 1;
+  if(newNum <= Number(inputField.attr('max'))) inputField.val(newNum);
 });
 
 $('.arrow-down').on('click', function(){ 
-let inputField = $('#mode-number');
-let currentNum = parseInt(inputField.val());
-let newNum = currentNum - 1;
-if (newNum >= inputField.attr('min')) {
-    inputField.val(newNum);
-}
+  let inputField = $('#mode-number');
+  let currentNum = parseInt(inputField.val());
+  let newNum = currentNum - 1;
+  if (newNum >= inputField.attr('min')) {
+      inputField.val(newNum);
+  }
 });
+
+
+
