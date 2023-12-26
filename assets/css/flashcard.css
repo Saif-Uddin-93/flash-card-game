@@ -53,6 +53,7 @@
   
 }
 
+
 .flashcard-front {
   /* background-color: #bbb; */
   background-color: #fff;
@@ -68,6 +69,15 @@
 
 .flashcard-hint:hover {
   cursor: pointer;
+}
+
+.flashcard-msg {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 15rem;
+  transform: translate(-50%, -50%);
 }
 
 .flashcard-start {
@@ -90,10 +100,6 @@
 
 .pexels-logo {
   height: 30px;
-}
-
-.find-word {
-  padding: 1rem;
 }
 
 .categories-container {
@@ -250,4 +256,17 @@
   100%{
       width: 100%;
   }
-};
+}
+
+/* HANGMAN */
+.guess-word {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  visibility: hidden;
+}
+
+.guess-word > div {
+  /* padding: 0 .25rem; */
+  margin: 0 .5rem;
+}

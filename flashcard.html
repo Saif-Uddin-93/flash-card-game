@@ -58,7 +58,7 @@
                 <div class="flashcard-front">
                   <div class="row justify-content-between">
                     <div id="flashcard-hint" class="col-sm-2 col-lg-2 flashcard-hint">Hint</div>
-                    <div id="flashcard-points" class="col-sm-2 col-lg-2 f-points">points</div> 
+                    <div id="flashcard-points" class="col-sm-2 col-lg-2 f-points"></div> 
                   </div>
 
                   <!-- images -->
@@ -83,16 +83,17 @@
                       </div>
                     </div>              
                   </div> 
+
+                   <!-- Messages -->
+                  <div id="flashcard-msg" class="flashcard-msg">
+                    X
+                  </div>
+
                 </div>
 
                 <!-- Hint -->
                 <div class="flashcard-back">           
                   <p class="flashcard-back-hint" id="flashcard-back-hint">Hint</p>
-                </div>
-
-                <!-- Messages -->
-                <div id="flashcard-msg" class="card-footer">
-                  msg
                 </div>
 
                 <!-- Categories start screen -->
@@ -127,10 +128,10 @@
 
               </div>          
     
-              <div class="row justify-content-center find-word" id="find-word">
-                <div class="col-md-1">C</div>
-                <div class="col-md-1">A</div>
-                <div class="col-md-1">T</div>           
+              <div class="guess-word" id="guess-word">
+                <div>C</div>
+                <div>A</div>
+                <div>T</div>           
               </div>
     
             </div>
