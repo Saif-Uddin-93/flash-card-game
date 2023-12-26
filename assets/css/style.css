@@ -63,19 +63,30 @@ body {
 }
 
 /* ICONS */
-.settings {
+.flashcard-container {
+  position: relative;
+}
+
+.q-settings, .f-settings {
     border: 0;
     background: transparent;
     padding: 0;
 }
-.settings svg{
+.q-settings svg{
     position: absolute;
     height: 1.5rem;
     right: .5rem;
     top: .5rem;
 }
 
-.settings:hover {
+.f-settings svg {
+  position: absolute;
+  height: 1.5rem;
+  left: .5rem;
+  top: 0;
+}
+
+.q-settings:hover, .f-settings:hover {
     cursor: pointer;
     color: #6c757d;
 }
