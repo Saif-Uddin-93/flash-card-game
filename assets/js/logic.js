@@ -7,7 +7,7 @@ addGlobalEventListener("click", ".q-settings", settings.loadSettings)
 addGlobalEventListener("click", "#save-settings", settings.save)
 addGlobalEventListener("click", ".close-settings", settings.loadSettings)
 
-// --------- >API/*  */> ---------
+// --------- >API> ---------
 const difficulty = (lvl) => lvl||"easy";
 let apiResult = {};
 function callAPI(level, amount){
@@ -75,7 +75,7 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
     const listWrong = apiResult.results[questionNo].incorrect_answers
     const answerCorrect=apiResult.results[questionNo].correct_answer;//questions[level][questionNo].answer;
     const answersList = document.getElementsByClassName("options");
-    //console.log(answersList, answerCorrect, listWrong)
+    console.log(answerCorrect, listWrong)
     answersList[0].classList.remove("visible");
     answersList[0].classList.add("visible");
     loop();
@@ -97,23 +97,21 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
 }
 
 function checkAnswer(eventObj){
-    if(eventObj.target.textContent===apiResult.results[trackQ].correct_answer){
-        points++;
-        $("#q-points").text(`points ${points}`);
-        loadMsg("Correct!", false);
-        console.log(settings.soundFX());
-        console.log(settings.sfxElement.checked);
-        if(settings.sfxElement.checked)soundsLibrary.play().correct();
-        //Timer.timeoutSet(clearAnswers, 1);
-        Timer.timeoutSet(nextBtn, 2);
-    }else{
-        loadMsg("Wrong!", false);
-        console.log(settings.soundFX());
-        console.log(settings.sfxElement.checked);
-        if(settings.sfxElement.checked)soundsLibrary.play().incorrect();
-        //Timer.timeoutSet(clearAnswers, 1);
-        Timer.timeoutSet(nextBtn, 2);
-    }
+    const targetText = eventObj.target.textContent;
+    const answer = apiResult.results[trackQ].correct_answer;
+    const msg = targetText===answer ? "Correct!" : "Wrong!";
+    points = msg==="Correct!" ? points+1 : points;
+    $("#q-points").text(`points ${points}`);
+    const css = msg==="Correct!" ? "correct" : "incorrect";
+    //console.log(targetText, answer, msg, css);
+    cssClass("#footer-msg", "add", css);
+    eventObj.target.classList.add(css);
+    loadMsg(msg);
+    Timer.timeoutSet(()=>{
+        cssClass("#footer-msg", "remove", css);
+        eventObj.target.classList.remove(css);
+    }, 2);
+    Timer.timeoutSet(nextBtn, 2);
 }
 
 function loadMsg(msg, hint=false){

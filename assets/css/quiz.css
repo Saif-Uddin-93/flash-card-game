@@ -1,3 +1,9 @@
+:root{
+  /* SU: added colours for correct/incorrect answers */
+  --correct-bg : #7fff00;
+  --incorrect-bg : hsl(10, 100%, 50%);
+}
+
 /* CARD HEADER */
 .card-header {
   background: transparent;
@@ -62,12 +68,13 @@
   padding-top: 3rem;
   flex-direction: column;
   gap: 2rem;
+  & label:hover {
+    --bs-btn-bg: #6c757d; /* SU: changed colour on bootstrap css to allow colour to change when selecting answers*/
+    /* background-color: #6c757d !important; */
+    color: white !important;
+  }
 }
 
-.q-answers label:hover {
-  color: white !important;
-  background-color: #6c757d !important;
-}
 
 /* MODALS */
 .q-font {
@@ -151,11 +158,9 @@
 
 /* ---- SU START---- */
 .hide {
-  /* visibility: hidden; */
   opacity: 0;
   transition: opacity 1s ease-in-out;
   &.visible {
-    /* visibility: visible; */
     opacity: 1;
   }
 }
@@ -178,4 +183,41 @@
 #setting-appearance-dark {
   margin-left: 1rem !important;
 }
+
+.btn-check:checked+.btn {
+  /* --bs-btn-active-color:#6C757D;
+  --bs-btn-active-bg: white; */
+  color: #6C757D;
+  background-color: white;
+}
+
+.options, #footer-msg {
+  &:hover{
+    color: white;
+    background-color: #6C757D !important
+  }
+
+  &.correct {
+    background-color: var(--correct-bg) !important;
+    color: white !important;
+
+    &:hover{
+      --bs-btn-bg: var(--correct-bg);
+      color: white;
+      background-color: var(--correct-bg) !important;
+    }
+  }
+  
+  &.incorrect {
+    background-color: var(--incorrect-bg) !important;
+    color: white !important;
+
+    &:hover{
+      --bs-btn-bg: var(--incorrect-bg);
+      color: white;
+      background-color: var(--incorrect-bg) !important;
+    }
+  }
+}
+
 /* ---- SU END---- */
