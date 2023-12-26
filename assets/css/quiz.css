@@ -150,6 +150,32 @@
 }
 
 /* ---- SU START---- */
-/* .hide {
-    display:none;
-} */
+.hide {
+  /* visibility: hidden; */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hide.visible {
+  /* visibility: visible; */
+  opacity: 1;
+}
+
+#save-settings {
+  &.saved {
+    padding-left: 37px !important;
+    padding-right: 38px !important;
+  }
+}
+.form-check {
+  padding-left: 0 !important;
+  & .form-check-input {
+  float: none !important;
+  margin-left: 0 !important;
+  }
+}
+
+#setting-appearance-dark {
+  margin-left: 1rem !important;
+}
+/* ---- SU END---- */

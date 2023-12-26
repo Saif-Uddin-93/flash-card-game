@@ -71,52 +71,81 @@ const soundsLibrary = {
     incorrect : ()=> soundsLibrary.sounds.incorrect.play(),}),
 }
 
+// --------- >Settings> ---------
+const settings={
+  sfxElement: htmlElement("#setting-sound"),
+  lightElement: htmlElement("#setting-appearance-light"),
+  darkElement: htmlElement("#setting-appearance-dark"),
+  soundFX: (save)=> {
+    if(!save){
+      return localStorage.getItem("flash-card-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("flash-card-sfx")}
+    else {
+      return settings.sfxElement.checked
+    }},
+  colourMode: (eventObj, theme)=> {
+    theme = theme||eventObj.target.getAttribute("value");
+    settings.lightElement.checked = theme === "lightElement"
+    settings.darkElement.checked = theme === "darkElement"
+  },
+  clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
+  save: (btn)=> {
+    localStorage.setItem("flash-card-sfx", settings.soundFX(true))
+    
+    const themeInput = $('input[name="setting-appearance"]:checked').val();
+    console.log(themeInput);
+    localStorage.setItem("theme", themeInput)
+
+    btn.target.classList.add("saved");
+    btn.target.textContent = "Saved!";
+    Timer.timeoutSet(()=>{
+      btn.target.classList.remove("saved");
+      btn.target.textContent = "Save changes";  
+    }, 1)
+
+    settings.loadSettings();
+  },
+  loadSettings: ()=>{
+    if(localStorage.getItem("theme")===null){
+      //default theme
+      settings.colourMode(undefined, "lightElement");
+    }else{
+      //saved theme
+      settings.colourMode(undefined, localStorage.getItem("theme"))
+    }
+
+    settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
+    settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;
+
+    $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
+    $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+  },
+  /* closeSettings: ()=>{
+    if(localStorage.getItem("flash-card-sfx")===null){
+      settings.sfxElement.checked = true
+    }
+    if(localStorage.getItem("lightElement")===null){
+      settings.colourMode(undefined, "lightElement");
+    }
+  } */
+}
+// --------- <Settings< ---------
+
+/* MT */
 document.addEventListener('DOMContentLoaded', function () {
    // Trigger the Trivia Level Modal on page load
    //var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
    //myModal.show();
    
-   const qSlider = htmlElement("#q-slider");
-   qSlider.setAttribute("value", localStorage.getItem("q-font-size")||"48");
-   $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+   /* SU: loading font size moved to settings.loadSettings()*/
+   settings.loadSettings();
 });
 
-/* MT */
 // slider for Q/A font size 
 $("#q-slider").on("input", function () {
   $('#q-a').css("font-size", $(this).val() + "px");
   /* SU: storing font size to local storage */
   localStorage.setItem("q-font-size", $(this).val())
 });
-
-/* let questionsData = [];
-// Initial fetch and display
-let currentIndex = 0;
-
-// Function to get questions
-const getQuestions = (mode, number) => {
-  if (questionsData.length > 0) {
-    // If questionsData is already available, return it immediately
-    return Promise.resolve(questionsData);
-  }
-
-  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
-  if (questionsData.length > 0) {
-    // If questionsData is already available, return it immediately
-    return Promise.resolve(questionsData);
-  }
-
-  return fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      questionsData = data.results; // Store the fetched data
-      return data; // Return the data so it can be used elsewhere
-    })
-    .catch((err) => {
-      console.log("Error fetching questions:", err);
-      throw err;
-    });
-}; */
 
 // Function remove HTML entities and display the actual characters
 function decodeHTML(html) {
@@ -127,26 +156,7 @@ function decodeHTML(html) {
   return tempElement.textContent || tempElement.innerText; */
 }
 
-
-/* // Function to display a question
-const displayQuestion = (index) => {
-  const questionText = decodeHTML(questionsData[index].question)
-  $('#q-a').html(questionText);
-};
- */
-
-// Function to generate answers
-/* const generateAnswers = (arr) => {
-  const answers = $('.q-answers');
-
-  arr.forEach((answer, index) => {
-    const input = $('<input>').attr('type', 'radio').attr('name', 'options').addClass('btn-check').attr('id', `option${index + 1}`).attr('autocomplete', 'off');
-    const label = $('<label>').attr('for', `option${index + 1}`).addClass('btn btn-outline-secondary').text(answer);
-    answers.append(input, label);
-  })
-} */
-
-// render the questions
+// render the questions after selecting mode
 $('#mode-level').on('click', 'button',function (){
 
   //const modeNumber = $('#mode-number').val();
@@ -177,6 +187,16 @@ $('#mode-level').on('click', 'button',function (){
   
 });
 
+// flip the card on HINT click
+$('#flashcard-hint').on('click', function(){
+
+  $('.flashcard-inner').addClass('flashcard-flip');
+
+  setTimeout(function(){
+    $('.flashcard-inner').removeClass('flashcard-flip');
+  }, 2000);
+
+});
 
 $('.arrow-up').on('click', function(){ 
   let inputField = $('#mode-number');  

@@ -1,29 +1,34 @@
+addGlobalEventListener("click", ".next-btn", nextBtn);
+addGlobalEventListener("click", ".prev-btn", prevBtn);
+addGlobalEventListener("click", "#q-hint", loadMsg);
+addGlobalEventListener("click", ".options", checkAnswer)
+addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
+addGlobalEventListener("click", ".q-settings", settings.loadSettings)
+addGlobalEventListener("click", "#save-settings", settings.save)
+//addGlobalEventListener("click", ".close-btn", settings.closeSettings)
+
+// --------- >API/*  */> ---------
 const difficulty = (lvl) => lvl||"easy";
 let apiResult = {};
 function callAPI(level, amount){
     const questionAmount = amount;
-    const category = 18;
+    const category = 18;// 18 is computer science
     difficulty(level);
-    
     //const qType = "multiple";// qType must not change
-
+    
     const apiURL = `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${level||"easy"}&type=multiple`//${qType}`
-
+    
     fetch(apiURL)
     .then(response => response.json())
     .then(result => apiResult = result)
     //.catch(console.log(`need to wait 5 seconds before loading new quiz`))
 }
-
+// --------- <API< ---------
 
 // question number tracker
 let trackQ = -1;
+// points tracker
 let points = 0;
-
-addGlobalEventListener("click", ".next-btn", nextBtn);
-addGlobalEventListener("click", ".prev-btn", prevBtn);
-addGlobalEventListener("click", "#q-hint", loadMsg);
-addGlobalEventListener("click", ".options", checkAnswer)
 
 function nextBtn() {
     trackQ++;
@@ -36,6 +41,7 @@ function nextBtn() {
     trackQ = trackQ===apiResult.results.length /* questions[difficulty()].length */ ? trackQ-1 : trackQ;
     console.log(trackQ);
     if(!trackQ)Timer.start();
+    clearAnswers();
     loadQuestion();
 }
 
@@ -65,16 +71,16 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
     const listWrong = apiResult.results[questionNo].incorrect_answers
     const answerCorrect=decodeHTML(apiResult.results[questionNo].correct_answer);//questions[level][questionNo].answer;
     const answersList = document.getElementsByClassName("options");
-    console.log(answersList, answerCorrect, listWrong)
+    //console.log(answersList, answerCorrect, listWrong)
     answersList[0].classList.add("visible");
     loop();
-    function loop (i=0, usedIndecies=[], newIndex=0, delay=0.5)
+    function loop (i=0, usedIndecies=[], newIndex=0, delay=0.1)
     {
         do newIndex = Math.floor(Math.random()*answersList.length)
         while(usedIndecies.includes(newIndex))
         usedIndecies.push(newIndex);
         answersList[newIndex].innerHTML=decodeHTML(listWrong[i]);
-        Timer.timeoutSet(()=>{
+        Timer.timeoutSet((/* offset=1 */)=>{
             answersList[i].classList.add("visible");
         }, (i+1)*delay)
         i++;
@@ -88,17 +94,19 @@ function checkAnswer(eventObj){
         points++;
         $("#q-points").text(`points ${points}`);
         loadMsg("Correct!", false);
-        soundsLibrary.play().correct();
-        Timer.timeoutSet(nextBtn, 2);
+        console.log(settings.soundFX());
+        console.log(settings.sfxElement.checked);
+        if(settings.sfxElement.checked)soundsLibrary.play().correct();
+        Timer.timeoutSet(clearAnswers, 2);
     }else{
         loadMsg("Wrong!", false);
-        soundsLibrary.play().incorrect();
-        Timer.timeoutSet(nextBtn, 2);
+        console.log(settings.soundFX());
+        console.log(settings.sfxElement.checked);
+        if(settings.sfxElement.checked)soundsLibrary.play().incorrect();
+        Timer.timeoutSet(clearAnswers, 2);
     }
-    const answersList = document.querySelectorAll("options");
-    answersList.forEach(element => {
-        cssClass(element.id, "remove", "visible")
-    });
+    clearAnswers();
+    nextBtn();
 }
 
 function loadMsg(msg, hint=false){
@@ -110,4 +118,13 @@ function loadMsg(msg, hint=false){
 
 function endScreen(){
     console.log("THE END!!")
+}
+
+function clearAnswers(){
+    const answersList = document.getElementsByClassName("hide");   
+    //console.log("CLEAR ANSWERS", answersList)
+    for (let index = 0; index < answersList.length; index++) {
+        //answersList[index].style.opacity=0;
+        answersList[index].classList.remove("visible");
+    }
 }
