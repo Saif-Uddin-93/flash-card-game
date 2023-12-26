@@ -163,7 +163,6 @@ $('#mode-level').on('click', 'button',function (){
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle(".control", "visibility", "visible");
   changeText("#q-number", `0/${questions}`);
-  nextBtn();
   /* 
   getQuestions(mode, modeNumber)
   .then((data) => {
