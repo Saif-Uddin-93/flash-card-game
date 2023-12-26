@@ -54,7 +54,7 @@
 
 /* ANSWERS */
 #q-answers {
-  display: none;
+  /* display: none; */ /* SU: The HTML needs to be displayed for the functionality for this to work */
 }
 
 .q-answers {
@@ -154,19 +154,19 @@
   /* visibility: hidden; */
   opacity: 0;
   transition: opacity 1s ease-in-out;
-}
-
-.hide.visible {
-  /* visibility: visible; */
-  opacity: 1;
+  &.visible {
+    /* visibility: visible; */
+    opacity: 1;
+  }
 }
 
 #save-settings {
   &.saved {
-    padding-left: 37px !important;
+    padding-left: 37.5px !important;
     padding-right: 38px !important;
   }
 }
+
 .form-check {
   padding-left: 0 !important;
   & .form-check-input {
