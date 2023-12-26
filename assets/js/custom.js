@@ -199,68 +199,20 @@ $('#flashcard-hint').on('click', function(){
 });
 
 $('.arrow-up').on('click', function(){ 
-let inputField = $('#mode-number');  
-let currentNum = parseInt(inputField.val());
-let newNum = currentNum + 1;
-if(newNum <= Number(inputField.attr('max'))) inputField.val(newNum);
+  let inputField = $('#mode-number');  
+  let currentNum = parseInt(inputField.val());
+  let newNum = currentNum + 1;
+  if(newNum <= Number(inputField.attr('max'))) inputField.val(newNum);
 });
 
 $('.arrow-down').on('click', function(){ 
-let inputField = $('#mode-number');
-let currentNum = parseInt(inputField.val());
-let newNum = currentNum - 1;
-if (newNum >= inputField.attr('min')) {
-    inputField.val(newNum);
-}
+  let inputField = $('#mode-number');
+  let currentNum = parseInt(inputField.val());
+  let newNum = currentNum - 1;
+  if (newNum >= inputField.attr('min')) {
+      inputField.val(newNum);
+  }
 });
 
-/* let questionsData = [];
-// Initial fetch and display
-let currentIndex = 0;
-
-// Function to get questions
-const getQuestions = (mode, number) => {
-  if (questionsData.length > 0) {
-    // If questionsData is already available, return it immediately
-    return Promise.resolve(questionsData);
-  }
-
-  const url = `https://opentdb.com/api.php?amount=${number}&category=18&difficulty=${mode}&type=multiple`;
-  if (questionsData.length > 0) {
-    // If questionsData is already available, return it immediately
-    return Promise.resolve(questionsData);
-  }
-
-  return fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      questionsData = data.results; // Store the fetched data
-      return data; // Return the data so it can be used elsewhere
-    })
-    .catch((err) => {
-      console.log("Error fetching questions:", err);
-      throw err;
-    });
-}; */
-
-
-
-/* // Function to display a question
-const displayQuestion = (index) => {
-  const questionText = decodeHTML(questionsData[index].question)
-  $('#q-a').html(questionText);
-};
- */
-
-// Function to generate answers
-/* const generateAnswers = (arr) => {
-  const answers = $('.q-answers');
-
-  arr.forEach((answer, index) => {
-    const input = $('<input>').attr('type', 'radio').attr('name', 'options').addClass('btn-check').attr('id', `option${index + 1}`).attr('autocomplete', 'off');
-    const label = $('<label>').attr('for', `option${index + 1}`).addClass('btn btn-outline-secondary').text(answer);
-    answers.append(input, label);
-  })
-} */
 
 
