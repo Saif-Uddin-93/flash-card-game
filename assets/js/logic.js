@@ -73,7 +73,7 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
 
 function loadAnswers(level=difficulty(), questionNo=trackQ){
     const listWrong = apiResult.results[questionNo].incorrect_answers
-    const answerCorrect=decodeHTML(apiResult.results[questionNo].correct_answer);//questions[level][questionNo].answer;
+    const answerCorrect=apiResult.results[questionNo].correct_answer;//questions[level][questionNo].answer;
     const answersList = document.getElementsByClassName("options");
     //console.log(answersList, answerCorrect, listWrong)
     answersList[0].classList.remove("visible");
