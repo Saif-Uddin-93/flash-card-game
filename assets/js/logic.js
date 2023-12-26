@@ -5,7 +5,7 @@ addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
 addGlobalEventListener("click", ".q-settings", settings.loadSettings)
 addGlobalEventListener("click", "#save-settings", settings.save)
-//addGlobalEventListener("click", ".close-btn", settings.closeSettings)
+addGlobalEventListener("click", ".close-settings", settings.loadSettings)
 
 // --------- >API/*  */> ---------
 const difficulty = (lvl) => lvl||"easy";
@@ -41,8 +41,9 @@ function nextBtn() {
     trackQ = trackQ===apiResult.results.length /* questions[difficulty()].length */ ? trackQ-1 : trackQ;
     console.log(trackQ);
     if(!trackQ)Timer.start();
-    clearAnswers();
-    loadQuestion();
+    //clearAnswers();
+    /* if(trackQ>0)Timer.timeoutSet(loadQuestion, 2)
+    else  */loadQuestion();
 }
 
 function prevBtn() {
@@ -53,7 +54,9 @@ function prevBtn() {
         return;
     }
     console.log(trackQ);
+    //clearAnswers();
     loadQuestion();
+    // Timer.timeoutSet(loadQuestion, 2);
 }
 
 function loadQuestion(level=difficulty(), questionNo=trackQ){
@@ -64,14 +67,16 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
     const q=apiResult.results[questionNo].question;//questions[level][questionNo].question;
     console.log(q);
     changeText("#q-a", q);
+    //clearAnswers();
     loadAnswers();
 }
 
 function loadAnswers(level=difficulty(), questionNo=trackQ){
     const listWrong = apiResult.results[questionNo].incorrect_answers
-    const answerCorrect=decodeHTML(apiResult.results[questionNo].correct_answer);//questions[level][questionNo].answer;
+    const answerCorrect=apiResult.results[questionNo].correct_answer;//questions[level][questionNo].answer;
     const answersList = document.getElementsByClassName("options");
     //console.log(answersList, answerCorrect, listWrong)
+    answersList[0].classList.remove("visible");
     answersList[0].classList.add("visible");
     loop();
     function loop (i=0, usedIndecies=[], newIndex=0, delay=0.1)
@@ -80,9 +85,11 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
         while(usedIndecies.includes(newIndex))
         usedIndecies.push(newIndex);
         answersList[newIndex].innerHTML=decodeHTML(listWrong[i]);
-        Timer.timeoutSet((/* offset=1 */)=>{
-            answersList[i].classList.add("visible");
-        }, (i+1)*delay)
+        answersList[i||1].classList.remove("visible");
+        Timer.timeoutSet(()=>{
+            i=i>3?3:i;
+            answersList[i||1].classList.add("visible");
+        }, (i||1)*delay)
         i++;
         if(i<answersList.length)loop(i, usedIndecies);
         if(i===answersList.length)answersList[newIndex].innerHTML=decodeHTML(answerCorrect);
@@ -90,23 +97,23 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
 }
 
 function checkAnswer(eventObj){
-    if(eventObj.target.textContent===decodeHTML(apiResult.results[trackQ].correct_answer)){
+    if(eventObj.target.textContent===apiResult.results[trackQ].correct_answer){
         points++;
         $("#q-points").text(`points ${points}`);
         loadMsg("Correct!", false);
         console.log(settings.soundFX());
         console.log(settings.sfxElement.checked);
         if(settings.sfxElement.checked)soundsLibrary.play().correct();
-        Timer.timeoutSet(clearAnswers, 2);
+        //Timer.timeoutSet(clearAnswers, 1);
+        Timer.timeoutSet(nextBtn, 2);
     }else{
         loadMsg("Wrong!", false);
         console.log(settings.soundFX());
         console.log(settings.sfxElement.checked);
         if(settings.sfxElement.checked)soundsLibrary.play().incorrect();
-        Timer.timeoutSet(clearAnswers, 2);
+        //Timer.timeoutSet(clearAnswers, 1);
+        Timer.timeoutSet(nextBtn, 2);
     }
-    clearAnswers();
-    nextBtn();
 }
 
 function loadMsg(msg, hint=false){
@@ -120,11 +127,14 @@ function endScreen(){
     console.log("THE END!!")
 }
 
-function clearAnswers(){
-    const answersList = document.getElementsByClassName("hide");   
+/* function clearAnswers(){
+    const answersList = document.getElementsByClassName("visible");   
     //console.log("CLEAR ANSWERS", answersList)
     for (let index = 0; index < answersList.length; index++) {
         //answersList[index].style.opacity=0;
+        console.log(answersList[index], "remove visible")
+        //answersList[index].style.opacity = 0;
         answersList[index].classList.remove("visible");
+        answersList[index].classList.remove("hide");
     }
-}
+} */

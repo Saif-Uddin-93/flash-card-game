@@ -105,13 +105,8 @@ const settings={
     settings.loadSettings();
   },
   loadSettings: ()=>{
-    if(localStorage.getItem("theme")===null){
-      //default theme
-      settings.colourMode(undefined, "lightElement");
-    }else{
-      //saved theme
-      settings.colourMode(undefined, localStorage.getItem("theme"))
-    }
+    const loadTheme = localStorage.getItem("theme")===null ? "lightElement" : localStorage.getItem("theme")
+    settings.colourMode(undefined, loadTheme)
 
     settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
     settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;
@@ -168,7 +163,7 @@ $('#mode-level').on('click', 'button',function (){
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle(".control", "visibility", "visible");
   changeText("#q-number", `0/${questions}`);
-  //nextBtn();
+  nextBtn();
   /* 
   getQuestions(mode, modeNumber)
   .then((data) => {
