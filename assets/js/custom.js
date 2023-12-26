@@ -82,64 +82,51 @@ const settings={
     else {
       return settings.sfxElement.checked
     }},
-  colourMode: (save, theme)=> {
-    if(!save){
-      console.log(`${theme} has attr: ${settings[theme].hasAttribute("checked")}`)
-      console.log(localStorage.getItem(theme)===null ? settings[theme].hasAttribute("checked") : localStorage.getItem(theme))
-
-      return localStorage.getItem(theme)===null ? settings[theme].hasAttribute("checked") : localStorage.getItem(theme)}
-    else {
-      return settings[theme].hasAttribute("checked");
-    }},
-  lightMode: ()=> {
-    //Apply light mode CSS
-    settings.darkElement.checked = false;
-    $("#setting-appearance-dark").removeAttr("checked");
-    $("#setting-appearance-light").attr("checked", "true");
-    settings.lightElement.checked = true;
-    console.log(`${"lightElement"} has attr: ${settings["lightElement"].hasAttribute("checked")}`)
-  },
-  darkMode: ()=> {
-    //Apply dark mode CSS
-    settings.lightElement.checked = false;
-    $("#setting-appearance-light").removeAttr("checked");
-    $("#setting-appearance-dark").attr("checked", "true");
-    settings.darkElement.checked = true;
-    console.log(`${"darkElement"} has attr: ${settings["darkElement"].hasAttribute("checked")}`)
+  colourMode: (eventObj, theme)=> {
+    theme = theme||eventObj.target.getAttribute("value");
+    settings.lightElement.checked = theme === "lightElement"
+    settings.darkElement.checked = theme === "darkElement"
   },
   clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
   save: (btn)=> {
     localStorage.setItem("flash-card-sfx", settings.soundFX(true))
-    localStorage.setItem("lightElement", settings.colourMode(true, "lightElement"))
-    localStorage.setItem("darkElement", settings.colourMode(true, "darkElement"))
     
+    const themeInput = $('input[name="setting-appearance"]:checked').val();
+    console.log(themeInput);
+    localStorage.setItem("theme", themeInput)
+
     btn.target.classList.add("saved");
     btn.target.textContent = "Saved!";
     Timer.timeoutSet(()=>{
       btn.target.classList.remove("saved");
-      btn.target.textContent = "Save changes";  }, 1)
+      btn.target.textContent = "Save changes";  
+    }, 1)
+
+    settings.loadSettings();
   },
   loadSettings: ()=>{
+    if(localStorage.getItem("theme")===null){
+      //default theme
+      settings.colourMode(undefined, "lightElement");
+    }else{
+      //saved theme
+      settings.colourMode(undefined, localStorage.getItem("theme"))
+    }
+
     settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
     settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;
-    
-    settings.lightElement.checked = settings.colourMode(false, "lightElement")==="true"||true?true:settings.lightElement.checked;
-    settings.lightElement.checked = settings.colourMode(false, "lightElement")==="false"||false?false:settings.lightElement.checked;
-
-    settings.darkElement.checked = settings.colourMode(false, "darkElement")==="true"||true?true:settings.darkElement.checked;
-    settings.darkElement.checked = settings.colourMode(false, "darkElement")==="false"||false?false:settings.darkElement.checked;
 
     $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
     $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
   },
-  closeSettings: ()=>{
+  /* closeSettings: ()=>{
     if(localStorage.getItem("flash-card-sfx")===null){
       settings.sfxElement.checked = true
     }
     if(localStorage.getItem("lightElement")===null){
-      settings.lightMode();
+      settings.colourMode(undefined, "lightElement");
     }
-  }
+  } */
 }
 // --------- <Settings< ---------
 

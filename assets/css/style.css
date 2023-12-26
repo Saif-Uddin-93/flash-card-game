@@ -272,10 +272,19 @@ body {
 
 #save-settings {
   &.saved {
-    /* content: "Saved!" !important; */
     padding-left: 37px !important;
     padding-right: 38px !important;
   }
 }
-  
+.form-check {
+  padding-left: 0 !important;
+  & .form-check-input {
+  float: none !important;
+  margin-left: 0 !important;
+  }
+}
+
+#setting-appearance-dark {
+  margin-left: 1rem !important;
+}
 /* ---- SU END---- */

@@ -5,11 +5,12 @@ addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
 addGlobalEventListener("click", ".settings", settings.loadSettings)
 addGlobalEventListener("click", "#save-settings", settings.save)
-addGlobalEventListener("click", ".close-btn", settings.closeSettings)
-addGlobalEventListener("click", "#setting-appearance-light", settings.lightMode)
-addGlobalEventListener("click", "#setting-appearance-dark", settings.darkMode)
+//addGlobalEventListener("click", ".close-btn", settings.closeSettings)
+//addGlobalEventListener("click", ".appearance", settings.colourMode)
+//addGlobalEventListener("click", "#setting-appearance-light", settings.lightMode)
+//addGlobalEventListener("click", "#setting-appearance-dark", settings.darkMode)
 
-// --------- >API> ---------
+// --------- >API/*  */> ---------
 const difficulty = (lvl) => lvl||"easy";
 let apiResult = {};
 function callAPI(level, amount){
