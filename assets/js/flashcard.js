@@ -113,8 +113,11 @@ $(document).ready(function() {
         if (!currentWord.split('').some(letter => !guessedLetters.includes(letter))) {         
           score += 1; // Update the score
 
-          //Total number of words
-          $('#flashcard-number').text(`${currentWordIndex + 1}/${wordsList.length}`);
+          // Get current image index 
+          const totalWords = Number($('#flashcard-number').text().split('/')[0]);
+          
+          // Display current image number / Total number of words for that category
+          $('#flashcard-number').text(`${totalWords + 1}/${wordsList.length}`);
 
           updateScoreDisplay(); // Update the score display
           handleNextWordClick(); // Move to the next word
@@ -237,7 +240,7 @@ $(document).ready(function() {
     wordsList = getCategory(activeCategory);  
     
     //Total number of words
-    $('#flashcard-number').text(`${currentWordIndex + 1}/${wordsList.length}`);
+    $('#flashcard-number').text(`1/${wordsList.length}`);
 
     // Current word
     currentWord = wordsList[currentWordIndex].word.toUpperCase();
