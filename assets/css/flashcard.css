@@ -271,6 +271,32 @@
   margin: 0 .5rem;
 }
 
+.blink-error {  
+  padding: 10px;  
+  animation: blinkingBackgroundError 1s infinite;
+}
+
+.blink-correct {  
+  padding: 10px;
+  animation: blinkingBackgroundCorrect 1s infinite;
+}
+
+@keyframes blinkingBackgroundError {
+  0%		{ background: #ff7c7c; opacity: .8;}
+  25%		{ background: #ff7070;}
+  50%		{ background: #ff6363;}
+  75%		{ background: #ff3f3f;}
+  100%	{ background: #ff0000;}
+}
+
+@keyframes blinkingBackgroundCorrect{
+  0%		{ background-color: #44dd4c; opacity: .8;}
+  25%		{ background-color: #36c53d;}
+  50%		{ background-color: #26a02c;}
+  75%		{ background-color: #1a7a1f;}
+  100%	{ background-color: #115c14;}
+}
+
 /* END GAME */
 .end-game-container {
   display: none;
@@ -291,3 +317,5 @@
   align-items: center;
   justify-content: center;
 }
+
+
