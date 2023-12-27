@@ -84,8 +84,9 @@ $(document).ready(function() {
   //   }, 1000);
   // }
 
-  const blinkMessageDisplay = (classType) => {
-    const blink = $('#find-image');
+  // Function to blink background screen
+  const blinkScreen= (classType) => {
+    const blink = $('#flashcard-blink');
     blink.addClass(classType);
 
     // Hide the message after 1sec
@@ -114,13 +115,11 @@ $(document).ready(function() {
           handleNextWordClick(); // Move to the next word
         } else {
           // Guessed a correct letter
-          // updateMessageDisplay('✔', 'green');   
-          blinkMessageDisplay('blink-correct');                
+          // updateMessageDisplay('✔', 'green');                 
         }
       } else {        
-        // If letter is not in the currentWord                
-        // updateMessageDisplay('✘', 'red');  
-        blinkMessageDisplay('blink-error');       
+        // If letter is not in the currentWord  
+        blinkScreen('blink-error');       
         
         // Increment the incorrect guess counter
         incorrectGuessCounter++;
