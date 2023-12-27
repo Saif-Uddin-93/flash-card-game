@@ -1,5 +1,5 @@
 addGlobalEventListener("click", ".next-btn", nextBtn);
-addGlobalEventListener("click", ".prev-btn", prevBtn);
+//addGlobalEventListener("click", ".prev-btn", prevBtn);
 addGlobalEventListener("click", "#q-hint", loadMsg);
 addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
@@ -46,7 +46,7 @@ function nextBtn() {
     else  */loadQuestion();
 }
 
-function prevBtn() {
+/* function prevBtn() {
     if(trackQ>0)trackQ--;
     if(trackQ<0){
         console.log("No questions that way!")
@@ -57,7 +57,7 @@ function prevBtn() {
     //clearAnswers();
     loadQuestion();
     // Timer.timeoutSet(loadQuestion, 2);
-}
+} */
 
 function loadQuestion(level=difficulty(), questionNo=trackQ){
     cssStyle("#footer-msg","visibility","hidden")

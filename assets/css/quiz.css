@@ -19,9 +19,9 @@
   font-size: 3rem;
 }
 
-.card-footer {
-  /* visibility: hidden; */
-}
+/* .card-footer {
+  visibility: hidden;
+} */
 
 .control {
   position: relative;
@@ -59,9 +59,9 @@
 
 
 /* ANSWERS */
-#q-answers {
+/* #q-answers { */
   /* display: none; */ /* SU: The HTML needs to be displayed for the functionality for this to work */
-}
+/* } */
 
 .q-answers {
   display: flex;
@@ -222,4 +222,83 @@
   }
 }
 
+#q-points {
+  width: 12%;
+  padding-right: 0;
+}
+
+#q-number {
+  width: 82%;
+  padding-right: 8%;
+}
+
+#exit {
+  width: 6%;
+}
+
+.btn {
+  min-width: 6rem;
+}
+
+@media(width < 431px){
+  .card {
+    max-height: 70%;
+  }
+
+  .mode-number {
+    display: block;
+    position: absolute;
+    top: 2%;
+  }
+
+  .q-answers {
+    padding-top: 0%;
+  }
+
+  #mode-level {
+    left: 46%;
+  }
+
+  #arrows {
+    display: block;
+    position: absolute;
+    top: 20%;
+    right: -10%;
+  }
+
+  #q-points {
+    width: 25%;
+  }
+
+  #q-number {
+    width: 60%;
+    padding-left: 0%;
+  }
+  
+  #exit {
+    width: 6%;
+  }
+
+  .q-font {
+    top: -18%;
+  }
+
+  #q-hint {
+    display: block;
+    position: absolute;
+    top: 0%;
+  }
+
+  #q-timer {
+    display: block;
+    position: absolute;
+    top: 5%;
+  }
+}
+
+@media(width < 376px){
+  #mode-level {
+    left: 44%;
+  }
+}
 /* ---- SU END---- */
