@@ -7,7 +7,8 @@ $(document).ready(function() {
   let currentHint = "";
   let guessedLetters = [];
   let score = 0;  
-  let gameStarted = false; // Flag to check if the game has started
+  let gameStarted = false; // Flag to check if the game has started  
+  let incorrectGuessCounter = 0; // Counter for incorrect guesses
 
   // Function to initialize or reset the game
   function initializeGame() {
@@ -87,6 +88,7 @@ $(document).ready(function() {
     const pressedKey = e.key.toUpperCase();
     
     // Check if the pressed key is a letter and hasn't been guessed before
+    // If it finds a match, it returns true, otherwise it returns false.
     if (/^[A-Z]$/.test(pressedKey) && !guessedLetters.includes(pressedKey)) {
       guessedLetters.push(pressedKey);
 
@@ -105,7 +107,15 @@ $(document).ready(function() {
         }
       } else {        
         // If letter is not in the currentWord        
-        updateMessageDisplay('✘', 'red');        
+        updateMessageDisplay('✘', 'red');  
+        
+        // Increment the incorrect guess counter
+        incorrectGuessCounter++;
+
+        // Check if user has made three incorrect guesses
+        if (incorrectGuessCounter >= 3) {
+          showEndGameScreen(score, false); // End the game with a loss
+        }
       }
     }
   }
@@ -120,21 +130,22 @@ $(document).ready(function() {
       initializeGame();
     } else {
       // User has finished the game
-      showEndGameScreen();
+      showEndGameScreen(score, true);
     }
   }
 
-  // Flip the card on 'HINT' click
-  $('#flashcard-hint').on('click', function(){
+  // Function to show the end game screen
+  function showEndGameScreen(totalScore, win) {
+    // Display total score and message
+    const message = win ? 'Congratulations! You won!' : 'Sorry, you lost. Better luck next time.';
+    $('#end-game-message').text(`${message} Total Score: ${totalScore} points`);
 
-    $('.flashcard-inner').addClass('flashcard-flip');
-    
-    // Remove the 'flashcard-flip' and reverse flashcard back to front
-    setTimeout(function(){
-      $('.flashcard-inner').removeClass('flashcard-flip');
-    }, 2000);
+    // Disable key press   
+    gameStarted = false;
 
-  });
+    // Show the end game screen
+    $('#end-game-container').show();
+  }
 
   // Function to Sorting words array in random order
   const shuffleArray = (array) => {        
@@ -170,6 +181,18 @@ $(document).ready(function() {
     })
     .catch(error => console.error('Error fetching image:', error))
   }
+
+   // Event listener to flip the card on 'HINT' click
+   $('#flashcard-hint').on('click', function(){
+
+    $('.flashcard-inner').addClass('flashcard-flip');
+    
+    // Remove the 'flashcard-flip' and reverse flashcard back to front
+    setTimeout(function(){
+      $('.flashcard-inner').removeClass('flashcard-flip');
+    }, 2000);
+
+  });
 
   // Event listener to apply/remove highlighting for icons on the start screen
   $('#categories').on('click', 'svg', function() {
@@ -246,5 +269,16 @@ $(document).ready(function() {
       handleKeyPress(e);
     }
   });
+
+  // $('#flashcard-exit').on('click', function() {
+  //   console.log($(this))
+  // });
+
+  // Restart the flashcard game 
+  $('#try-again').on('click', function() {
+    // Reload the page with cleared leaderboard
+    window.location.reload();
+  });
+
 
 });
