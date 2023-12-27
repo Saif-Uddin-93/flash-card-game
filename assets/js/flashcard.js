@@ -72,18 +72,18 @@ $(document).ready(function() {
   }
 
   // Function to update the message on the screen
-  // const updateMessageDisplay = (str, color) => {
-  //   const msg = $('#flashcard-msg');
+  const updateMessageDisplay = (str) => {
+    const msg = $('#flashcard-msg');
 
-  //   $('#flashcard-msg').text(str).css('color', color);
-  //   msg.show();
+    $('#flashcard-msg').text(str);
+    msg.show();
 
-  //   // Hide the message after 1sec
-  //   setTimeout(() => {      
-  //     msg.hide();
-  //     msg.text('').removeAttr('style');
-  //   }, 1000);
-  // }
+    // Hide the message after 1sec
+    setTimeout(() => {      
+      msg.hide();
+      msg.text('').removeAttr('style');
+    }, 3000);
+  }
 
   // Function to blink background screen
   const blinkScreen= (classType) => {
@@ -94,6 +94,12 @@ $(document).ready(function() {
     setTimeout(() => {            
       blink.removeClass(classType);
     }, 1000);
+  }
+
+  // Hearts display
+  const heartDisplay = (num) => {
+    const heart = $(`#flashcard-heart${num}`);
+    heart.css('opacity', 0); 
   }
 
   // Function to handle key presses
@@ -132,9 +138,21 @@ $(document).ready(function() {
         // Increment the incorrect guess counter
         incorrectGuessCounter++;
 
+        // Remove heart with each incorrect guess
+        heartDisplay(incorrectGuessCounter)
+
         // Check if user has made three incorrect guesses
         if (incorrectGuessCounter >= 3) {
-          showEndGameScreen(score, false); // End the game with a loss
+
+          // Set the image 50% opacity to show the message
+          $('#find-image').css('opacity', 0.5);
+
+          // User lost
+          updateMessageDisplay('Sorry, you lost. Better luck next time.')
+
+          setTimeout(() => {            
+            showEndGameScreen(score, false); // End the game with a loss
+          }, 3000)
         }
       }
     }

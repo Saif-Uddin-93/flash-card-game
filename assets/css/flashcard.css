@@ -71,12 +71,16 @@
   cursor: pointer;
 }
 
+.flashcard-hears svg {
+  color: #ff0000;
+}
+
 .flashcard-msg {
-  display: none;
+  display: none;  
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 15rem;
+  /* font-size: 15rem; */
   transform: translate(-50%, -50%);
 }
 
