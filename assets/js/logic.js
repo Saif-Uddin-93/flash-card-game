@@ -99,7 +99,7 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
 //let checkingAnswer = false;
 function checkAnswer(eventObj){
     Timer.timeoutClr();
-    checkingAnswer = true;
+    //checkingAnswer = true;
     const targetText = eventObj.target.textContent;
     const answer = apiResult.results[trackQ].correct_answer;
     const msg = targetText===answer ? "Correct!" : "Wrong!";
