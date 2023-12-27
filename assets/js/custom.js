@@ -161,8 +161,9 @@ $('#mode-level').on('click', 'button',function (){
   callAPI(mode, questions);
   console.log(mode, questions);
   $('.mode-container').css('display', 'none');// hide the modal
-  cssStyle(".control", "visibility", "visible");
+  cssStyle("#next-btn", "visibility", "visible");
   changeText("#q-number", `0/${questions}`);
+  trackQ = -1;
   /* 
   getQuestions(mode, modeNumber)
   .then((data) => {
