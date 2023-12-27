@@ -21,8 +21,9 @@ $(document).ready(function() {
     
     // Get new image based on the current word
     fetchImage(currentWord)
-    .then(data => {    
-      const {src, alt} = data.photos[0]; // get the first image from the list
+    .then(data => {          
+      // Shufle the fetched response images to give new image with the same word
+      const {src, alt} = shuffleArray(data.photos)[0];
       
       // Append image to the flashcard container     
       $('#find-image').attr('src', src.large).attr('alt', alt);  
@@ -111,6 +112,10 @@ $(document).ready(function() {
         // Check if all letters were guessed
         if (!currentWord.split('').some(letter => !guessedLetters.includes(letter))) {         
           score += 1; // Update the score
+
+          //Total number of words
+          $('#flashcard-number').text(`${currentWordIndex + 1}/${wordsList.length}`);
+
           updateScoreDisplay(); // Update the score display
           handleNextWordClick(); // Move to the next word
         } else {
@@ -180,7 +185,7 @@ $(document).ready(function() {
   // Fuction to fetch image from Pexels API
   const fetchImage = (word) => {
     const apiKey = '';
-    const url = `https://api.pexels.com/v1/search?query=${word}&per_page=1`;
+    const url = `https://api.pexels.com/v1/search?query=${word}&per_page=40`;
     
     return fetch(url, {
       headers: {
@@ -188,7 +193,8 @@ $(document).ready(function() {
       },
     })
     .then(response => response.json())
-    .then(data => {       
+    .then(data => { 
+      console.log(data)      
       return data;
     })
     .catch(error => console.error('Error fetching image:', error))
@@ -230,6 +236,9 @@ $(document).ready(function() {
     // Assign the list of words to global words list
     wordsList = getCategory(activeCategory);  
     
+    //Total number of words
+    $('#flashcard-number').text(`${currentWordIndex + 1}/${wordsList.length}`);
+
     // Current word
     currentWord = wordsList[currentWordIndex].word.toUpperCase();
 
@@ -238,8 +247,9 @@ $(document).ready(function() {
 
     // Fetch the image
     // fetchImage(currentWord)
-    // .then(data => {      
-    //   const {src, alt} = data.photos[0];
+    // .then(data => {                 
+    //   // Shufle the fetched response images to give new image with the same word
+    //   const {src, alt} = shuffleArray(data.photos)[0];
 
     //   // Show image on the screen in the flashcard      
     //   $('#find-image').attr('src', src.large).attr('alt', alt);  
@@ -258,6 +268,7 @@ $(document).ready(function() {
 
     //  TEMP code to mimic fetch
     console.log(currentWord)
+    console.log(wordsList)
 
     gameStarted = true; // start the game
     updateWordDisplay();
