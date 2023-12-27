@@ -82,8 +82,8 @@ const settings={
     else {
       return settings.sfxElement.checked
     }},
-  colourMode: (eventObj, theme)=> {
-    theme = theme||eventObj.target.getAttribute("value");
+  colourMode: (/* eventObj, */ theme)=> {
+    //theme = theme||eventObj.target.getAttribute("value");
     settings.lightElement.checked = theme === "lightElement"
     settings.darkElement.checked = theme === "darkElement"
   },
@@ -106,13 +106,18 @@ const settings={
   },
   loadSettings: ()=>{
     const loadTheme = localStorage.getItem("theme")===null ? "lightElement" : localStorage.getItem("theme")
-    settings.colourMode(undefined, loadTheme)
+    settings.colourMode(/* undefined, */ loadTheme)
 
     settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
     settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;
 
-    $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
-    $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
+    $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"40"}`);
+    $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"40"}px`);
+
+    //placeholder to load current selected theme
+    (theme = loadTheme)=>{
+      // toggle dark/light theme css classes
+    }
   },
 }
 // --------- <Settings< ---------

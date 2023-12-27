@@ -38,7 +38,7 @@
                 <div class="col-md-8">    
                     <div class="q-container">
                         <div class="row">
-                            <div id="q-points" class="col-md-1 q-points text-start">points</div>
+                            <div id="q-points" class="col-md-1 q-points text-start">points 0</div>
                             <div id="q-number" class="col-md-10 header">1/?</div>
                             <div id="exit" class="col-md-1 exit">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 352 512"  xmlns="http://www.w3.org/2000/svg"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>                             
@@ -49,13 +49,13 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row justify-content-between">
-                                <div id="q-hint" class="col-sm-2 col-lg-2 hint">MSG</div>
-                              
+                                <!-- <div id="q-hint" class="col-sm-2 col-lg-2 hint">MSG</div> -->
+                                <!-- SU: suggestion to remove hints from quiz becuase it can't be utilised unless we manually create hints for all the possible questions the API outputs. -->
                                 <div class="col-sm-2 col-lg-8">
                                     <div class="q-font">   
                                         <p class="small-font">A</p>
                                         <!-- SU: slider handle appears to jump when page loads -->
-                                        <input type="range" min="16" max="64" value="20" id="q-slider" step="4">
+                                        <input type="range" min="16" max="64" value="40" id="q-slider" step="4">
                                         <p class="big-font">A</p>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                             Get Ready!
                         </div>
                         <div id="footer-msg" class="card-footer">
-                            msg
+                            --- click ► button below to start ---
                         </div>
                         <div class="mode-container text-center">
 
@@ -99,7 +99,7 @@
                             </div>   -->              
                             <div class="col-md-6 d-flex justify-content-center">
                                 <a href="#q-answers">
-                                <img class="btn next-btn" id="next-btn" src="./assets/svg/next-btn.svg" alt="icon next button">
+                                <img class="btn next-btn" id="next-btn" src="./assets/svg/play-button.svg" alt="icon next button">
                                 </a>
                             </div>
                             <button id="q-settings" class="q-settings" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -202,6 +202,16 @@
                 </div>              
             </div>
         </div>
+    </div> -->
+
+    <!-- SU: Submit score section from code quiz challenge -->
+    <!-- <div id="end-screen" class="hide">
+        <h2>All done!</h2>
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <p>
+            Enter initials: <input type="text" id="initials" max="3" />
+            <button id="submit">Submit</button>
+        </p>
     </div> -->
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
