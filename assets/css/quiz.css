@@ -165,6 +165,30 @@
   }
 }
 
+/* SU: .navbar-container to reveal navbar on hover */
+/* .navbar-container {
+  top: 0;
+  position: absolute;
+  height: 10rem;
+  width: 100%;
+  & .navbar {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  &:hover {
+    position: relative;
+    height: 5rem;
+    & .navbar{
+      opacity: 1;
+      display: flex;
+      flex-wrap: inherit;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+} */
+
 #next-btn {
   visibility: hidden;
 }
