@@ -36,7 +36,7 @@ $(document).ready(function() {
     guessedLetters = [];
     updateWordDisplay();
     updateScoreDisplay();
-    updateMessageDisplay("");
+    // updateMessageDisplay("");
   }
 
   // Function to update the word display on the screen
@@ -70,16 +70,26 @@ $(document).ready(function() {
   }
 
   // Function to update the message on the screen
-  const updateMessageDisplay = (str, color) => {
-    const msg = $('#flashcard-msg');
+  // const updateMessageDisplay = (str, color) => {
+  //   const msg = $('#flashcard-msg');
 
-    $('#flashcard-msg').text(str).css('color', color);
-    msg.show();
+  //   $('#flashcard-msg').text(str).css('color', color);
+  //   msg.show();
+
+  //   // Hide the message after 1sec
+  //   setTimeout(() => {      
+  //     msg.hide();
+  //     msg.text('').removeAttr('style');
+  //   }, 1000);
+  // }
+
+  const blinkMessageDisplay = (classType) => {
+    const blink = $('#find-image');
+    blink.addClass(classType);
 
     // Hide the message after 1sec
-    setTimeout(() => {      
-      msg.hide();
-      msg.text('').removeAttr('style');
+    setTimeout(() => {            
+      blink.removeClass(classType);
     }, 1000);
   }
 
@@ -103,11 +113,13 @@ $(document).ready(function() {
           handleNextWordClick(); // Move to the next word
         } else {
           // Guessed a correct letter
-          updateMessageDisplay('✔', 'green');          
+          // updateMessageDisplay('✔', 'green');   
+          blinkMessageDisplay('blink-correct');                
         }
       } else {        
-        // If letter is not in the currentWord        
-        updateMessageDisplay('✘', 'red');  
+        // If letter is not in the currentWord                
+        // updateMessageDisplay('✘', 'red');  
+        blinkMessageDisplay('blink-error');       
         
         // Increment the incorrect guess counter
         incorrectGuessCounter++;
