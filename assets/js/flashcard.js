@@ -36,6 +36,7 @@ $(document).ready(function() {
     guessedLetters = [];
     updateWordDisplay();
     updateScoreDisplay();
+    incorrectGuessCounter = 0;
     // updateMessageDisplay("");
   }
 
