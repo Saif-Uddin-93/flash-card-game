@@ -32,13 +32,13 @@ let points = 0;
 
 function nextBtn() {
     trackQ++;
-    if(trackQ===apiResult.results.length)//questions[difficulty()].length) 
+    if(trackQ===apiResult.results.length)
     {
-        trackQ = apiResult.results.length-1;//questions[difficulty()].length-1;
+        trackQ = apiResult.results.length-1;
         endScreen(); 
         return;
     }
-    trackQ = trackQ===apiResult.results.length /* questions[difficulty()].length */ ? trackQ-1 : trackQ;
+    trackQ = trackQ===apiResult.results.length ? trackQ-1 : trackQ;
     console.log(trackQ);
     if(!trackQ)Timer.start();
     //clearAnswers();
@@ -75,7 +75,7 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
     const listWrong = apiResult.results[questionNo].incorrect_answers
     const answerCorrect=apiResult.results[questionNo].correct_answer;//questions[level][questionNo].answer;
     const answersList = document.getElementsByClassName("options");
-    console.log(answerCorrect, listWrong)
+    console.log(decodeHTML(answerCorrect), listWrong)
     answersList[0].classList.remove("visible");
     answersList[0].classList.add("visible");
     loop();
@@ -96,11 +96,15 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
     }
 }
 
+//let checkingAnswer = false;
 function checkAnswer(eventObj){
+    Timer.timeoutClr();
+    checkingAnswer = true;
     const targetText = eventObj.target.textContent;
     const answer = apiResult.results[trackQ].correct_answer;
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
+    //points = (checkingAnswer) ? points-1 : points;
     $("#q-points").text(`points ${points}`);
     const css = msg==="Correct!" ? "correct" : "incorrect";
     //console.log(targetText, answer, msg, css);
@@ -110,19 +114,23 @@ function checkAnswer(eventObj){
     Timer.timeoutSet(()=>{
         cssClass("#footer-msg", "remove", css);
         eventObj.target.classList.remove(css);
+        //checkingAnswer = false;
     }, 2);
     Timer.timeoutSet(nextBtn, 2);
 }
 
 function loadMsg(msg, hint=false){
-    msg = (typeof msg)!=="string" ? "MESSAGE!" : msg
+    msg = (typeof msg)!=="string" ? "MESSAGE!" : msg;
     changeText("#footer-msg", msg);
-    cssStyle("#footer-msg","visibility","visible")
+    cssStyle("#footer-msg","visibility","visible");
     if(hint)Timer.deductTime(10);
 }
 
 function endScreen(){
-    console.log("THE END!!")
+    Timer.stop();
+    Timer.setTime(0);
+    console.log("THE END!!");
+    //location.href = "highscores.html";
 }
 
 /* function clearAnswers(){
