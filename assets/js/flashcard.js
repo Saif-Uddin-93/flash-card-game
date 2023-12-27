@@ -1,6 +1,24 @@
 $(document).ready(function() {
 
+  // Function to get data from the localStorage
+  const getLocalStorage = () => {
+    // set the localStorage to default
+    const setLocalStorage = {
+      "theme": "light",
+      "sounds": "on",
+      "categoryDone": [],
+      "maxScore": 0,
+    }
+
+    const storage = JSON.parse(localStorage.getItem('flashcard'));
+    if(!storage){
+      localStorage.setItem('flashcard', JSON.stringify([setLocalStorage]));
+    }
+    return storage === null ? [setLocalStorage] : storage;
+  }
+  
   // Initialize game variables
+  const categories = words; // categories from the 'assets/js/words.js' file
   let wordsList = [];
   let currentWordIndex = 0;
   let currentWord = "";  
@@ -9,6 +27,20 @@ $(document).ready(function() {
   let score = 0;  
   let gameStarted = false; // Flag to check if the game has started  
   let incorrectGuessCounter = 0; // Counter for incorrect guesses
+  
+  // Initialize localStorage 
+  const flashcardSettings = getLocalStorage();
+
+  // Function to update data in localStorage
+  const updateLocalStorage = (prop, change) => {   
+    const settingsObject = flashcardSettings[0];
+    
+    // Ensure flashcardSettings is an object
+    if(settingsObject){      
+      settingsObject[prop] = change;     
+      return localStorage.setItem('flashcard', JSON.stringify(settingsObject));
+    }
+  }
 
   // Function to initialize or reset the game
   function initializeGame() {
@@ -119,6 +151,9 @@ $(document).ready(function() {
         if (!currentWord.split('').some(letter => !guessedLetters.includes(letter))) {         
           score += 1; // Update the score
 
+          // Update the localStorage score property
+          updateLocalStorage('maxScore', score)
+
           // Get current image index 
           const totalWords = Number($('#flashcard-number').text().split('/')[0]);
           
@@ -148,7 +183,7 @@ $(document).ready(function() {
           $('#find-image').css('opacity', 0.5);
 
           // User lost
-          updateMessageDisplay('Sorry, you lost. Better luck next time.')
+          updateMessageDisplay('Sorry, you lost. Better luck next time.');
 
           setTimeout(() => {            
             showEndGameScreen(score, false); // End the game with a loss
@@ -167,6 +202,13 @@ $(document).ready(function() {
     if (currentWordIndex < wordsList.length) {
       initializeGame();
     } else {
+
+      // Set the image 50% opacity to show the message
+      $('#find-image').css('opacity', 0.5);
+
+      // User won
+      updateMessageDisplay('Congratulations! You won!');
+     
       // User has finished the game
       showEndGameScreen(score, true);
     }
@@ -198,7 +240,7 @@ $(document).ready(function() {
   // Get category picked by user and resuffle the chooses category
   const getCategory = (category) => {   
     // Get the array of words from the 'assets/js/words.js' file
-    const filteredCat = words.filter(word => word[category])[0][category];  
+    const filteredCat = categories.filter(word => word[category])[0][category];  
     const reShuffleCat = shuffleArray(filteredCat); // Reorder the chosen words   
     return reShuffleCat;
   }
@@ -283,6 +325,7 @@ $(document).ready(function() {
     //   $('#loading-container').hide();
 
     //   gameStarted = true; // Start the game
+    //
     //   updateWordDisplay(); // Update the display
     //   updateScoreDisplay(); // Update the score
     // });
@@ -292,6 +335,7 @@ $(document).ready(function() {
     console.log(wordsList)
 
     gameStarted = true; // start the game
+
     updateWordDisplay();
     updateScoreDisplay();
 
