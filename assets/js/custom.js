@@ -78,7 +78,7 @@ const settings={
   darkElement: htmlElement("#setting-appearance-dark"),
   soundFX: (save)=> {
     if(!save){
-      return localStorage.getItem("flash-card-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("flash-card-sfx")}
+      return localStorage.getItem("quiz-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("quiz-sfx")}
     else {
       return settings.sfxElement.checked
     }},
@@ -89,7 +89,7 @@ const settings={
   },
   clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
   save: (btn)=> {
-    localStorage.setItem("flash-card-sfx", settings.soundFX(true))
+    localStorage.setItem("quiz-sfx", settings.soundFX(true))
     
     const themeInput = $('input[name="setting-appearance"]:checked').val();
     console.log(themeInput);
@@ -114,14 +114,6 @@ const settings={
     $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"48"}`);
     $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"48"}px`);
   },
-  /* closeSettings: ()=>{
-    if(localStorage.getItem("flash-card-sfx")===null){
-      settings.sfxElement.checked = true
-    }
-    if(localStorage.getItem("lightElement")===null){
-      settings.colourMode(undefined, "lightElement");
-    }
-  } */
 }
 // --------- <Settings< ---------
 
