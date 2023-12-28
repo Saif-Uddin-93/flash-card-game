@@ -59,8 +59,8 @@ const Timer = {
 
 // e.g soundVar("path/to/soundFile.wav")
 const soundVar = (src="", audio=document.createElement("audio"), set=audio.setAttribute("src", src)) => audio
-const correct = soundVar("assets/sfx/correct.wav");
-const incorrect = soundVar("assets/sfx/incorrect.wav");
+const correct = soundVar("./assets/sfx/correct.wav");
+const incorrect = soundVar("./assets/sfx/incorrect.wav");
 const soundsLibrary = {
   sounds: {
     correct : correct,
@@ -153,8 +153,9 @@ $('#mode-level').on('click', 'button',function (){
 
   //const modeNumber = $('#mode-number').val();
   const mode = $(this).text().toLowerCase();
-  const questions = $("#mode-number").val();
- 
+  let questions = $("#mode-number").val() > 34 ? 10 : $("#mode-number").val();
+  questions = questions < 1 ? 10 : questions;
+//  cssStyle("#q-answers", "display", "flex");
   callAPI(mode, questions);
   console.log(mode, questions);
   $('.mode-container').css('display', 'none');// hide the modal
@@ -178,6 +179,11 @@ $('#mode-level').on('click', 'button',function (){
   .catch((err) => console.error("Error:", err)); */
   
 });
+
+function qTooltip (focus=true) {
+  if (focus) cssStyle(".q-tip", "visibility", "visible");
+  else cssStyle(".q-tip", "visibility", "hidden");
+}
 
 // flip the card on HINT click
 $('#flashcard-hint').on('click', function(){

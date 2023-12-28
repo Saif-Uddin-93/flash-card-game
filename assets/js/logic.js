@@ -31,6 +31,7 @@ let trackQ = -1;
 let points = 0;
 
 function nextBtn() {
+    cssStyle("#q-answers", "display", "flex");
     trackQ++;
     if(trackQ===apiResult.results.length)
     {
@@ -105,8 +106,13 @@ function checkAnswer(eventObj){
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
     //points = (checkingAnswer) ? points-1 : points;
-    $("#q-points").text(`points ${points}`);
+    $("#q-points").text(`score: ${points}`);
     const css = msg==="Correct!" ? "correct" : "incorrect";
+    if(msg==="Correct!"){
+        if(settings.sfxElement.checked)soundsLibrary.play().correct();
+    }else{
+        if(settings.sfxElement.checked)soundsLibrary.play().incorrect();
+    }
     //console.log(targetText, answer, msg, css);
     cssClass("#footer-msg", "add", css);
     eventObj.target.classList.add(css);
