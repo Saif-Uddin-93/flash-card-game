@@ -5,8 +5,8 @@ $(document).ready(function() {
     // set the localStorage to default
     const setLocalStorage = {
       "theme": "light",
-      "sounds": "on",
-      "categoryDone": [],
+      "sound": "on",
+      "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
       "maxScore": 0,
     }
 
@@ -34,13 +34,102 @@ $(document).ready(function() {
   // Function to update data in localStorage
   const updateLocalStorage = (prop, change) => {   
     const settingsObject = flashcardSettings[0];
-    
+   
     // Ensure flashcardSettings is an object
     if(settingsObject){      
       settingsObject[prop] = change;     
       return localStorage.setItem('flashcard', JSON.stringify(settingsObject));
     }
   }
+
+  // Helper function to deactive completed categories
+  const deactivateCategory = (category) => {
+    // target an element by its data-cat 
+    $(`.category[data-cat='${category}']`).css({
+      'pointer-events': 'none',
+      'opacity': '0.5'
+    });
+  };
+
+  // Helper function to activate the next aviable category 
+  const activateNextCategory = () => {  
+    // Find the next available category
+    /**
+     * - find the first elements with a class of 'category' 
+     * - and first element that not include style attribute 
+     * contains the substring 'pointer-events: none' aka. disabled
+     * 
+     */
+    const nextCategory = $('.category[data-cat]:not([style*="pointer-events: none"]):first');
+ 
+    // Object has properties, it's not empty
+    if (Object.keys(nextCategory).length > 0) {
+      // Remove the 'cat-active' class from the current active category
+      $('.cat-active').removeClass('cat-active');
+
+      // Add the 'cat-active' class to the next available category
+      nextCategory.addClass('cat-active');
+    }    
+  };
+
+  const showFinalMessage = () => {
+    console.log('Congtaz you wont all categories!!');
+    console.log('Add message to inform user how to reset game');
+    console.log('Remove point-event and opacity after game reset');
+    console.log('set after wining the category to add categories to local storage');
+    console.log(`
+    - reset img opacity to 1 after continue game
+    - reset opacity of lives to 1
+    - move amout of images 1/10 to the corner
+    - add total score at the top
+    - check measages at the botttom of image to display messages
+    - finish settings to save / reset data
+    - add bg to pexels icon
+    - add functionality to exit icon to go to the total score
+    - work on mobile
+    - remove hangman letters when user go to the score board
+    - add max score at the top where was 1/10 before
+    - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
+    - if user won all categories show popup and ask if he want geset the game and score
+    - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
+    - set the variable to reset initial values if user is continuing game, because data is fetched / init from start button and not from init
+    - add text above icons
+    - check bug with const completedCategories = flashcardSettings[0].categoryDone; as sometimes is object or array
+    - remove if(!win){ to be if(win) to pass user who wont the category
+    `)
+    
+  }
+
+  // Check the localStorage if user alredy played any of the games
+  const categoryDone = () => {    
+    console.log(flashcardSettings)
+    const completedCategories = flashcardSettings[0].categoryDone;
+    // const activeCategory =  $('.cat-active').data('cat');
+
+    // Check if there are completed categories
+    if(completedCategories && completedCategories.length > 0) {
+
+      // Deactivate the current category if it's completed
+      completedCategories.forEach((category) => {
+        deactivateCategory(category);
+      });
+      
+      // Activate the next category
+      activateNextCategory();
+      
+      // Check if all categories are completed      
+      if(categories.length === completedCategories.length){
+        $('#flashcard-start').css({
+          'pointer-events': 'none',
+          'opacity': '0.5'
+        });
+        showFinalMessage();
+      }
+    }
+  }
+
+  // Disable completed categories
+  categoryDone();
 
   // Function to initialize or reset the game
   function initializeGame() {
@@ -69,7 +158,7 @@ $(document).ready(function() {
     guessedLetters = [];
     updateWordDisplay();
     updateScoreDisplay();
-    incorrectGuessCounter = 0;
+    // incorrectGuessCounter = 0;
     // updateMessageDisplay("");
   }
 
@@ -169,13 +258,13 @@ $(document).ready(function() {
       } else {        
         // If letter is not in the currentWord  
         blinkScreen('blink-error');       
-        
+                
         // Increment the incorrect guess counter
         incorrectGuessCounter++;
 
         // Remove heart with each incorrect guess
-        heartDisplay(incorrectGuessCounter)
-
+        heartDisplay(incorrectGuessCounter);
+        
         // Check if user has made three incorrect guesses
         if (incorrectGuessCounter >= 3) {
 
@@ -208,6 +297,10 @@ $(document).ready(function() {
 
       // User won
       updateMessageDisplay('Congratulations! You won!');
+
+      // Current category
+      // const activeCategory =  $('.cat-active').data('cat');
+      // console.log(activeCategory);
      
       // User has finished the game
       showEndGameScreen(score, true);
@@ -217,8 +310,32 @@ $(document).ready(function() {
   // Function to show the end game screen
   function showEndGameScreen(totalScore, win) {
     // Display total score and message
-    const message = win ? 'Congratulations! You won!' : 'Sorry, you lost. Better luck next time.';
-    $('#end-game-message').text(`${message} Total Score: ${totalScore} points`);
+    // const message = win ? 'Congratulations! You won!' : 'Sorry, you lost. Better luck next time.';
+
+    if(!win){
+      const button = $('<button>');
+      button.addClass('btn btn-primary').attr("id", "continue-game").text('continue');
+      $('#end-game-buttons').append(button);   
+      
+      // Event listener to continue the flashcard game on user win      
+      $('#continue-game').on('click', function continueGame() {
+        
+        // Reset the elements state        
+        $('#flashcard-outer').show(); // Show flashcard category menu        
+        $('#end-game-container').hide(); // Show the end game screen
+        // $('#guess-word').css('visibility', 'hidden'); // show the generated word on the screen
+        $('#guess-word').empty(); // Remove any existing word
+        $('#continue-game').remove(); // Remove
+        $('#end-game-message').text('');
+        incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
+
+        // Remove event imediately after is called 
+        // $(this).off('click', continueGame);
+      });
+    }
+
+    // $('#end-game-message').text(`${message} Total Score: ${totalScore} points`);
+    $('#end-game-message').text(`Total Score: ${totalScore} points`);
 
     // Disable key press   
     gameStarted = false;
@@ -309,40 +426,40 @@ $(document).ready(function() {
     currentHint = wordsList[currentWordIndex].hint
 
     // Fetch the image
-    // fetchImage(currentWord)
-    // .then(data => {                 
-    //   // Shufle the fetched response images to give new image with the same word
-    //   const {src, alt} = shuffleArray(data.photos)[0];
+    fetchImage(currentWord)
+    .then(data => {                 
+      // Shufle the fetched response images to give new image with the same word
+      const {src, alt} = shuffleArray(data.photos)[0];
 
-    //   // Show image on the screen in the flashcard      
-    //   $('#find-image').attr('src', src.large).attr('alt', alt);  
-    //   $('#flashcard-back-hint').text(currentHint);
-    // })
-    // .catch(error => console.error('Error fetching image:', error))
-    // .finally(() => {
+      // Show image on the screen in the flashcard      
+      $('#find-image').attr('src', src.large).attr('alt', alt);  
+      $('#flashcard-back-hint').text(currentHint);
+    })
+    .catch(error => console.error('Error fetching image:', error))
+    .finally(() => {
 
-    //   // Hide the spinner once the fetch is complete, whether successful or not
-    //   $('#loading-container').hide();
+      // Hide the spinner once the fetch is complete, whether successful or not
+      $('#loading-container').hide();
 
-    //   gameStarted = true; // Start the game
-    //
-    //   updateWordDisplay(); // Update the display
-    //   updateScoreDisplay(); // Update the score
-    // });
+      gameStarted = true; // Start the game
+    
+      updateWordDisplay(); // Update the display
+      updateScoreDisplay(); // Update the score
+    });
 
     //  TEMP code to mimic fetch
     console.log(currentWord)
     console.log(wordsList)
 
-    gameStarted = true; // start the game
+    // gameStarted = true; // start the game
 
-    updateWordDisplay();
-    updateScoreDisplay();
+    // updateWordDisplay();
+    // updateScoreDisplay();
 
-    // TEMP
-    setTimeout(() => {
-      $('#loading-container').hide();
-    }, 1000)
+    // // TEMP
+    // setTimeout(() => {
+    //   $('#loading-container').hide();
+    // }, 1000)
   
 
     $('#flashcard-outer').hide();
@@ -363,10 +480,9 @@ $(document).ready(function() {
   // });
 
   // Restart the flashcard game 
-  $('#try-again').on('click', function() {
+  $('#reset-game').on('click', function() {
     // Reload the page with cleared leaderboard
     window.location.reload();
-  });
-
+  }); 
 
 });
