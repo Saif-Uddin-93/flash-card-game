@@ -89,14 +89,14 @@ $(document).ready(function() {
     - add one live left in the msg at the bottom
     - add notitification on/off
     - move amout of images 1/10 to the corner
-    - add total score at the top
+    
     - check measages at the botttom of image to display messages
     - finish settings to save / reset data
     - add bg to pexels icon
     - add functionality to exit icon to go to the total score
     - work on mobile
     - remove hangman letters when user go to the score board
-    - add max score at the top where was 1/10 before
+    
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
     - if user won all categories show popup and ask if he want geset the game and score
     - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
@@ -142,6 +142,12 @@ $(document).ready(function() {
   // Function to initialize or reset the game
   function initializeGame() {
     
+    // Reset the image before loading the new one
+    $('#find-image').attr('src', '');
+
+    // Show the spinner when fetching the image
+    $('#loading-container').show(); // display 'block'
+
     // Get the current word
     currentWord = wordsList[currentWordIndex].word.toUpperCase();
     
@@ -150,7 +156,8 @@ $(document).ready(function() {
     
     // Get new image based on the current word
     fetchImage(currentWord)
-    .then(data => {          
+    .then(data => {    
+           
       // Shufle the fetched response images to give new image with the same word
       const {src, alt} = shuffleArray(data.photos)[0];
       
@@ -160,14 +167,17 @@ $(document).ready(function() {
       // Append hint to the image
       $('#flashcard-back-hint').text(currentHint);  
     })
-    .catch(error => console.error('Error fetching image:', error));
+    .catch(error => console.error('Error fetching image:', error))
+    .finally(() => {
 
-    // Reset the flashcard variables for the new image
-    guessedLetters = [];
-    updateWordDisplay();
-    updateScoreDisplay();
-    // incorrectGuessCounter = 0;
-    // updateMessageDisplay("");
+      // Hide the spinner once the fetch is complete, whether successful or not
+      $('#loading-container').hide();
+    
+      // Reset the flashcard variables for the new image
+      guessedLetters = [];         
+      updateWordDisplay(); // Update the display
+      updateScoreDisplay(); // Update the score
+    });
   }
 
   // Function to update the word display on the screen
@@ -378,7 +388,7 @@ $(document).ready(function() {
         $('#continue-game').remove(); // Remove
         $('#end-game-message').text('');
         incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
-
+        score = 0;   
         // Remove event imediately after is called 
         // $(this).off('click', continueGame);
       });
@@ -457,9 +467,6 @@ $(document).ready(function() {
     // Current category
     const activeCategory =  $('.cat-active').data('cat');
 
-    // Refresh categories
-    // categoryDone();
-
     // Hide the start screen
     $('#flashcard-outer').hide();
 
@@ -472,47 +479,23 @@ $(document).ready(function() {
     //Total number of words
     $('#flashcard-number').text(`1/${wordsList.length}`);
     
-    // Current word
-    currentWord = wordsList[currentWordIndex].word.toUpperCase();
-
-    // Current word hint 
-    currentHint = wordsList[currentWordIndex].hint
-
-    // Fetch the image
-    // fetchImage(currentWord)
-    // .then(data => {                 
-    //   // Shufle the fetched response images to give new image with the same word
-    //   const {src, alt} = shuffleArray(data.photos)[0];
-
-    //   // Show image on the screen in the flashcard      
-    //   $('#find-image').attr('src', src.large).attr('alt', alt);  
-    //   $('#flashcard-back-hint').text(currentHint);
-    // })
-    // .catch(error => console.error('Error fetching image:', error))
-    // .finally(() => {
-
-    //   // Hide the spinner once the fetch is complete, whether successful or not
-    //   $('#loading-container').hide();
-
-    //   gameStarted = true; // Start the game
-    
-    //   updateWordDisplay(); // Update the display
-    //   updateScoreDisplay(); // Update the score
-    // });
+    initializeGame();
+   
+    gameStarted = true; // Start the game
 
     //  TEMP code to mimic fetch
     console.log(currentWord)
     console.log(wordsList)
 
-    gameStarted = true; // start the game
+    // gameStarted = true; // start the game
 
-    updateWordDisplay();
-    updateScoreDisplay();
+    // updateWordDisplay();
+    // updateScoreDisplay();
 
-    // TEMP
-    setTimeout(() => {
-      $('#loading-container').hide();
-    }, 1000)
+    // // TEMP
+    // setTimeout(() => {
+    //   $('#loading-container').hide();
+    // }, 1000)
   
 
     $('#flashcard-outer').hide();
@@ -527,11 +510,7 @@ $(document).ready(function() {
       handleKeyPress(e);
     }
   });
-
-  // $('#flashcard-exit').on('click', function() {
-  //   console.log($(this))
-  // });
-
+ 
   // Restart the flashcard game 
   $('#reset-game').on('click', function() {
     // Reload the page with cleared leaderboard
