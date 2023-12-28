@@ -85,10 +85,9 @@ $(document).ready(function() {
     console.log('Remove point-event and opacity after game reset');
     console.log(`
 
+    - add function to setTimet content
     - add one live left in the msg at the bottom
     - add notitification on/off
-    - reset img opacity to 1 after continue game
-    - reset opacity of lives to 1
     - move amout of images 1/10 to the corner
     - add total score at the top
     - check measages at the botttom of image to display messages
@@ -259,9 +258,11 @@ $(document).ready(function() {
 
           // Get current image index 
           const totalWords = Number($('#flashcard-number').text().split('/')[0]);
-          
+        
           // Display current image number / Total number of words for that category
-          $('#flashcard-number').text(`${totalWords + 1}/${wordsList.length}`);
+          if(totalWords < wordsList.length){
+            $('#flashcard-number').text(`${totalWords + 1}/${wordsList.length}`);
+          }
 
           updateScoreDisplay(); // Update the score display
           handleNextWordClick(); // Move to the next word
@@ -319,7 +320,9 @@ $(document).ready(function() {
       // console.log(activeCategory);
      
       // User has finished the game
-      showEndGameScreen(score, true);
+      setTimeout(()=>{
+        showEndGameScreen(score, true);
+      },3000)
     }
   }
 
