@@ -94,6 +94,20 @@
   transform: translate(-50%, -50%);
 }
 
+.flashcard-msg-bottom {
+  display: none;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0 ;
+  z-index: 20;
+  color: #000;
+  letter-spacing: 1px;
+  padding: 1px 25px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+  transform: translateX(-50);
+}
+
 .flashcard-start {
   display: block;
   position: absolute;     
@@ -112,8 +126,7 @@
   width: 100%;
 }
 
-.pexels-logo {
-  
+.pexels-logo {  
   height: 27px;
   background: rgb(0, 0, 0, 0.25);
   padding-right: 5px;
@@ -127,7 +140,6 @@
   font-size: .9rem;
   border-radius: 2.5px;
   padding: 3px 8px;
-  border: 1px solid #05a081;
 }
 
 .categories-container {
