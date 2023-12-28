@@ -5,8 +5,9 @@ $(document).ready(function() {
     // set the localStorage to default
     const setLocalStorage = {
       "theme": "light",
-      "sound": "on",
-      "categoryDone": [],
+      "sound": true,
+      "categoryDone": [],           
+      "notification": true,
       // "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
       "maxScore": 0,
     }
@@ -87,25 +88,25 @@ $(document).ready(function() {
     console.log(`
 
     - add function to setTimet content
-    - add one live left in the msg at the bottom
+    
     - add notitification on/off
     - grey out the settings and exit btn
     - block exit on the main window, unblock on others
     - rewrite middle part and move absolute to one div for middle part and bottom
     
-    - check measages at the botttom of image to display messages
+    
     - finish settings to save / reset data
     
     - work on mobile
     - fade out text on the image at the bottom
-    - remove hangman letters when user go to the score board
+    
     
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
     - if user won all categories show popup and ask if he want geset the game and score
     - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
     
     - add text above icons    
-    - remove if(!win){ to be if(win) to pass user who wont the category
+    
     - create favicon for the app
     - switch to div istead of svg when user highlight the category, bc right now sometimes it needs to click in the middle of the svg
     `)
@@ -552,6 +553,28 @@ $(document).ready(function() {
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
     $('#guess-word').css('visibility', 'hidden');
+  });
+
+  // Event listener for user settings
+  $('#settings-save').on('click', function(){
+    // Check the state of Apperance    
+    const appearanceDark = $('#setting-appearance-dark').prop('checked');
+    
+    // Check the state of the switches
+    const soundOn = $('#setting-sound').prop('checked');
+    const noteOn = $('#setting-note').prop('checked');
+    
+    const changes = {
+      "theme": appearanceDark ? "dark" : "light",
+      "sound": soundOn,
+      "notification": noteOn     
+    };
+
+    // Save to local storage
+    for(let prop in changes) {      
+      updateLocalStorage(prop, changes[prop]);
+    }    
+    
   });
 
 });
