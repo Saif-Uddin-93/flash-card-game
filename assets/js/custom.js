@@ -143,9 +143,6 @@ $("#q-slider").on("input", function () {
 function decodeHTML(html) {
   var doc = new DOMParser().parseFromString(html, "text/html");
   return doc.documentElement.textContent;
-  /* var tempElement = document.createElement('div');
-  tempElement.innerHTML = html;
-  return tempElement.textContent || tempElement.innerText; */
 }
 
 // render the questions after selecting mode
@@ -160,8 +157,8 @@ $('#mode-level').on('click', 'button',function (){
   console.log(mode, questions);
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle("#next-btn", "visibility", "visible");
-  cssStyle("#q-answers", "display", "flex");
-  //cssStyle(".q-timer", "visibility", "visible");
+  //cssStyle("#q-answers", "display", "flex");
+  
   changeText("#q-number", `0/${questions}`);
   trackQ = -1;
   /* 
