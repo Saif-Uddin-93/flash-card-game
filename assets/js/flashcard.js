@@ -51,7 +51,7 @@ $(document).ready(function() {
     return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
   }
 
-  const setSettings = () => {
+  const updateSettings = () => {
     const sound = flashcardSettings['sound'];
     
     const notification = flashcardSettings['notification'];
@@ -62,7 +62,7 @@ $(document).ready(function() {
   }
   
   // Refresh the flashcard settings
-  setSettings();
+  updateSettings();
 
   // Helper function to deactive completed categories
   const deactivateCategory = (category) => {
@@ -106,7 +106,8 @@ $(document).ready(function() {
     - grey out the settings and exit btn
     - block exit on the main window, unblock on others
     - rewrite middle part and move absolute to one div for middle part and bottom
-    
+    - reset when press X exit
+    - update max score at the end of the array of images
     
     - finish settings to save / reset data
     
@@ -589,8 +590,28 @@ $(document).ready(function() {
     }    
 
     // Refresh the flashcard settings
-    setSettings();   
+    updateSettings();   
         
+  });
+
+  $('#f-settings').on('click', function(){
+    const appearanceLight = $('#setting-appearance-light');
+    const appearanceDark = $('#setting-appearance-dark');
+
+    if(flashcardSettings['theme'] === 'light'){
+      appearanceLight.prop('checked', true);
+      appearanceDark.prop('checked', false);
+    }else if (flashcardSettings['theme'] === 'dark') {
+      appearanceLight.prop('checked', false);
+      appearanceDark.prop('checked', true);
+    }
+    
+    const soundOn = $('#setting-sound');
+    flashcardSettings['sound'] ? soundOn.prop('checked', true) : soundOn.prop('checked', false);
+    
+    const noteOn = $('#setting-note');
+    flashcardSettings['notification'] ? noteOn.prop('checked', true) : noteOn.prop('checked', false);
+
   });
 
 });
