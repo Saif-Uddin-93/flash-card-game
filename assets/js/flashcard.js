@@ -92,8 +92,7 @@ $(document).ready(function() {
     
     - check measages at the botttom of image to display messages
     - finish settings to save / reset data
-    - add bg to pexels icon
-    - add functionality to exit icon to go to the total score
+    - add bg to pexels icon   
     - work on mobile
     - remove hangman letters when user go to the score board
     
@@ -282,7 +281,7 @@ $(document).ready(function() {
           const totalWords = Number($('#flashcard-number').text().split('/')[0]);
         
           // Display current image number / Total number of words for that category
-          if(totalWords < wordsList.length){
+          if(totalWords < wordsList.length){            
             $('#flashcard-number').text(`${totalWords + 1}/${wordsList.length}`);
           }
 
@@ -480,23 +479,26 @@ $(document).ready(function() {
     //Total number of words
     $('#flashcard-number').text(`1/${wordsList.length}`);
     
-    initializeGame();
+    // initializeGame();
    
     gameStarted = true; // Start the game
 
+    // Get the current word
+    currentWord = wordsList[currentWordIndex].word.toUpperCase();
     //  TEMP code to mimic fetch
     console.log(currentWord)
     console.log(wordsList)
 
-    // gameStarted = true; // start the game
+    guessedLetters = [];
+    gameStarted = true; // start the game
 
-    // updateWordDisplay();
-    // updateScoreDisplay();
+    updateWordDisplay();
+    updateScoreDisplay();
 
-    // // TEMP
-    // setTimeout(() => {
-    //   $('#loading-container').hide();
-    // }, 1000)
+    // TEMP
+    setTimeout(() => {
+      $('#loading-container').hide();
+    }, 1000)
   
 
     $('#flashcard-outer').hide();
