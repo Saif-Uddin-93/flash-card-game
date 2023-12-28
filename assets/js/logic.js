@@ -31,7 +31,7 @@ let trackQ = -1;
 let points = 0;
 
 function nextBtn() {
-    // cssStyle("#q-answers", "display", "flex");
+    if(trackQ===-1)cssStyle("#q-answers", "display", "flex");
     trackQ++;
     if(trackQ===apiResult.results.length)
     {
@@ -97,15 +97,17 @@ function loadAnswers(level=difficulty(), questionNo=trackQ){
     }
 }
 
-//let checkingAnswer = false;
 function checkAnswer(eventObj){
     Timer.timeoutClr();
-    //checkingAnswer = true;
+    const toDisable = Array.from(document.getElementsByClassName("btn-check"));
+    toDisable.forEach(element => {
+        element.disabled=true;
+    });
+    //htmlElement(`#next-btn`).disabled=true;
     const targetText = eventObj.target.textContent;
     const answer = apiResult.results[trackQ].correct_answer;
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
-    //points = (checkingAnswer) ? points-1 : points;
     $("#q-points").text(`score: ${points}`);
     const css = msg==="Correct!" ? "correct" : "incorrect";
     if(msg==="Correct!"){
@@ -120,7 +122,10 @@ function checkAnswer(eventObj){
     Timer.timeoutSet(()=>{
         cssClass("#footer-msg", "remove", css);
         eventObj.target.classList.remove(css);
-        //checkingAnswer = false;
+        toDisable.forEach(element => {
+            element.disabled=false;
+        });
+        //htmlElement(`#next-btn`).disabled=false;
     }, 2);
     Timer.timeoutSet(nextBtn, 2);
 }
