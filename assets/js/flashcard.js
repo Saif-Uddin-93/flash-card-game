@@ -83,8 +83,10 @@ $(document).ready(function() {
     console.log('Congtaz you wont all categories!!');
     console.log('Add message to inform user how to reset game');
     console.log('Remove point-event and opacity after game reset');
-    console.log('set after wining the category to add categories to local storage');
     console.log(`
+
+    - add one live left in the msg at the bottom
+    - add notitification on/off
     - reset img opacity to 1 after continue game
     - reset opacity of lives to 1
     - move amout of images 1/10 to the corner
@@ -225,9 +227,14 @@ $(document).ready(function() {
   }
 
   // Hearts display
-  const heartDisplay = (num) => {
+  const heartDisplay = (num, opacity) => {
     const heart = $(`#flashcard-heart${num}`);
-    heart.css('opacity', 0); 
+    heart.css('opacity', opacity); 
+  }
+
+  // Hearts display
+  const imageDisplay = (opacity) => {
+    $('#find-image').css('opacity', opacity);
   }
 
   // Function to handle key presses
@@ -270,13 +277,14 @@ $(document).ready(function() {
         incorrectGuessCounter++;
 
         // Remove heart with each incorrect guess
-        heartDisplay(incorrectGuessCounter);
+        heartDisplay(incorrectGuessCounter, 0);
         
         // Check if user has made three incorrect guesses
         if (incorrectGuessCounter >= 3) {
 
           // Set the image 50% opacity to show the message
-          $('#find-image').css('opacity', 0.5);
+          // $('#find-image').css('opacity', 0.5);
+          imageDisplay(0.5);
 
           // User lost
           updateMessageDisplay('Sorry, you lost. Better luck next time.');
@@ -300,7 +308,8 @@ $(document).ready(function() {
     } else {
 
       // Set the image 50% opacity to show the message
-      $('#find-image').css('opacity', 0.5);
+      // $('#find-image').css('opacity', 0.5);
+      imageDisplay(0.5);
 
       // User won
       updateMessageDisplay('Congratulations! You won!');
@@ -332,6 +341,16 @@ $(document).ready(function() {
         
         // Update localStore with completed categories
         updateLocalStorage('categoryDone', activeCategory);
+
+        // Update hearts opacity
+        const totalHearts = $('.flashcard-hears').length;
+        $('.flashcard-hears').each(function(index, _) {
+          let reversedIndex = totalHearts - index;          
+          heartDisplay(reversedIndex, 1);
+        });
+
+        // Update image opacity
+        imageDisplay(1);
 
         // Disable completed categories
         categoryDone();
