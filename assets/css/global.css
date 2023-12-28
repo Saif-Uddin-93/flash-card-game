@@ -51,12 +51,26 @@ body {
   font-size: 1rem;
 }
 
-/* MODALS */
+/* SETTING MODAL */
 .settings-header {
+  position: relative;
   margin-bottom: .5rem;
 }
 
 .setting-container {
   padding: 1rem;    
 }
+
+.setting-version {
+  position: absolute;
+  left: 20px;
+  top: 45px;
+  margin: 0;
+}
+
+.setting-version p {
+  margin: 0;
+  color: grey;
+  font-size: 0.75rem;
+} 
 
