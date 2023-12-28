@@ -34,13 +34,19 @@ $(document).ready(function() {
   
   // Function to update data in localStorage
   const updateLocalStorage = (prop, change) => {   
-    // const settingsObject = flashcardSettings[0];
-   
-    // Ensure flashcardSettings is an object
-    if(flashcardSettings){      
-      flashcardSettings[prop] = change;     
-      return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
+    // const settingsObject = flashcardSettings[0];  
+    
+    // If category is updated
+    if(prop === 'categoryDone'){
+      flashcardSettings[prop].push(change);      
     }
+
+    // Ensure flashcardSettings is an object
+    if(flashcardSettings && prop !== 'categoryDone'){      
+      flashcardSettings[prop] = change;           
+    }
+
+    return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
   }
 
   // Helper function to deactive completed categories
@@ -94,15 +100,16 @@ $(document).ready(function() {
     - if user won all categories show popup and ask if he want geset the game and score
     - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
     - set the variable to reset initial values if user is continuing game, because data is fetched / init from start button and not from init
-    - add text above icons
-    - check bug with const completedCategories = flashcardSettings[0].categoryDone; as sometimes is object or array
+    - add text above icons    
     - remove if(!win){ to be if(win) to pass user who wont the category
+      - create favicon for the app
     `)
     
   }
 
   // Check the localStorage if user alredy played any of the games
   const categoryDone = () => {       
+    // console.log(flashcardSettings)
     const completedCategories = flashcardSettings.categoryDone;
     // const activeCategory =  $('.cat-active').data('cat');
 
@@ -312,14 +319,23 @@ $(document).ready(function() {
     // Display total score and message
     // const message = win ? 'Congratulations! You won!' : 'Sorry, you lost. Better luck next time.';
 
-    if(!win){
+    if(win){
       const button = $('<button>');
       button.addClass('btn btn-primary').attr("id", "continue-game").text('continue');
       $('#end-game-buttons').append(button);   
       
       // Event listener to continue the flashcard game on user win      
       $('#continue-game').on('click', function continueGame() {
+
+        // Find active category
+        const activeCategory =  $('.cat-active').data('cat');
         
+        // Update localStore with completed categories
+        updateLocalStorage('categoryDone', activeCategory);
+
+        // Disable completed categories
+        categoryDone();
+
         // Reset the elements state        
         $('#flashcard-outer').show(); // Show flashcard category menu        
         $('#end-game-container').hide(); // Show the end game screen
@@ -374,7 +390,7 @@ $(document).ready(function() {
     })
     .then(response => response.json())
     .then(data => { 
-      console.log(data)      
+      // console.log(data)      
       return data;
     })
     .catch(error => console.error('Error fetching image:', error))
@@ -406,6 +422,9 @@ $(document).ready(function() {
     
     // Current category
     const activeCategory =  $('.cat-active').data('cat');
+
+    // Refresh categories
+    // categoryDone();
 
     // Hide the start screen
     $('#flashcard-outer').hide();

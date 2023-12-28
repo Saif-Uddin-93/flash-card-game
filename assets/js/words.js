@@ -3,14 +3,14 @@ const words = [
       "animals": [
         { "word": "Elephant", "hint": "Largest land mammal with long tusks" },
         { "word": "Tiger", "hint": "Striped big cat known for its strength" },
-        { "word": "Giraffe", "hint": "Tall, long-necked African herbivore" },
-        { "word": "Penguin", "hint": "Flightless bird found in the Southern Hemisphere" },
-        { "word": "Kangaroo", "hint": "Marsupial with powerful hind legs" },
-        { "word": "Dolphin", "hint": "Intelligent marine mammal known for its playful behavior" },
-        { "word": "Lion", "hint": "Fierce carnivorous cat, often called the 'king of the jungle'" },
-        { "word": "Zebra", "hint": "Striped herbivore native to Africa" },
-        { "word": "Panda", "hint": "Bear native to China, known for its black and white fur" },
-        { "word": "Koala", "hint": "Tree-dwelling marsupial native to Australia" },        
+        // { "word": "Giraffe", "hint": "Tall, long-necked African herbivore" },
+        // { "word": "Penguin", "hint": "Flightless bird found in the Southern Hemisphere" },
+        // { "word": "Kangaroo", "hint": "Marsupial with powerful hind legs" },
+        // { "word": "Dolphin", "hint": "Intelligent marine mammal known for its playful behavior" },
+        // { "word": "Lion", "hint": "Fierce carnivorous cat, often called the 'king of the jungle'" },
+        // { "word": "Zebra", "hint": "Striped herbivore native to Africa" },
+        // { "word": "Panda", "hint": "Bear native to China, known for its black and white fur" },
+        // { "word": "Koala", "hint": "Tree-dwelling marsupial native to Australia" },        
       ]
     },
     {     
