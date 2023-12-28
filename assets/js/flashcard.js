@@ -50,7 +50,20 @@ $(document).ready(function() {
 
     return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
   }
+
+  const setSettings = () => {
+    const sound = flashcardSettings['sound'];
+    
+    const notification = flashcardSettings['notification'];
+    showMessages = notification;
+    
+    const theme = flashcardSettings['theme'];    
+    document.documentElement.setAttribute('data-theme', theme);
+  }
   
+  // Refresh the flashcard settings
+  setSettings();
+
   // Helper function to deactive completed categories
   const deactivateCategory = (category) => {
     // target an element by its data-cat 
@@ -574,7 +587,10 @@ $(document).ready(function() {
     for(let prop in changes) {      
       updateLocalStorage(prop, changes[prop]);
     }    
-    
+
+    // Refresh the flashcard settings
+    setSettings();   
+        
   });
 
 });
