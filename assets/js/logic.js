@@ -31,7 +31,7 @@ let trackQ = -1;
 let points = 0;
 
 function nextBtn() {
-    cssStyle("#q-answers", "display", "flex");
+    // cssStyle("#q-answers", "display", "flex");
     trackQ++;
     if(trackQ===apiResult.results.length)
     {

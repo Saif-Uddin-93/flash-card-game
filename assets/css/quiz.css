@@ -262,7 +262,7 @@
 }
 
 #q-number {
-  width: 100%;
+  /* width: 100%; */
   /* padding-right: 8%; */
 }
 
@@ -284,7 +284,8 @@
   height: 11rem;
   width: 10rem;
   top: 5rem;
-  left: 27.5rem;
+  /* left: 27.5rem; */
+  right: 10%;
   padding: 1rem;
   &::before{
     position: absolute;
@@ -304,6 +305,12 @@
 }
 
 @media(width < 431px){
+  .q-tip {
+    scale: 75%;
+    right: -4.5rem;
+    top: 1rem;
+  }
+
   .card {
     max-height: 70%;
   }
@@ -315,17 +322,31 @@
   }
 
   .timer {
-    position: relative;
     width: auto;
-    left: 13rem;
-    & #q-timer{
-      position: absolute;
-      left: 3.4rem;
-    }
+  }
+
+  .q-settings {
+    position: absolute;
+    justify-content: start;
+    top: 3.2rem;
+  }
+
+  .exit {
+    display: flex;
+    /* position: absolute; */
+    justify-content: end;
+  }
+
+  .q-font {
+    position: absolute;
+    top: -3.5rem;
   }
 
   .q-answers {
+    position: relative;
+    top: -5rem;
     padding-top: 0%;
+    /* margin-bottom: 5rem; */
   }
 
   #mode-level {
@@ -340,33 +361,19 @@
   }
 
   #q-points {
-    width: 25%;
+    width: auto;
+    position: absolute;
+    right: 1rem;
   }
 
   #q-number {
-    width: 60%;
+    width: 100%;
     padding-left: 0%;
-  }
-
-  .q-font {
-    top: -18%;
-  }
-
-  #q-hint {
-    display: block;
-    position: absolute;
-    top: 0%;
-  }
-
-  #q-timer {
-    display: block;
-    position: absolute;
-    top: 5%;
   }
 }
 
 @media(width < 391px){
-  .timer {
+  /* .timer {
     position: relative;
     width: auto;
     left: 11rem;
@@ -374,21 +381,12 @@
       position: absolute;
       left: 3.4rem;
     }
-  }
+  } */
 }
 
 @media(width < 376px){
   #mode-level {
     left: 44%;
-  }
-  .timer {
-    position: relative;
-    width: auto;
-    left: 10.3rem;
-    & #q-timer{
-      position: absolute;
-      left: 3.4rem;
-    }
   }
 }
 /* ---- SU END---- */
