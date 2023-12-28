@@ -103,12 +103,12 @@ function checkAnswer(eventObj){
     toDisable.forEach(element => {
         element.disabled=true;
     });
-    //htmlElement(`#next-btn`).disabled=true;
+    htmlElement(`#next-btn`).disabled=true;
     const targetText = eventObj.target.textContent;
     const answer = apiResult.results[trackQ].correct_answer;
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
-    $("#q-points").text(`score: ${points}`);
+    $("#q-points").text(`Score: ${points}`);
     const css = msg==="Correct!" ? "correct" : "incorrect";
     if(msg==="Correct!"){
         if(settings.sfxElement.checked)soundsLibrary.play().correct();
@@ -125,7 +125,7 @@ function checkAnswer(eventObj){
         toDisable.forEach(element => {
             element.disabled=false;
         });
-        //htmlElement(`#next-btn`).disabled=false;
+        htmlElement(`#next-btn`).disabled=false;
     }, 2);
     Timer.timeoutSet(nextBtn, 2);
 }
@@ -135,6 +135,11 @@ function loadMsg(msg, hint=false){
     changeText("#footer-msg", msg);
     cssStyle("#footer-msg","visibility","visible");
     if(hint)Timer.deductTime(10);
+}
+
+function qTooltip (focus=true) {
+    if (focus) cssStyle(".q-tip", "visibility", "visible");
+    else cssStyle(".q-tip", "visibility", "hidden");
 }
 
 function endScreen(){

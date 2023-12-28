@@ -193,20 +193,11 @@
   }
 } */
 
-/* .exit {
-  padding-left: 0.5rem;
-} */
-
 #next-btn {
   visibility: hidden;
-  /* & img{
-    position: relative;
-    top: -24rem;
-    bottom: 0;
-    left: 0rem;
-    right: 0;
-    scale:2%;
-  } */
+  & img {
+    width: 5%;
+  }
 }
 
 #save-settings {
@@ -269,15 +260,6 @@
   padding-right: 0;
 }
 
-#q-number {
-  /* width: 100%; */
-  /* padding-right: 8%; */
-}
-
-/* #exit {
-  width: 6%;
-} */
-
 .btn {
   min-width: 6rem;
 }
@@ -319,6 +301,12 @@
     top: 1rem;
   }
 
+  #next-btn {
+    & img {
+      width: 6%;
+    }
+  }
+
   .card {
     max-height: 70%;
   }
@@ -334,9 +322,9 @@
   }
 
   .q-settings {
-    position: absolute;
-    justify-content: start;
-    top: 3.2rem;
+    position: relative;
+    top: 0.75rem;
+    right: 3.7rem;
   }
 
   .exit {
