@@ -214,6 +214,7 @@
 }
 
 .find-image {
+  color: white;
   width: 100%;
   height: calc(100% - 24px);
   object-fit: cover;
