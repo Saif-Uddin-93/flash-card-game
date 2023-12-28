@@ -2,6 +2,7 @@
   /* SU: added colours for correct/incorrect answers */
   --correct-bg : #7fff00;
   --incorrect-bg : hsl(10, 100%, 50%);
+  --grey : #6C757D;
 }
 
 /* CARD HEADER */
@@ -31,13 +32,16 @@
 .q-settings {
   border: 0;
   background: transparent;
-  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0; */
 }
 .q-settings svg{
-  position: absolute;
+  /* position: absolute; */
   height: 1.5rem;
-  right: .5rem;
-  top: .5rem;
+  /* right: .5rem;
+  top: .5rem; */
 }
 
 .q-settings:hover {
@@ -59,9 +63,9 @@
 
 
 /* ANSWERS */
-/* #q-answers { */
-  /* display: none; */ /* SU: The HTML needs to be displayed for the functionality for this to work */
-/* } */
+#q-answers {
+  display: none; /* SU: change display to flex before question loads */
+}
 
 .q-answers {
   display: flex;
@@ -189,6 +193,10 @@
   }
 } */
 
+/* .exit {
+  padding-left: 0.5rem;
+} */
+
 #next-btn {
   visibility: hidden;
 }
@@ -213,20 +221,18 @@
 }
 
 .btn-check:checked+.btn {
-  /* --bs-btn-active-color:#6C757D;
-  --bs-btn-active-bg: white; */
-  color: #6C757D;
+  color: var(--grey);
   background-color: white;
 }
 
 .options {
   &:hover{
     color: white;
-    background-color: #6C757D !important
+    background-color: var(--grey) !important
   }
 }
 
-.options, #footer-msg {
+.options /* , #footer-msg */ {
   &.correct {
     background-color: var(--correct-bg) !important;
     color: white !important;
@@ -256,16 +262,45 @@
 }
 
 #q-number {
-  width: 82%;
-  padding-right: 8%;
+  width: 100%;
+  /* padding-right: 8%; */
 }
 
-#exit {
+/* #exit {
   width: 6%;
-}
+} */
 
 .btn {
   min-width: 6rem;
+}
+
+.q-tip {
+  visibility: hidden;
+  position: absolute;
+  background-color: #dfdfdf64;
+  border: solid 5px #adb5bd;
+  border-radius: 3%;
+  border-style: dotted;
+  height: 11rem;
+  width: 10rem;
+  top: 5rem;
+  left: 27.5rem;
+  padding: 1rem;
+  &::before{
+    position: absolute;
+    top: -0.8rem;
+    left: 0.5rem;
+    content: "!";
+    color: rgb(255, 211, 14);
+    font-size: 3rem;
+    font-weight:bolder;
+  }
+  &::after{
+    font-weight: bold;
+    font-size: large;
+    color: rgb(255, 22, 22);
+    content: "Number of questions will default to 10 if below 1 or above 34";
+  }
 }
 
 @media(width < 431px){
@@ -277,6 +312,16 @@
     display: block;
     position: absolute;
     top: 2%;
+  }
+
+  .timer {
+    position: relative;
+    width: auto;
+    left: 13rem;
+    & #q-timer{
+      position: absolute;
+      left: 3.4rem;
+    }
   }
 
   .q-answers {
@@ -302,10 +347,6 @@
     width: 60%;
     padding-left: 0%;
   }
-  
-  #exit {
-    width: 6%;
-  }
 
   .q-font {
     top: -18%;
@@ -324,9 +365,30 @@
   }
 }
 
+@media(width < 391px){
+  .timer {
+    position: relative;
+    width: auto;
+    left: 11rem;
+    & #q-timer{
+      position: absolute;
+      left: 3.4rem;
+    }
+  }
+}
+
 @media(width < 376px){
   #mode-level {
     left: 44%;
+  }
+  .timer {
+    position: relative;
+    width: auto;
+    left: 10.3rem;
+    & #q-timer{
+      position: absolute;
+      left: 3.4rem;
+    }
   }
 }
 /* ---- SU END---- */
