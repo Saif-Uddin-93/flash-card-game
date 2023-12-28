@@ -179,11 +179,6 @@ $('#mode-level').on('click', 'button',function (){
   
 });
 
-function qTooltip (focus=true) {
-  if (focus) cssStyle(".q-tip", "visibility", "visible");
-  else cssStyle(".q-tip", "visibility", "hidden");
-}
-
 // flip the card on HINT click
 $('#flashcard-hint').on('click', function(){
 
