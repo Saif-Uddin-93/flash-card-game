@@ -100,10 +100,11 @@ $(document).ready(function() {
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
     - if user won all categories show popup and ask if he want geset the game and score
     - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
-    - set the variable to reset initial values if user is continuing game, because data is fetched / init from start button and not from init
+    
     - add text above icons    
     - remove if(!win){ to be if(win) to pass user who wont the category
-      - create favicon for the app
+    - create favicon for the app
+    - switch to div istead of svg when user highlight the category, bc right now sometimes it needs to click in the middle of the svg
     `)
     
   }
@@ -516,5 +517,11 @@ $(document).ready(function() {
     // Reload the page with cleared leaderboard
     window.location.reload();
   }); 
+
+  // Event listeners for exit the game
+  $('#flashcard-exit').on('click', function() {    
+    showEndGameScreen(score, false);
+    $('#flashcard-outer').hide();
+  });
 
 });
