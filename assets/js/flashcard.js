@@ -6,15 +6,16 @@ $(document).ready(function() {
     const setLocalStorage = {
       "theme": "light",
       "sound": "on",
-      "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
+      "categoryDone": [],
+      // "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
       "maxScore": 0,
     }
 
     const storage = JSON.parse(localStorage.getItem('flashcard'));
     if(!storage){
-      localStorage.setItem('flashcard', JSON.stringify([setLocalStorage]));
+      localStorage.setItem('flashcard', JSON.stringify(setLocalStorage));
     }
-    return storage === null ? [setLocalStorage] : storage;
+    return storage === null ? setLocalStorage : storage;
   }
   
   // Initialize game variables
@@ -30,15 +31,15 @@ $(document).ready(function() {
   
   // Initialize localStorage 
   const flashcardSettings = getLocalStorage();
-
+  
   // Function to update data in localStorage
   const updateLocalStorage = (prop, change) => {   
-    const settingsObject = flashcardSettings[0];
+    // const settingsObject = flashcardSettings[0];
    
     // Ensure flashcardSettings is an object
-    if(settingsObject){      
-      settingsObject[prop] = change;     
-      return localStorage.setItem('flashcard', JSON.stringify(settingsObject));
+    if(flashcardSettings){      
+      flashcardSettings[prop] = change;     
+      return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
     }
   }
 
@@ -101,9 +102,8 @@ $(document).ready(function() {
   }
 
   // Check the localStorage if user alredy played any of the games
-  const categoryDone = () => {    
-    console.log(flashcardSettings)
-    const completedCategories = flashcardSettings[0].categoryDone;
+  const categoryDone = () => {       
+    const completedCategories = flashcardSettings.categoryDone;
     // const activeCategory =  $('.cat-active').data('cat');
 
     // Check if there are completed categories
@@ -426,40 +426,40 @@ $(document).ready(function() {
     currentHint = wordsList[currentWordIndex].hint
 
     // Fetch the image
-    fetchImage(currentWord)
-    .then(data => {                 
-      // Shufle the fetched response images to give new image with the same word
-      const {src, alt} = shuffleArray(data.photos)[0];
+    // fetchImage(currentWord)
+    // .then(data => {                 
+    //   // Shufle the fetched response images to give new image with the same word
+    //   const {src, alt} = shuffleArray(data.photos)[0];
 
-      // Show image on the screen in the flashcard      
-      $('#find-image').attr('src', src.large).attr('alt', alt);  
-      $('#flashcard-back-hint').text(currentHint);
-    })
-    .catch(error => console.error('Error fetching image:', error))
-    .finally(() => {
+    //   // Show image on the screen in the flashcard      
+    //   $('#find-image').attr('src', src.large).attr('alt', alt);  
+    //   $('#flashcard-back-hint').text(currentHint);
+    // })
+    // .catch(error => console.error('Error fetching image:', error))
+    // .finally(() => {
 
-      // Hide the spinner once the fetch is complete, whether successful or not
-      $('#loading-container').hide();
+    //   // Hide the spinner once the fetch is complete, whether successful or not
+    //   $('#loading-container').hide();
 
-      gameStarted = true; // Start the game
+    //   gameStarted = true; // Start the game
     
-      updateWordDisplay(); // Update the display
-      updateScoreDisplay(); // Update the score
-    });
+    //   updateWordDisplay(); // Update the display
+    //   updateScoreDisplay(); // Update the score
+    // });
 
     //  TEMP code to mimic fetch
     console.log(currentWord)
     console.log(wordsList)
 
-    // gameStarted = true; // start the game
+    gameStarted = true; // start the game
 
-    // updateWordDisplay();
-    // updateScoreDisplay();
+    updateWordDisplay();
+    updateScoreDisplay();
 
-    // // TEMP
-    // setTimeout(() => {
-    //   $('#loading-container').hide();
-    // }, 1000)
+    // TEMP
+    setTimeout(() => {
+      $('#loading-container').hide();
+    }, 1000)
   
 
     $('#flashcard-outer').hide();
