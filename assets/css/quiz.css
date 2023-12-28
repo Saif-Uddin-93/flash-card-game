@@ -144,13 +144,14 @@
 
 .arrow-up,
 .arrow-down {
-  position: absolute;
+  /* position: absolute; */
   /* top: 30px; */
-  right: 1.3rem;
+  /* right: 1.3rem; */
   cursor: pointer;
   padding: 5px;
   user-select: none;
 }
+
 
 .arrow-up {
   top: 32px;
@@ -167,6 +168,12 @@
   &.visible {
     opacity: 1;
   }
+}
+
+#arrows {
+  position: relative;
+  top: -3.8rem;
+  right: -2.5rem;
 }
 
 /* SU: .navbar-container to reveal navbar on hover */
@@ -295,6 +302,11 @@
 }
 
 @media(width < 431px){
+  #main {
+    position: relative;
+    top: -2.8rem;
+  }
+
   .q-tip {
     scale: 75%;
     right: -4.5rem;
@@ -323,37 +335,29 @@
 
   .q-settings {
     position: relative;
-    top: 0.75rem;
+    top: 0.5rem;
     right: 3.7rem;
   }
 
   .exit {
-    display: flex;
-    /* position: absolute; */
-    justify-content: end;
+    position: relative;
+    top: -0.5rem;
+    right: -7.5rem;
   }
 
   .q-font {
-    position: absolute;
-    top: -3.5rem;
+    position: relative;
+    top: -5.55rem;
   }
 
   .q-answers {
     position: relative;
     top: -5rem;
     padding-top: 0%;
-    /* margin-bottom: 5rem; */
   }
 
   #mode-level {
     left: 46%;
-  }
-
-  #arrows {
-    display: block;
-    position: absolute;
-    top: 20%;
-    right: -10%;
   }
 
   #q-points {
