@@ -21,6 +21,16 @@
     color: #6c757d;
 }
 
+.flashcard-trophy {
+  display: flex;
+  justify-content: center;
+}
+
+.flashcard-trophy img {
+  height: 1.25rem;
+  margin-right: 0.25rem;
+}
+
 /* FLASHCARD */
 .flashcard {
     background-color: transparent;    

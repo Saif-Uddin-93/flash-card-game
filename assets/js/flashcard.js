@@ -138,7 +138,7 @@ $(document).ready(function() {
 
   // Disable completed categories
   categoryDone();
-
+  
   // Function to initialize or reset the game
   function initializeGame() {
     
@@ -236,6 +236,15 @@ $(document).ready(function() {
     $('#find-image').css('opacity', opacity);
   }
 
+  // Update the Max Score
+  const maxScoreDisplay = () => {
+    if(flashcardSettings.maxScore > 0) {
+      $('#flashcard-trophy-num').text(flashcardSettings.maxScore);
+    }
+  }
+
+  maxScoreDisplay();
+ 
   // Function to handle key presses
   const handleKeyPress = (e) => {
     const pressedKey = e.key.toUpperCase();
@@ -252,9 +261,11 @@ $(document).ready(function() {
         // Check if all letters were guessed
         if (!currentWord.split('').some(letter => !guessedLetters.includes(letter))) {         
           score += 1; // Update the score
-
+         
           // Update the localStorage score property
-          updateLocalStorage('maxScore', score)
+          if(score > flashcardSettings.maxScore){
+            updateLocalStorage('maxScore', score);
+          }
 
           // Get current image index 
           const totalWords = Number($('#flashcard-number').text().split('/')[0]);
@@ -264,7 +275,8 @@ $(document).ready(function() {
             $('#flashcard-number').text(`${totalWords + 1}/${wordsList.length}`);
           }
 
-          updateScoreDisplay(); // Update the score display
+          updateScoreDisplay(); // Update the score display          
+          maxScoreDisplay();  // Update the score max user score
           handleNextWordClick(); // Move to the next word
         } else {
           // Guessed a correct letter
@@ -459,7 +471,7 @@ $(document).ready(function() {
     
     //Total number of words
     $('#flashcard-number').text(`1/${wordsList.length}`);
-
+    
     // Current word
     currentWord = wordsList[currentWordIndex].word.toUpperCase();
 
