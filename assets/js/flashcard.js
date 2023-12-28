@@ -27,6 +27,7 @@ $(document).ready(function() {
   let guessedLetters = [];
   let score = 0;  
   let gameStarted = false; // Flag to check if the game has started  
+  let showMessages = true; // Flag to show messages
   let incorrectGuessCounter = 0; // Counter for incorrect guesses
   
   // Initialize localStorage 
@@ -48,7 +49,7 @@ $(document).ready(function() {
 
     return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
   }
-
+  
   // Helper function to deactive completed categories
   const deactivateCategory = (category) => {
     // target an element by its data-cat 
@@ -88,12 +89,15 @@ $(document).ready(function() {
     - add function to setTimet content
     - add one live left in the msg at the bottom
     - add notitification on/off
-    - move amout of images 1/10 to the corner
+    - grey out the settings and exit btn
+    - block exit on the main window, unblock on others
+    - rewrite middle part and move absolute to one div for middle part and bottom
     
     - check measages at the botttom of image to display messages
     - finish settings to save / reset data
-    - add bg to pexels icon   
+    
     - work on mobile
+    - fade out text on the image at the bottom
     - remove hangman letters when user go to the score board
     
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
@@ -210,20 +214,24 @@ $(document).ready(function() {
     $('#flashcard-points').text(`Score: ${score}`);
   }
 
-  // Function to update the message on the screen
-  const updateMessageDisplay = (str) => {
-    const msg = $('#flashcard-msg');
+  // Function to show the message on the center of the screen
+  const messageDisplay = (str, id, time, color) => {
+    const msg = $(`#${id}`);
 
-    $('#flashcard-msg').text(str);
+    msg.css('color', color).text(str);
     msg.show();
 
     // Hide the message after 1sec
     setTimeout(() => {      
       msg.hide();
       msg.text('').removeAttr('style');
-    }, 3000);
+    }, time);
   }
 
+  if(showMessages) {
+    messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000, 'green');
+  }
+  
   // Function to blink background screen
   const blinkScreen= (classType) => {
     const blink = $('#flashcard-blink');
@@ -290,7 +298,7 @@ $(document).ready(function() {
           handleNextWordClick(); // Move to the next word
         } else {
           // Guessed a correct letter
-          // updateMessageDisplay('✔', 'green');                 
+          // messageDisplay('✔', 'green');                 
         }
       } else {        
         // If letter is not in the currentWord  
@@ -301,6 +309,10 @@ $(document).ready(function() {
 
         // Remove heart with each incorrect guess
         heartDisplay(incorrectGuessCounter, 0);
+
+        if(showMessages && incorrectGuessCounter === 2) {
+          messageDisplay('❤️ One live left!', 'flashcard-msg-bottom', 5000, 'green');
+        }
         
         // Check if user has made three incorrect guesses
         if (incorrectGuessCounter >= 3) {
@@ -310,7 +322,7 @@ $(document).ready(function() {
           imageDisplay(0.5);
 
           // User lost
-          updateMessageDisplay('Sorry, you lost. Better luck next time.');
+          messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000, 'green');
 
           setTimeout(() => {            
             showEndGameScreen(score, false); // End the game with a loss
@@ -335,7 +347,7 @@ $(document).ready(function() {
       imageDisplay(0.5);
 
       // User won
-      updateMessageDisplay('Congratulations! You won!');
+      messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000, 'green');
 
       // Current category
       // const activeCategory =  $('.cat-active').data('cat');
@@ -388,7 +400,11 @@ $(document).ready(function() {
         $('#continue-game').remove(); // Remove
         $('#end-game-message').text('');
         incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
-        score = 0;   
+        score = 0;  
+        
+        if(showMessages) {
+          messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000, 'green');
+        }
         // Remove event imediately after is called 
         // $(this).off('click', continueGame);
       });
@@ -397,8 +413,14 @@ $(document).ready(function() {
     // $('#end-game-message').text(`${message} Total Score: ${totalScore} points`);
     $('#end-game-message').text(`Total Score: ${totalScore} points`);
 
+    $('#guess-word').css('visibility', 'hidden');
+
     // Disable key press   
     gameStarted = false;
+
+    if(showMessages) {
+      messageDisplay('✖ to Exit the Game', 'flashcard-msg-bottom', 4000, 'green');
+    }
 
     // Show the end game screen
     $('#end-game-container').show();
@@ -464,6 +486,10 @@ $(document).ready(function() {
   // Event listener to hide the start screen and fetch the image
   $('#flashcard-start').on('click', function() {
     
+    if(showMessages) {
+      messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000, 'green');
+    }
+
     // Current category
     const activeCategory =  $('.cat-active').data('cat');
 
@@ -522,8 +548,10 @@ $(document).ready(function() {
 
   // Event listeners for exit the game
   $('#flashcard-exit').on('click', function() {    
-    showEndGameScreen(score, false);
-    $('#flashcard-outer').hide();
+    // showEndGameScreen(score, false);
+    $('#flashcard-outer').show();
+    $('#end-game-container').hide();
+    $('#guess-word').css('visibility', 'hidden');
   });
 
 });
