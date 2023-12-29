@@ -400,7 +400,7 @@ $(document).ready(function() {
         
         // Update localStore with completed categories
         updateLocalStorage('categoryDone', activeCategory);
-
+        
         // Update hearts opacity
         updateHeartDisplay();
         // const totalHearts = $('.flashcard-hears').length;
@@ -512,7 +512,10 @@ $(document).ready(function() {
     if(showMessages) {
       messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000, 'black');
     }
-
+    
+    // Reset the for each game
+    incorrectGuessCounter = 0;
+    
     // Current category
     const activeCategory =  $('.cat-active').data('cat');
 
