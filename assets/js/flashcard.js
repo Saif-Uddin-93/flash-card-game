@@ -52,7 +52,7 @@ $(document).ready(function() {
   }
 
   const updateSettings = () => {
-    const sound = flashcardSettings['sound'];
+    // const sound = flashcardSettings['sound'];
     
     const notification = flashcardSettings['notification'];
     showMessages = notification;
@@ -264,6 +264,14 @@ $(document).ready(function() {
     heart.css('opacity', opacity); 
   }
 
+  const updateHeartDisplay = () => {
+    const totalHearts = $('.flashcard-hears').length;
+    $('.flashcard-hears').each(function(index, _) {
+      let reversedIndex = totalHearts - index;          
+      heartDisplay(reversedIndex, 1);
+    });
+  }
+
   // Hearts display
   const imageDisplay = (opacity) => {
     $('#find-image').css('opacity', opacity);
@@ -309,7 +317,7 @@ $(document).ready(function() {
           }
 
           updateScoreDisplay(); // Update the score display          
-          maxScoreDisplay();  // Update the score max user score
+          // maxScoreDisplay();  // Update the score max user score
           handleNextWordClick(); // Move to the next word
         } else {
           // Guessed a correct letter
@@ -364,6 +372,7 @@ $(document).ready(function() {
       // User won
       messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000, 'green');
 
+      maxScoreDisplay();  // Update the score max user score
       // Current category
       // const activeCategory =  $('.cat-active').data('cat');
       // console.log(activeCategory);
@@ -395,12 +404,13 @@ $(document).ready(function() {
         updateLocalStorage('categoryDone', activeCategory);
 
         // Update hearts opacity
-        const totalHearts = $('.flashcard-hears').length;
-        $('.flashcard-hears').each(function(index, _) {
-          let reversedIndex = totalHearts - index;          
-          heartDisplay(reversedIndex, 1);
-        });
-
+        updateHeartDisplay();
+        // const totalHearts = $('.flashcard-hears').length;
+        // $('.flashcard-hears').each(function(index, _) {
+        //   let reversedIndex = totalHearts - index;          
+        //   heartDisplay(reversedIndex, 1);
+        // });
+        
         // Update image opacity
         imageDisplay(1);
 
@@ -567,6 +577,8 @@ $(document).ready(function() {
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
     $('#guess-word').css('visibility', 'hidden');
+    updateHeartDisplay();
+    score = 0;
   });
 
   // Event listener for user settings
