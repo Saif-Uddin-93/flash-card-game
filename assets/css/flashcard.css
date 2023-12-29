@@ -11,14 +11,14 @@
 
 .f-settings svg {
   position: absolute;
-  height: 1.5rem;
+  height: 1.35rem;
   left: .5rem;
-  top: 0;
+  top: 1px;
 }
 
 .f-settings:hover {
     cursor: pointer;
-    color: #6c757d;
+    color: #205d85;
 }
 
 .flashcard-trophy {
@@ -74,6 +74,7 @@
   background-color: #fff;
   /* background-color: #bbb; */
   color: black;
+  z-index: 20;
   transform: rotateX(180deg);
 }
 
@@ -100,11 +101,11 @@
   bottom: 15px;
   left: 0;
   right: 0 ;
-  z-index: 20;
+  z-index: 10;
   color: #000;
   letter-spacing: 1px;
   padding: 1px 25px;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.05), rgba(255,255, 255, 0.25), rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.05));
   transform: translateX(-50);
 }
 
@@ -117,7 +118,6 @@
   bottom: 0;    
   background: white;
   border-radius: 8px;
-  z-index: 10;
 }
 
 .linking-back {
@@ -135,11 +135,11 @@
 }
 
 .flashcard-number{
-  color: #fff;
+  color: #D3D3D3;
   background: rgb(0, 0, 0, 0.25);
   font-size: .9rem;
   border-radius: 2.5px;
-  padding: 3px 8px;
+  padding: 5px 8px;
 }
 
 .categories-container {
@@ -161,7 +161,7 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  background: #3498db;
+  background: #205d85;
   color: #fff;
   display: flex;
   align-items: center;
@@ -172,12 +172,12 @@
 }
 
 .cat-active {
-  background: #205d85;
+  /* background: #205d85; */
   border: 3px solid #3498db;
 }
 
 .category:hover {
-  background: #205d85;
+  background: #3498db;
 }
 
 .category1 {
@@ -217,7 +217,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #54b48f;
+  background: #0e84b3;
   color: #000;
   height: 5rem;
   width: 5rem;
@@ -228,7 +228,7 @@
 .start-button:hover {
   cursor: pointer;
   color: #fff;
-  background: #428b6f;
+  background: #1e98c9;
 }
 
 .flashcard-blink {
@@ -312,6 +312,8 @@
   display: flex;
   justify-content: center;
   padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
   visibility: hidden;
 }
 
