@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // set the localStorage to default
   const setLocalStorage = {
     "theme": "light",
@@ -97,28 +96,24 @@ $(document).ready(function() {
   };
 
   const showFinalMessage = () => {
-    console.log('Congtaz you wont all categories!!');
-    console.log('Add message to inform user how to reset game');
-    console.log('Remove point-event and opacity after game reset');
+    console.log('Congtaz you wont all categories!!');  
     console.log(`
 
-    
-    
+    - Add message to inform user how to reset game
+    - Remove point-event and opacity after game reset
     - grey out the settings and exit btn
     - block exit on the main window, unblock on others
     - fade out text on the image at the bottom
-    - add text above icons    
-    
-    
-    
-    
+    - add text above icons   
+    - setting after save as dark mode and reseting to defauld withiut press save wont keep icon in default mode
+    - msg are visible if press hint - remove that 
+        
     - add sound
     - add function to setTimet content
     - rewrite middle part and move absolute to one div for middle part and bottom
     
     - work on mobile
-    - create favicon for the app
-    
+    - create favicon for the app    
     
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
     - if user won all categories show popup and ask if he want geset the game and score
@@ -247,7 +242,7 @@ $(document).ready(function() {
   }
 
   if(showMessages) {
-    messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000, 'green');
+    messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000, 'black');
   }
   
   // Function to blink background screen
@@ -337,7 +332,7 @@ $(document).ready(function() {
         heartDisplay(incorrectGuessCounter, 0);
 
         if(showMessages && incorrectGuessCounter === 2) {
-          messageDisplay('❤️ One live left!', 'flashcard-msg-bottom', 5000, 'green');
+          messageDisplay('❤️ One live left!', 'flashcard-msg-bottom', 5000, 'black');
         }
         
         // Check if user has made three incorrect guesses
@@ -348,7 +343,7 @@ $(document).ready(function() {
           imageDisplay(0.5);
 
           // User lost
-          messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000, 'green');
+          messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000, 'black');
 
           setTimeout(() => {            
             showEndGameScreen(score, false); // End the game with a loss
@@ -373,7 +368,7 @@ $(document).ready(function() {
       imageDisplay(0.5);
 
       // User won
-      messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000, 'green');
+      messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000, 'black');
 
       maxScoreDisplay();  // Update the score max user score
       // Current category
@@ -431,7 +426,7 @@ $(document).ready(function() {
         score = 0;  
         
         if(showMessages) {
-          messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000, 'green');
+          messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000, 'black');
         }
         // Remove event imediately after is called 
         // $(this).off('click', continueGame);
@@ -447,7 +442,7 @@ $(document).ready(function() {
     gameStarted = false;
 
     if(showMessages) {
-      messageDisplay('✖ to Exit the Game', 'flashcard-msg-bottom', 4000, 'green');
+      messageDisplay('✖ to Exit the Game', 'flashcard-msg-bottom', 4000, 'black');
     }
 
     // Show the end game screen
@@ -515,7 +510,7 @@ $(document).ready(function() {
   $('#flashcard-start').on('click', function() {
     
     if(showMessages) {
-      messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000, 'green');
+      messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000, 'black');
     }
 
     // Current category
@@ -621,7 +616,7 @@ $(document).ready(function() {
       appearanceDark.prop('checked', true);
     } else {
       // Handle other possible theme values
-      appearanceLight.prop('checked', true); // Default to light if theme is not recognized
+      appearanceLight.prop('checked', true); 
       appearanceDark.prop('checked', false);
     }
     
