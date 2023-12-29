@@ -1,17 +1,18 @@
 $(document).ready(function() {
 
+  // set the localStorage to default
+  const setLocalStorage = {
+    "theme": "light",
+    "sound": true,
+    "categoryDone": [],           
+    "notification": true,
+    // "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
+    "maxScore": 0,
+  }
+
   // Function to get data from the localStorage
   const getLocalStorage = () => {
-    // set the localStorage to default
-    const setLocalStorage = {
-      "theme": "light",
-      "sound": true,
-      "categoryDone": [],           
-      "notification": true,
-      // "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
-      "maxScore": 0,
-    }
-
+   
     const storage = JSON.parse(localStorage.getItem('flashcard'));
     if(!storage){
       localStorage.setItem('flashcard', JSON.stringify(setLocalStorage));
@@ -53,11 +54,12 @@ $(document).ready(function() {
 
   const updateSettings = () => {
     // const sound = flashcardSettings['sound'];
+
     
     const notification = flashcardSettings['notification'];
     showMessages = notification;
-    
-    const theme = flashcardSettings['theme'];    
+        
+    const theme = flashcardSettings['theme'];        
     document.documentElement.setAttribute('data-theme', theme);
   }
   
@@ -100,29 +102,30 @@ $(document).ready(function() {
     console.log('Remove point-event and opacity after game reset');
     console.log(`
 
-    - add function to setTimet content
     
-    - add notitification on/off
+    
     - grey out the settings and exit btn
     - block exit on the main window, unblock on others
-    - rewrite middle part and move absolute to one div for middle part and bottom
-    - reset when press X exit
-    - update max score at the end of the array of images
+    - fade out text on the image at the bottom
+    - add text above icons    
     
-    - finish settings to save / reset data
+    
+    
+    
+    - add sound
+    - add function to setTimet content
+    - rewrite middle part and move absolute to one div for middle part and bottom
     
     - work on mobile
-    - fade out text on the image at the bottom
+    - create favicon for the app
     
     
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
     - if user won all categories show popup and ask if he want geset the game and score
     - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
     
-    - add text above icons    
-    
-    - create favicon for the app
     - switch to div istead of svg when user highlight the category, bc right now sometimes it needs to click in the middle of the svg
+    
     `)
     
   }
@@ -616,6 +619,10 @@ $(document).ready(function() {
     }else if (flashcardSettings['theme'] === 'dark') {
       appearanceLight.prop('checked', false);
       appearanceDark.prop('checked', true);
+    } else {
+      // Handle other possible theme values
+      appearanceLight.prop('checked', true); // Default to light if theme is not recognized
+      appearanceDark.prop('checked', false);
     }
     
     const soundOn = $('#setting-sound');
@@ -623,7 +630,19 @@ $(document).ready(function() {
     
     const noteOn = $('#setting-note');
     flashcardSettings['notification'] ? noteOn.prop('checked', true) : noteOn.prop('checked', false);
+  });
 
+
+  $('#clear-storage').on('click', function() {
+    
+    localStorage.setItem('flashcard', JSON.stringify(setLocalStorage));  
+    
+    $('#setting-appearance-light').prop('checked', true);
+    $('#setting-sound').prop('checked', true);
+    $('#setting-note').prop('checked', true);
+
+    document.documentElement.setAttribute('data-theme', 'light');
+  
   });
 
 });
