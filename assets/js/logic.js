@@ -53,7 +53,6 @@ function nextBtn() {
     //clearAnswers();
     /* if(trackQ>0)Timer.timeoutSet(loadQuestion, 2)
     else  */loadQuestion();
-    showProgress();
 }
 
 function showProgress(bars = trackQ+1){
@@ -78,6 +77,7 @@ function showProgress(bars = trackQ+1){
 } */
 
 function loadQuestion(level=difficulty(), questionNo=trackQ+1){
+    showProgress();
     cssStyle("#footer-msg","visibility","hidden")
     changeText("#q-number", `${questionNo}/${apiResult.results.length/* questions[level].length */}`);
     // set initial time for question
