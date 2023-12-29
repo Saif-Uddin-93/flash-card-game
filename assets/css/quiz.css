@@ -2,7 +2,11 @@
   /* SU: added colours for correct/incorrect answers */
   --correct-bg : #7fff00;
   --incorrect-bg : hsl(10, 100%, 50%);
-  --grey : #6C757D;
+  --quiz-grey : #6C757D;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* CARD HEADER */
@@ -148,18 +152,19 @@
   /* top: 30px; */
   /* right: 1.3rem; */
   cursor: pointer;
-  padding: 5px;
+  width: 1rem;
+  /* padding: 5px; */
   user-select: none;
 }
 
 
-.arrow-up {
+/* .arrow-up {
   top: 32px;
 }
 
 .arrow-down {
   top: 60px; 
-}
+} */
 
 /* ---- SU START---- */
 .hide {
@@ -170,34 +175,49 @@
   }
 }
 
+.progress {
+  display: none;
+}
+
 #arrows {
+  width: 1rem;
   position: relative;
-  top: -3.8rem;
-  right: -2.5rem;
+  top: -3.2rem;
+  right: -3rem;
 }
 
 /* SU: .navbar-container to reveal navbar on hover */
-/* .navbar-container {
-  top: 0;
-  position: absolute;
-  height: 10rem;
-  width: 100%;
-  & .navbar {
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+/* #reveal-nav {
+  display: none;
+  height: 1rem;
+  &+.navbar-container {
+    z-index: -1;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    & .navbar {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
   }
-  &:hover {
+  &:checked+.navbar-container {
     position: relative;
-    height: 5rem;
     & .navbar{
       opacity: 1;
       display: flex;
-      flex-wrap: inherit;
-      align-items: center;
-      justify-content: space-between;
     }
   }
+} */
+
+/* .reveal-navbar {
+  position: absolute;
+  top: 0;
+  height: 2rem;
+  width: 100%;
+  padding-top: 0.2rem;
+  font-weight: bolder;
+  background-color:#adb5bd;
 } */
 
 #next-btn {
@@ -222,19 +242,22 @@
   }
 }
 
-#setting-appearance-dark {
-  margin-left: 1rem !important;
+#setting-appearance-light, #setting-appearance-dark  {
+  margin-right: 0.2rem !important;
+  &+.form-check-label {
+    margin-right: 1.5rem;
+  }
 }
 
 .btn-check:checked+.btn {
-  color: var(--grey);
+  color: var(--quiz-grey);
   background-color: white;
 }
 
 .options {
   &:hover{
     color: white;
-    background-color: var(--grey) !important
+    background-color: var(--quiz-grey) !important
   }
 }
 
@@ -307,6 +330,10 @@
     top: -2.8rem;
   }
 
+  #arrows {
+    right: -6rem;    
+  }
+
   .q-tip {
     scale: 75%;
     right: -4.5rem;
@@ -370,18 +397,6 @@
     width: 100%;
     padding-left: 0%;
   }
-}
-
-@media(width < 391px){
-  /* .timer {
-    position: relative;
-    width: auto;
-    left: 11rem;
-    & #q-timer{
-      position: absolute;
-      left: 3.4rem;
-    }
-  } */
 }
 
 @media(width < 376px){
