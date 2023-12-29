@@ -76,7 +76,7 @@ function showProgress(bars = trackQ+1){
     // Timer.timeoutSet(loadQuestion, 2);
 } */
 
-function loadQuestion(level=difficulty(), questionNo=trackQ+1){
+function loadQuestion(level=difficulty(), questionNo=trackQ){
     showProgress();
     cssStyle("#footer-msg","visibility","hidden")
     changeText("#q-number", `${questionNo}/${apiResult.results.length/* questions[level].length */}`);
