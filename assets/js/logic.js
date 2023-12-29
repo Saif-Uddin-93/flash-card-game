@@ -6,6 +6,7 @@ addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
 addGlobalEventListener("click", ".q-settings", settings.loadSettings)
 addGlobalEventListener("click", "#save-settings", settings.save)
 addGlobalEventListener("click", ".close-settings", settings.loadSettings)
+addGlobalEventListener("click", ".mode-btn", scroll)
 
 // --------- >API> ---------
 const difficulty = (lvl) => lvl||"easy";
@@ -30,6 +31,13 @@ let trackQ = -1;
 // points tracker
 let points = 0;
 
+function scroll(){
+    window.scrollBy({
+        top: 100,
+        behavior: "smooth",
+    });
+}
+
 function nextBtn() {
     if(trackQ===-1)cssStyle("#q-answers", "display", "flex");
     trackQ++;
@@ -45,6 +53,15 @@ function nextBtn() {
     //clearAnswers();
     /* if(trackQ>0)Timer.timeoutSet(loadQuestion, 2)
     else  */loadQuestion();
+    showProgress();
+}
+
+function showProgress(bars = trackQ+1){
+    const bar = $(".progress");
+    bar.css("display", "block");
+    bar.css("width", `${(100/apiResult.results.length)*bars}%`);
+    bar.css("height", `100%`);
+    bar.css("background-color", `aquamarine`);
 }
 
 /* function prevBtn() {
@@ -60,9 +77,9 @@ function nextBtn() {
     // Timer.timeoutSet(loadQuestion, 2);
 } */
 
-function loadQuestion(level=difficulty(), questionNo=trackQ){
+function loadQuestion(level=difficulty(), questionNo=trackQ+1){
     cssStyle("#footer-msg","visibility","hidden")
-    changeText("#q-number", `${questionNo+1}/${apiResult.results.length/* questions[level].length */}`);
+    changeText("#q-number", `${questionNo}/${apiResult.results.length/* questions[level].length */}`);
     // set initial time for question
     Timer.setTime(30);
     const q=apiResult.results[questionNo].question;//questions[level][questionNo].question;
@@ -104,10 +121,11 @@ function checkAnswer(eventObj){
         element.disabled=true;
     });
     htmlElement(`#next-btn`).disabled=true;
-    const targetText = eventObj.target.textContent;
+    const targetText = eventObj.target.innerHTML;
     const answer = apiResult.results[trackQ].correct_answer;
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
+    points = points>$("#mode-number").val() ? $("#mode-number").val() : points;
     $("#q-points").text(`Score: ${points}`);
     const css = msg==="Correct!" ? "correct" : "incorrect";
     if(msg==="Correct!"){

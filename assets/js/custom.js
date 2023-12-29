@@ -82,8 +82,7 @@ const settings={
     else {
       return settings.sfxElement.checked
     }},
-  colourMode: (/* eventObj, */ theme)=> {
-    //theme = theme||eventObj.target.getAttribute("value");
+  colourMode: (theme)=> {
     settings.lightElement.checked = theme === "lightElement"
     settings.darkElement.checked = theme === "darkElement"
   },
@@ -106,7 +105,7 @@ const settings={
   },
   loadSettings: ()=>{
     const loadTheme = localStorage.getItem("theme")===null ? "lightElement" : localStorage.getItem("theme")
-    settings.colourMode(/* undefined, */ loadTheme)
+    settings.colourMode(loadTheme)
 
     settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
     settings.sfxElement.checked = settings.soundFX()==="false"||false?false:settings.sfxElement.checked;

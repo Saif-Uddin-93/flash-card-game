@@ -4,10 +4,8 @@ const highscoreElement = htmlElement('#highscores');
 let names = Object.keys(localStorage);
 
 
-
 names = names.filter((element, index) => element.includes("score:"))
 let namesIndecies = names.map((element, index) =>  index);
-
 
 
 let scores = Object.values(localStorage);
