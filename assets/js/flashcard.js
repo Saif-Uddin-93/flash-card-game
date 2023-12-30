@@ -105,8 +105,7 @@ $(document).ready(function() {
   
  
     - add text above icons   
-    - setting after save as dark mode and reseting to defauld withiut press save wont keep icon in default mode
-   
+      
         
     - add sound
     - add function to setTimet content
@@ -190,6 +189,8 @@ $(document).ready(function() {
       // Hide the spinner once the fetch is complete, whether successful or not
       $('#loading-container').hide();
     
+      progressBar(wordsList.length);
+
       // Reset the flashcard variables for the new image
       guessedLetters = [];         
       updateWordDisplay(); // Update the display
@@ -197,6 +198,17 @@ $(document).ready(function() {
     });
   }
 
+  // Function to track progrss of completed words
+  const progressBar = (numOfImages) => {
+    const progress = ((currentWordIndex + 1) / numOfImages) * 100;
+    $('#progress').css('width', `${progress}%`); 
+    if(currentWordIndex + 1 >= numOfImages){
+      $('#progress').css('border-right', 'none');
+    }else {
+      $('#progress').css('border-right', '1px solid rgba(0,0,0,0.5)');
+    }  
+  }
+ 
   // Function to update the word display on the screen
   const updateWordDisplay = () => {
     const wordContainer = $('#guess-word');
@@ -515,6 +527,8 @@ $(document).ready(function() {
     
     // Reset the for each game
     incorrectGuessCounter = 0;
+
+    currentWordIndex = 0;
     
     // Current category
     const activeCategory =  $('.cat-active').data('cat');
@@ -528,10 +542,11 @@ $(document).ready(function() {
     // Assign the list of words to global words list
     wordsList = getCategory(activeCategory);  
     
+    // progressBar(wordsList.length)
     //Total number of words
     $('#flashcard-number').text(`1/${wordsList.length}`);
     
-    // initializeGame();
+    initializeGame();
    
     gameStarted = true; // Start the game
 
@@ -647,5 +662,8 @@ $(document).ready(function() {
     window.location.reload();
   
   });
+
+
+
 
 });
