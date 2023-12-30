@@ -101,12 +101,12 @@ $(document).ready(function() {
 
     - Add message to inform user how to reset game
     - Remove point-event and opacity after game reset
-    - grey out the settings and exit btn
-    - block exit on the main window, unblock on others
-    - fade out text on the image at the bottom
+
+  
+ 
     - add text above icons   
     - setting after save as dark mode and reseting to defauld withiut press save wont keep icon in default mode
-    - msg are visible if press hint - remove that 
+   
         
     - add sound
     - add function to setTimet content
@@ -569,6 +569,8 @@ $(document).ready(function() {
   // Restart the flashcard game 
   $('#reset-game').on('click', function() {
     // Reload the page with cleared leaderboard
+
+
     window.location.reload();
   }); 
 
@@ -607,14 +609,16 @@ $(document).ready(function() {
         
   });
 
+  // Event listener to listen to settings changes
   $('#f-settings').on('click', function(){
     const appearanceLight = $('#setting-appearance-light');
     const appearanceDark = $('#setting-appearance-dark');
+    const storage = getLocalStorage();
 
-    if(flashcardSettings['theme'] === 'light'){
+    if(storage['theme'] === 'light'){
       appearanceLight.prop('checked', true);
       appearanceDark.prop('checked', false);
-    }else if (flashcardSettings['theme'] === 'dark') {
+    }else if (storage['theme'] === 'dark') {
       appearanceLight.prop('checked', false);
       appearanceDark.prop('checked', true);
     } else {
@@ -624,22 +628,23 @@ $(document).ready(function() {
     }
     
     const soundOn = $('#setting-sound');
-    flashcardSettings['sound'] ? soundOn.prop('checked', true) : soundOn.prop('checked', false);
+    storage['sound'] ? soundOn.prop('checked', true) : soundOn.prop('checked', false);
     
     const noteOn = $('#setting-note');
-    flashcardSettings['notification'] ? noteOn.prop('checked', true) : noteOn.prop('checked', false);
+    storage['notification'] ? noteOn.prop('checked', true) : noteOn.prop('checked', false);
   });
 
-
-  $('#clear-storage').on('click', function() {
-    
+  // Event listener to restore local storage to defaule values
+  $('#clear-storage').on('click', function() {   
     localStorage.setItem('flashcard', JSON.stringify(setLocalStorage));  
-    
+    document.documentElement.setAttribute('data-theme', 'light');
+
     $('#setting-appearance-light').prop('checked', true);
+        
     $('#setting-sound').prop('checked', true);
     $('#setting-note').prop('checked', true);
 
-    document.documentElement.setAttribute('data-theme', 'light');
+    window.location.reload();
   
   });
 
