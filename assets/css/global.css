@@ -82,6 +82,7 @@ body {
 
 .flashcard-start {
   background: var(--bg-category);
+  border: 1px solid rgb(165, 210, 255);
 }
 
 /* CONTROLS */
