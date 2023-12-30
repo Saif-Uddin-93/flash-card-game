@@ -53,7 +53,6 @@ $(document).ready(function() {
 
   const updateSettings = () => {
     // const sound = flashcardSettings['sound'];
-
     
     const notification = flashcardSettings['notification'];
     showMessages = notification;
@@ -101,11 +100,6 @@ $(document).ready(function() {
 
     - Add message to inform user how to reset game
     - Remove point-event and opacity after game reset
-
-  
- 
-    - add text above icons   
-      
         
     - add sound
     - add function to setTimet content
@@ -116,17 +110,14 @@ $(document).ready(function() {
     
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
     - if user won all categories show popup and ask if he want geset the game and score
-    - remove progress bar or add functionality and remove 1/10. Also to progress bar add number number max , last picture and make a bit higher
     
-    - switch to div istead of svg when user highlight the category, bc right now sometimes it needs to click in the middle of the svg
     
     `)
     
   }
 
   // Check the localStorage if user alredy played any of the games
-  const categoryDone = () => {       
-    // console.log(flashcardSettings)
+  const categoryDone = () => {          
     const completedCategories = flashcardSettings.categoryDone;
     // const activeCategory =  $('.cat-active').data('cat');
 
@@ -205,7 +196,7 @@ $(document).ready(function() {
     if(currentWordIndex + 1 >= numOfImages){
       $('#progress').css('border-right', 'none');
     }else {
-      $('#progress').css('border-right', '1px solid rgba(0,0,0,0.5)');
+      $('#progress').css('border-right', '1px solid rgba(0, 59, 98,0.45)');
     }  
   }
  
@@ -274,6 +265,7 @@ $(document).ready(function() {
     heart.css('opacity', opacity); 
   }
 
+  // Function to restoring the display of the hearts
   const updateHeartDisplay = () => {
     const totalHearts = $('.flashcard-hears').length;
     $('.flashcard-hears').each(function(index, _) {
@@ -282,7 +274,7 @@ $(document).ready(function() {
     });
   }
 
-  // Hearts display
+  // Function to restore image display
   const imageDisplay = (opacity) => {
     $('#find-image').css('opacity', opacity);
   }
@@ -510,12 +502,14 @@ $(document).ready(function() {
   });
 
   // Event listener to apply/remove highlighting for icons on the start screen
-  $('#categories').on('click', 'svg', function() {
+  $('#categories').on('click', '.category', function() {
     $('.category').removeClass('cat-active'); // Removes any prev acvtive icon
-    const category = $(this).parent();
-
+    const category = $(this);
+    // const category = $(this).parent();
+    
     // Apply new active icon
     if(!category.hasClass('cat-active')) category.addClass('cat-active');
+
   });
 
   // Event listener to hide the start screen and fetch the image
@@ -528,6 +522,7 @@ $(document).ready(function() {
     // Reset the for each game
     incorrectGuessCounter = 0;
 
+    // Reset image index
     currentWordIndex = 0;
     
     // Current category
@@ -550,22 +545,22 @@ $(document).ready(function() {
    
     gameStarted = true; // Start the game
 
-    // Get the current word
-    currentWord = wordsList[currentWordIndex].word.toUpperCase();
-    //  TEMP code to mimic fetch
-    console.log(currentWord)
-    console.log(wordsList)
+    // // Get the current word
+    // currentWord = wordsList[currentWordIndex].word.toUpperCase();
+    // //  TEMP code to mimic fetch
+    // console.log(currentWord)
+    // console.log(wordsList)
 
-    guessedLetters = [];
-    gameStarted = true; // start the game
+    // guessedLetters = [];
+    // gameStarted = true; // start the game
 
-    updateWordDisplay();
-    updateScoreDisplay();
+    // updateWordDisplay();
+    // updateScoreDisplay();
 
     // TEMP
-    setTimeout(() => {
-      $('#loading-container').hide();
-    }, 1000)
+    // setTimeout(() => {
+    //   $('#loading-container').hide();
+    // }, 1000)
   
 
     $('#flashcard-outer').hide();
@@ -584,8 +579,6 @@ $(document).ready(function() {
   // Restart the flashcard game 
   $('#reset-game').on('click', function() {
     // Reload the page with cleared leaderboard
-
-
     window.location.reload();
   }); 
 
@@ -662,8 +655,5 @@ $(document).ready(function() {
     window.location.reload();
   
   });
-
-
-
 
 });
