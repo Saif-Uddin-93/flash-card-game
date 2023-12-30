@@ -33,7 +33,7 @@ let points = 0;
 
 function scroll(){
     window.scrollBy({
-        top: 100,
+        top: 50,
         behavior: "smooth",
     });
 }
