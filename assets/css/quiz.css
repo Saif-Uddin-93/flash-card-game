@@ -220,6 +220,10 @@ html {
   background-color:#adb5bd;
 } */
 
+.navbar {
+  margin-bottom: 5rem;
+}
+
 #next-btn {
   visibility: hidden;
   & img {
@@ -332,7 +336,13 @@ html {
   }
 
   #arrows {
-    right: -6rem;    
+    right: -7rem;    
+  }
+
+  #setting-appearance-light, #setting-appearance-dark  {
+    &+.form-check-label {
+      margin-right: 4rem;
+    }
   }
 
   .q-tip {
@@ -362,15 +372,23 @@ html {
   }
 
   .q-settings {
-    position: relative;
-    top: 0.5rem;
-    right: 3.7rem;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    top: -0.2rem;
+    right: 8rem;
   }
 
   .exit {
     position: relative;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
     top: -0.5rem;
-    right: -7.5rem;
+    right: -17rem;
   }
 
   .q-font {
@@ -403,6 +421,28 @@ html {
 @media(width < 376px){
   #mode-level {
     left: 44%;
+  }
+  #setting-appearance-light, #setting-appearance-dark  {
+    &+.form-check-label {
+      margin-right: 2rem;
+    }
+  }
+  #arrows {
+    right: -6rem;    
+  }
+  
+  .q-settings {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    top: -0.2rem;
+    right: 7.25rem;
+  }
+
+  .exit {
+    right: -15.5rem;
   }
 }
 /* ---- SU END---- */
