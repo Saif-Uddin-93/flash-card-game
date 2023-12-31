@@ -9,27 +9,44 @@
  --settings-hover: #15425f;
  --exit-hover: #ff0000;
 
- --btn-modal-bg: #205d85;
- --btn-modal-hover: #3498db;  
-
  --logo-color: #F8F9FA;
 
  --text-color: #000000;
  --text-color2: #D3D3D3;
 
+ /* modal settings */
+ --modal-text: #000000;
+ --modal-switch-bg: #205d85;
+
+ --modal-switch-checked: 
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+ --modal-switch-checked-border: #205d85;
+
+ --modal-switch-unchecked: 
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+ --modal-switch-unchecked-bg: rgba(0, 0, 0, 0.5);
+
+ --modal-switch-focus: 
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+ --modal-switch-focus-bg: rgba(0, 0, 0, 0.25);
+
+ --btn-text: #ffffff;  
+ --btn-bg: #205d85;
+ --btn-hover: #3498db;   
+
  /* progress bar */
  --bar-bg-out: #DBEDFF;
  --bar-border-out: 1px solid rgba(0, 59, 98,0.45);
  --bar-box-shadow-out: 
-     inset 0 1px 0 rgba(255,255,255,0.15),
-     inset 0 0 5px rgba(0,0,0,0.2),
-     0 2px 2px rgba(256,256,256,0.35),
-     inset 0 10px 20px rgba(0,0,0,0.05);
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 0 5px rgba(0,0,0,0.2),
+    0 2px 2px rgba(256,256,256,0.35),
+    inset 0 10px 20px rgba(0,0,0,0.05);
  
  --bar-bg-int: #90B6E2;
  --bar-box-shadow-in: 
-     inset 0 10px 0 rgba(255,255,255,0.2),
-     inset 0 2px 2px rgba(0,0,0,0.125);
+    inset 0 10px 0 rgba(255,255,255,0.2),
+    inset 0 2px 2px rgba(0,0,0,0.125);
 
  /* flashcard main */
  --flashcard-front-bg: #DBEDFF;
@@ -48,20 +65,25 @@
  --cat-hover: #F8F9FA;
  --cat-ring-border: 10px solid #1b4e70;
 
- --cat-start-btn-bg: #0e84b3;
+ --cat-start-btn-bg: #FF6F61;
  --cat-start-btn-text: #000;
  --cat-start-btn-border: #1b4e70;
- --cat-start-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.25);
+ --cat-start-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
  --cat-start-hover-text: #F8F9FA;
- --cat-start-hover: #1e98c9;
+ --cat-start-hover: #FF6F61;
 
-/* image */
+ /* image */
  --image-alt-text: #DBEDFF;
+ --image-hint: #000000;
+ --image-index-number: #111111;
 
-/* hint */
---image-hint: #000000;
+ /* game */
+ --loading-text: #000000;
+ --game-bg: #DBEDFF;
+ --game-text: #000000;
 }
 
+/* LIGT MODE */
 html[data-theme='light'] {
   /* main */
   --main-bg: #F8F9FA;
@@ -70,13 +92,30 @@ html[data-theme='light'] {
   --settings-hover: #15425f;
   --exit-hover: #ff0000;
 
-  --btn-modal-bg: #205d85;
-  --btn-modal-hover: #3498db;  
-
   --logo-color: #F8F9FA;
 
   --text-color: #000000;
   --text-color2: #D3D3D3;
+
+  /* modal settings */
+  --modal-text: #000000;
+  --modal-switch-bg: #205d85;
+
+  --modal-switch-checked: 
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+  --modal-switch-checked-border: #205d85;
+
+  --modal-switch-unchecked: 
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+  --modal-switch-unchecked-bg: rgba(0, 0, 0, 0.5);
+
+  --modal-switch-focus: 
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+  --modal-switch-focus-bg: rgba(0, 0, 0, 0.25);
+
+  --btn-text: #ffffff;  
+  --btn-bg: #205d85;
+  --btn-hover: #3498db;   
 
   /* progress bar */
   --bar-bg-out: #DBEDFF;
@@ -118,27 +157,47 @@ html[data-theme='light'] {
 
   /* image */
   --image-alt-text: #DBEDFF;
-
-  /* hint */
   --image-hint: #000000;
+  --image-index-number: #111111;
+
+  /* game */
+  --loading-text: #000000;
+  --game-bg: #DBEDFF;
+  --game-text: #000000;
 }
 
-html[data-theme='dark'] {
-  /* --bg-color: #474747;   */
+/* DARK MODE */
+html[data-theme='dark'] {  
   --main-bg: #474747;  
   --navbar-bg: #111111;
-  /* --navbar-bg: #333333; */
   --icons: #8d8d8d;
   --settings-hover: #6b6b6b;
   --exit-hover: #b36666;
-
-  --btn-modal-bg: #205d85;
-  --btn-modal-hover: #3498db; 
 
   --logo-color: #F8F9FA;
 
   --text-color: #D3D3D3;
   --text-color2: #f7f8f8;
+
+  /* modal settings */
+  --modal-text: #000000;
+  --modal-switch-bg: #000000;
+
+  --modal-switch-checked: 
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+  --modal-switch-checked-border: #000000;
+
+  --modal-switch-unchecked: 
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+  --modal-switch-unchecked-bg: rgba(0, 0, 0, 0.5);
+
+  --modal-switch-focus: 
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255, 1)'/></svg>");
+  --modal-switch-focus-bg: rgba(0, 0, 0, 0.25);
+
+  --btn-text: #ffffff;
+  --btn-bg: #333333;
+  --btn-hover: #111111;     
 
   /* progress bar */
   --bar-bg-out: #484850;
@@ -174,10 +233,14 @@ html[data-theme='dark'] {
   --cat-start-hover: crimson;
 
   /* image */
-  --image-alt-text: #333333;  
-
-  /* image hint */
+  --image-alt-text: #333333;    
   --image-hint: #F8F9FA;
+  --image-index-number: #D3D3D3;
+
+  /* game */
+  --loading-text: #D3D3D3;
+  --game-bg: #333333;
+  --game-text: #D3D3D3;
 }
 
 /* RESET */
@@ -255,24 +318,35 @@ body {
 } 
 
 .btn-modal {
-  background: var(--btn-modal-bg);
-  color: white;
+  background: var(--btn-bg);
+  color: var(--btn-text);
 }
 
 .modal-dialog {
-  color: black;
+  color: var(--modal-text);
 }
 
 .btn-modal:hover {
-  background: var(--btn-modal-hover);
-  color: white;
+  background: var(--btn-hover);
+  color: var(--btn-text);
 }
 
 .form-check-input:checked {
-  background-color: var(--btn-modal-bg);
-  border-color: var(--btn-modal-bg);
+  background-color: var(--modal-switch-bg);
+  border-color: var( --modal-switch-checked-border); 
+  background-image: var(--modal-switch-checked);
 }
 
+.form-check-input:not(:checked) {
+  background-color: var(--modal-switch-unchecked-bg);
+  background-image: var(--modal-switch-unchecked);
+}
+
+.form-check-input:focus {
+  border-color: var(--modal-switch-focus-bg);
+  box-shadow: none;  
+  background-image: var(--modal-switch-focus);
+}
 
 /* CARD HEADER - Saif */
 .bar {
