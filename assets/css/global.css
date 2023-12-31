@@ -185,13 +185,12 @@ html[data-theme='dark'] {
 
   /* Quiz Card */
   .card, .options, .navbar, .mode-container{
-    background-color: #333333 !important;
+    background-color: #333333;
     color: white;
     & .card-footer {
-      background-color: #282828 !important;
+      background-color: #282828;
     }
   }
-  
 }
 
 /* RESET */
@@ -209,7 +208,7 @@ body {
 
 /* THEMES */
 .navbar {
-  background-color: var(--navbar-bg);  
+  background-color: var(--navbar-bg) !important;  
 }
 
 .navbar-brand {
@@ -221,7 +220,7 @@ body {
 }
 
 /* CONTROLS */
-.exit, .f-settings{
+.exit, .f-settings, .q-settings{
   color: var(--icons);
 }
 
