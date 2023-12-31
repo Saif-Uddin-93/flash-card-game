@@ -5,6 +5,7 @@
  /* main */
  --main-bg: #F8F9FA;
  --navbar-bg: #4682B4;
+
  --icons: #2f4f4f;  
  --settings-hover: #15425f;
  --exit-hover: #ff0000;
@@ -12,7 +13,6 @@
  --logo-color: #F8F9FA;
 
  --text-color: #000000;
- --text-color2: #D3D3D3;
 
  /* modal settings */
  --modal-text: #000000;
@@ -59,6 +59,8 @@
  /* flashcard categories */
  --cat-bg: #3498db;
  --cat-icon: #15425f;
+ --cat-icon-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+ --cat-icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
  --cat-border: 2px solid #1b4e70;
  --cat-active: #F8F9FA;
  --cat-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.8);
@@ -95,7 +97,6 @@ html[data-theme='light'] {
   --logo-color: #F8F9FA;
 
   --text-color: #000000;
-  --text-color2: #D3D3D3;
 
   /* modal settings */
   --modal-text: #000000;
@@ -142,6 +143,8 @@ html[data-theme='light'] {
   /* flashcard categories */
   --cat-bg: #3498db;
   --cat-icon: #15425f;
+  --cat-icon-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+  --cat-icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
   --cat-border: 2px solid #1b4e70;
   --cat-active: #F8F9FA;
   --cat-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.8);
@@ -177,8 +180,7 @@ html[data-theme='dark'] {
 
   --logo-color: #F8F9FA;
 
-  --text-color: #D3D3D3;
-  --text-color2: #f7f8f8;
+  --text-color: #D3D3D3;  
 
   /* modal settings */
   --modal-text: #000000;
@@ -197,8 +199,8 @@ html[data-theme='dark'] {
   --modal-switch-focus-bg: rgba(0, 0, 0, 0.25);
 
   --btn-text: #ffffff;
-  --btn-bg: #333333;
-  --btn-hover: #111111;     
+  --btn-bg: #111111;
+  --btn-hover: rgb(34, 34, 34);     
 
   /* progress bar */
   --bar-bg-out: #484850;
@@ -220,6 +222,8 @@ html[data-theme='dark'] {
   /* flashcard categories */
   --cat-bg: #202020;
   --cat-icon: #575757;
+  --cat-icon-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+  --cat-icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
   --cat-border: 2px solid #111111;
   --cat-active: #F8F9FA;
   --cat-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.8);
