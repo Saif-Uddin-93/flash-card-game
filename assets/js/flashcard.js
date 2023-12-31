@@ -230,10 +230,10 @@ $(document).ready(function() {
   }
 
   // Function to show the message on the center of the screen
-  const messageDisplay = (str, id, time, color) => {
+  const messageDisplay = (str, id, time) => {
     const msg = $(`#${id}`);
 
-    msg.css('color', color).text(str);
+    msg.text(str);
     msg.show();
 
     // Hide the message after 1sec
@@ -244,7 +244,7 @@ $(document).ready(function() {
   }
 
   if(showMessages) {
-    messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000, 'black');
+    messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000);
   }
   
   // Function to blink background screen
@@ -335,7 +335,7 @@ $(document).ready(function() {
         heartDisplay(incorrectGuessCounter, 0);
 
         if(showMessages && incorrectGuessCounter === 2) {
-          messageDisplay('❤️ One live left!', 'flashcard-msg-bottom', 5000, 'black');
+          messageDisplay('❤️ One live left!', 'flashcard-msg-bottom', 5000);
         }
         
         // Check if user has made three incorrect guesses
@@ -343,10 +343,10 @@ $(document).ready(function() {
 
           // Set the image 50% opacity to show the message
           // $('#find-image').css('opacity', 0.5);
-          imageDisplay(0.5);
+          imageDisplay(0.35);
 
           // User lost
-          messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000, 'black');
+          messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000);
 
           setTimeout(() => {            
             showEndGameScreen(score, false); // End the game with a loss
@@ -368,10 +368,10 @@ $(document).ready(function() {
 
       // Set the image 50% opacity to show the message
       // $('#find-image').css('opacity', 0.5);
-      imageDisplay(0.5);
+      imageDisplay(0.35);
 
       // User won
-      messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000, 'black');
+      messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000);
 
       maxScoreDisplay();  // Update the score max user score
       // Current category
@@ -429,7 +429,7 @@ $(document).ready(function() {
         score = 0;  
         
         if(showMessages) {
-          messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000, 'black');
+          messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000);
         }
         // Remove event imediately after is called 
         // $(this).off('click', continueGame);
@@ -445,7 +445,7 @@ $(document).ready(function() {
     gameStarted = false;
 
     if(showMessages) {
-      messageDisplay('✖ to Exit the Game', 'flashcard-msg-bottom', 4000, 'black');
+      messageDisplay('✖ to Exit the Game', 'flashcard-msg-bottom', 4000);
     }
 
     // Show the end game screen
@@ -472,7 +472,7 @@ $(document).ready(function() {
 
   // Fuction to fetch image from Pexels API
   const fetchImage = (word) => {
-    const apiKey = '';
+    const apiKey = 'ncbwYPbVrmfLFi8cYdVirrVO4Jp1yTT0X4oGZ6VmOFOM7dcz8gbpBBZb';
     const url = `https://api.pexels.com/v1/search?query=${word}&per_page=40`;
     
     return fetch(url, {
@@ -515,7 +515,7 @@ $(document).ready(function() {
   $('#flashcard-start').on('click', function() {
     
     if(showMessages) {
-      messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000, 'black');
+      messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000);
     }
     
     // Reset the for each game
