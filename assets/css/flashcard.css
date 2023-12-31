@@ -127,11 +127,18 @@
 
 .categories-container {
   position: relative;
-  display: flex;
+  display: flex;  
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
   height: 100%;
   margin: 0; 
+}
+
+.categories-pick {
+  position: absolute;
+  top: 70px;
+  margin: 0;
+  font-size: 1.5rem; 
 }
 
 .categories {
