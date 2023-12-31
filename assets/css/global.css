@@ -158,6 +158,10 @@ html[data-theme='light'] {
   /* image */
   --image-alt-text: #DBEDFF;
   --image-hint: #000000;
+
+  /* Quiz Card */
+  --bs-card-bg: #F8F9FA;
+
   --image-index-number: #111111;
 
   /* game */
@@ -235,6 +239,16 @@ html[data-theme='dark'] {
   /* image */
   --image-alt-text: #333333;    
   --image-hint: #F8F9FA;
+  
+  /* Quiz Card */
+  .card, .options, .navbar, .mode-container{
+    background-color: #333333;
+    color: white;
+    & .card-footer {
+      background-color: #282828;
+    }
+  }
+  
   --image-index-number: #D3D3D3;
 
   /* game */
@@ -258,7 +272,7 @@ body {
 
 /* THEMES */
 .navbar {
-  background-color: var(--navbar-bg);  
+  background-color: var(--navbar-bg) !important;  
 }
 
 .navbar-brand {
@@ -270,7 +284,7 @@ body {
 }
 
 /* CONTROLS */
-.exit, .f-settings{
+.exit, .f-settings, .q-settings{
   color: var(--icons);
 }
 

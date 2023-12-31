@@ -102,7 +102,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;    
-  background: white;
+  background: var(--main-bg);
   border-radius: 8px;
   z-index: 10;
 }
@@ -110,8 +110,8 @@ html {
 .mode {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 45%;
+  position: relative;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -45%);
 }
@@ -122,7 +122,7 @@ html {
   flex-direction: column;
   align-items: center;
   left: 50%;
-  top: 15%;
+  top: 5%;
   transform: translateX(-50%);
 
 }
@@ -175,6 +175,26 @@ html {
   }
 }
 
+.mode-header, .mode-number {
+  margin-top: 1rem;
+}
+.mode-number {
+  margin-bottom: 1rem;
+}
+
+.container {
+  margin-bottom: 2rem;
+}
+
+.card, .mode-container {
+  height: 500px;
+  max-height: 550px !important;
+}
+/* 
+.navbar-brand.quiz {
+  color:var(--quiz-grey);
+} */
+
 .progress {
   display: none;
 }
@@ -220,10 +240,6 @@ html {
   background-color:#adb5bd;
 } */
 
-.navbar {
-  margin-bottom: 5rem;
-}
-
 #next-btn {
   visibility: hidden;
   & img {
@@ -231,12 +247,12 @@ html {
   }
 }
 
-#save-settings {
+/* #settings-save {
   &.saved {
     padding-left: 37.5px !important;
     padding-right: 38px !important;
   }
-}
+} */
 
 .setting-container .form-check {
   padding-left: 0 !important;
@@ -338,6 +354,10 @@ html {
     top: -2.8rem;
   }
 
+  .navbar {
+    margin-bottom: 5rem;
+  }
+
   #arrows {
     right: -7rem;    
   }
@@ -402,7 +422,7 @@ html {
 
   .q-answers {
     position: relative;
-    top: -5rem;
+    top: 2rem;
     padding-top: 0%;
   }
 

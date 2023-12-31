@@ -40,7 +40,7 @@
                     <div class="q-container">
                         <div class="row justify-content-between">
                             <!-- <div id="q-points" class="col-md-1 q-points text-start">points 0</div> -->  <!-- SU: points moved to the right corner inside the card -->
-                            <button id="q-settings" class="q-settings col-md-1" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                            <button id="q-settings" class="q-settings col-md-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <svg class="q-settings" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path class="q-settings" d="M413.967 276.8c1.06-6.235 1.06-13.518 1.06-20.8s-1.06-13.518-1.06-20.8l44.667-34.318c4.26-3.118 5.319-8.317 2.13-13.518L418.215 115.6c-2.129-4.164-8.507-6.235-12.767-4.164l-53.186 20.801c-10.638-8.318-23.394-15.601-36.16-20.801l-7.448-55.117c-1.06-4.154-5.319-8.318-10.638-8.318h-85.098c-5.318 0-9.577 4.164-10.637 8.318l-8.508 55.117c-12.767 5.2-24.464 12.482-36.171 20.801l-53.186-20.801c-5.319-2.071-10.638 0-12.767 4.164L49.1 187.365c-2.119 4.153-1.061 10.399 2.129 13.518L96.97 235.2c0 7.282-1.06 13.518-1.06 20.8s1.06 13.518 1.06 20.8l-44.668 34.318c-4.26 3.118-5.318 8.317-2.13 13.518L92.721 396.4c2.13 4.164 8.508 6.235 12.767 4.164l53.187-20.801c10.637 8.318 23.394 15.601 36.16 20.801l8.508 55.117c1.069 5.2 5.318 8.318 10.637 8.318h85.098c5.319 0 9.578-4.164 10.638-8.318l8.518-55.117c12.757-5.2 24.464-12.482 36.16-20.801l53.187 20.801c5.318 2.071 10.637 0 12.767-4.164l42.549-71.765c2.129-4.153 1.06-10.399-2.13-13.518l-46.8-34.317zm-158.499 52c-41.489 0-74.46-32.235-74.46-72.8s32.971-72.8 74.46-72.8 74.461 32.235 74.461 72.8-32.972 72.8-74.461 72.8z"></path></svg>                               
                             </button>
                             <a id="exit" class="col-md-1 exit" href="./highscores.html">
@@ -72,7 +72,6 @@
                             </div>
                         </div>
                         <div id="q-a" class="card-body">
-                            You will have 30 seconds to answer each question.<br>
                             Get Ready!
                         </div>
                         <div id="q-number" class="header justify-content-center">1/-</div>
@@ -141,39 +140,32 @@
     </div>
            
     <!-- Settings Modal -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">               
-                  <h1 class="modal-title fs-5" id="settingsModalLabel">Settings</h1>
-                  <button type="button" class="btn-close close-settings" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <div class="setting-version">
-                    <p>Version 1.0</p>
-                  </div>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Settings</h1>
+                    <button type="button" class="btn-close close-settings" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">  
-                        <div class="col" id="settings">
+                        <div class="col">
                             <div class="setting-container">
                                 <p class="settings-header">Appearance</p>
-                                <div class="form-check form-check-inline setting-appearance">
-                                    <input class="form-check-input" type="radio" name="setting-appearance" id="setting-appearance-light" value="light" checked>
+                                <form class="form-check form-check-inline setting-appearance">
+                                    <input class="form-check-input appearance" type="radio" name="setting-appearance" id="setting-appearance-light" value="light" checked>
                                     <label class="form-check-label" for="setting-appearance-light"> 
                                     Light
                                     </label>
-                                </div>
-                                <div class="form-check form-check-inline setting-appearance">
-                                    <input class="form-check-input" type="radio" name="setting-appearance" id="setting-appearance-dark" value="dark">
+                                    <input class="form-check-input appearance" type="radio" name="setting-appearance" id="setting-appearance-dark" value="dark">
                                     <label class="form-check-label" for="setting-appearance-dark">
                                     Dark
                                     </label>
-                                </div> 
+                                </form> 
                             </div>                        
                             <div class="setting-container">
                                 <p class="settings-header">Local Storage</p>
-                              
-                                <button class="btn btn-danger" data-bs-target="#restoreModalToggle" data-bs-toggle="modal" title="Restore to default settings and remove all progress">Restore</button>
-                                
+                                <button id="clear-storage" class="btn btn-primary">Clear...</button>
                             </div>                        
                         </div>
                         <div class="col">  
@@ -183,39 +175,16 @@
                                     <input class="form-check-input" type="checkbox" role="switch" id="setting-sound" checked>
                                     <label class="form-check-label" for="setting-sound">On/Off</label>
                                 </div>
-                            </div> 
-                            <div class="setting-container">
-                              <p class="settings-header">Notifications</p>               
-                                <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="setting-note" checked>
-                                  <label class="form-check-label" for="setting-note">On/Off</label>
-                                </div>
-                            </div>
+                            </div>                             
+                            <div class="d-flex flex-column setting-container align-self-end h-50">
+                                <p>Version 1.0</p>                            
+                            </div>                      
                         </div>
                     </div>          
-                    <div class="modal-footer">  
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="settings-save" class="btn btn-modal">Save</button>
+                    <div class="modal-footer">                       
+                        <button type="button" class="btn btn-secondary close-settings" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="save-settings" class="btn btn-primary">Save changes</button>
                     </div>
-                </div>
-            </div>
-        </div>
-      </div>  
-  
-      <div class="modal fade" id="restoreModalToggle" aria-hidden="true" aria-labelledby="restoreModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="restoreModalToggleLabel">Warning!</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                Restoring to default settings will erase all saved scores, completed catogories and revert themes.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  
-                  <button id="clear-storage" class="btn btn-modal" title="Restore to defaulr settings and all progress" data-bs-target="#restoreModalToggle" data-bs-toggle="modal">Confirm</button>
                 </div>
             </div>
         </div>
