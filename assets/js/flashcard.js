@@ -97,21 +97,20 @@ $(document).ready(function() {
   const showFinalMessage = () => {
     console.log('Congtaz you wont all categories!!');  
     console.log(`
-
-    - Add message to inform user how to reset game
-    - Remove point-event and opacity after game reset
-        
-    - add sound
-    - add function to setTimet content
-    - rewrite middle part and move absolute to one div for middle part and bottom
-    
     - work on mobile
-    - create favicon for the app    
-    
-    - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
+    - readme
+    - prep for slides
     - if user won all categories show popup and ask if he want geset the game and score
-    
-    
+    - add sound
+    - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
+
+    - Remove point-event and opacity after game reset    
+    - rewrite middle part and move absolute to one div for middle part and bottom
+    - Add message to inform user how to reset game    
+        
+    - add function to setTimet content    
+    - create favicon for the app    
+        
     `)
     
   }
@@ -393,7 +392,7 @@ $(document).ready(function() {
 
     if(win){
       const button = $('<button>');
-      button.addClass('btn btn-primary').attr("id", "continue-game").text('continue');
+      button.addClass('btn btn-modal').attr("id", "continue-game").text('Continue');
       $('#end-game-buttons').append(button);   
       
       // Event listener to continue the flashcard game on user win      
