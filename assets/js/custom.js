@@ -98,7 +98,7 @@ const settings={
     btn.target.textContent = "Saved!";
     Timer.timeoutSet(()=>{
       btn.target.classList.remove("saved");
-      btn.target.textContent = "Save changes";  
+      btn.target.textContent = "Save";  
     }, 1)
 
     settings.loadSettings();
@@ -114,9 +114,9 @@ const settings={
     $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"40"}px`);
 
     //placeholder to load current selected theme
-    (theme = loadTheme)=>{
-      // toggle dark/light theme css classes
-    }
+    //(theme = loadTheme)=>{
+      $("html").attr("data-theme", loadTheme);
+    //}
   },
 }
 // --------- <Settings< ---------

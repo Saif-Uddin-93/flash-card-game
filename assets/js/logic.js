@@ -4,7 +4,7 @@ addGlobalEventListener("click", ".next-btn", nextBtn);
 addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
 addGlobalEventListener("click", ".q-settings", settings.loadSettings)
-addGlobalEventListener("click", "#save-settings", settings.save)
+addGlobalEventListener("click", "#settings-save", settings.save)
 addGlobalEventListener("click", ".close-settings", settings.loadSettings)
 addGlobalEventListener("click", ".mode-btn", scroll)
 
@@ -25,15 +25,6 @@ function callAPI(level, amount){
     //.catch(console.log(`need to wait 5 seconds before loading new quiz`))
 }
 // --------- <API< ---------
-
-
-/* {
-    "theme":"dark",
-    "sound":false,
-    "categoryDone":[],
-    "notification":false,
-    "maxScore":0
-} */
 
 // question number tracker
 let trackQ = -1;
