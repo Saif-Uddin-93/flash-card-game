@@ -52,19 +52,6 @@
               <div class="wrapper">
                 <div class="progress" id="progress"></div>
               </div>
-              
-              <!-- <div class="wrapper">
-                <div class="progress_2"></div>
-              </div> -->
-              
-              <!-- <div class="wrapper_2">
-                <div class="progress"></div>
-              </div> -->
-              
-              <!-- <div class="wrapper_2">
-                <div class="progress_2"></div>
-              </div> -->
-          
 
            </div>         
       </section>
@@ -131,9 +118,8 @@
                   <div id="flashcard-msg" class="flashcard-msg">
                   </div>
 
-                  <!-- messages bootm screen -->
-                  <div id="flashcard-msg-bottom" class="flashcard-msg-bottom">
-                    msg
+                  <!-- messages bottom screen -->
+                  <div id="flashcard-msg-bottom" class="flashcard-msg-bottom">                    
                   </div>
 
                 </div>
@@ -144,8 +130,11 @@
                 </div>
 
                 <!-- Categories start screen -->
-                 <div class="flashcard-start" id="flashcard-outer">                
-                  <div class="categories-container">  
+                <div class="flashcard-start" id="flashcard-outer">                
+                   
+                  <div class="categories-container">                     
+                    <p class="categories-pick">CHOOSE CATEGORY</p>
+
                     <div class="categories-ring"></div>
                       <ul class="categories" id="categories">                      
                         <li class="category cat-active category1" data-cat="animals" title="animals">
@@ -170,110 +159,111 @@
                       <div class="start-button" id="flashcard-start">
                         <p>START</p>
                       </div>
-                    </div>   
-                  </div>
-                </div>  
-              </div>          
-    
-              <div class="guess-word" id="guess-word">
-                <!-- generated word goes here  -->
-              </div>
-    
-            </div>
-
-          </div>
-        </div>
-        
-      </section>
-    </div>
-
-    <!-- Settings Modal -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">               
-                <h1 class="modal-title fs-5" id="settingsModalLabel">Settings</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="setting-version">
-                  <p>Version 1.0</p>
+                      
+                  </div>   
                 </div>
+              </div>  
+            </div>          
+    
+            <div class="guess-word" id="guess-word">
+              <!-- generated word goes here  -->
+            </div>
+    
+          </div>
+
+        </div>
+      </div>
+        
+    </section>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">               
+              <h1 class="modal-title fs-5" id="settingsModalLabel">Settings</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div class="setting-version">
+                <p>Version 1.0</p>
               </div>
-              <div class="modal-body">
-                  <div class="row">  
-                      <div class="col" id="settings">
-                          <div class="setting-container">
-                              <p class="settings-header">Apperance</p>
-                              <div class="form-check form-check-inline seeting-apperance">
-                                  <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-light" checked>
-                                  <label class="form-check-label" for="seeting-apperance"> 
-                                  Light
-                                  </label>
-                              </div>
-                              <div class="form-check form-check-inline seeting-apperance">
-                                  <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-dark">
-                                  <label class="form-check-label" for="seeting-apperance">
-                                  Dark
-                                  </label>
-                              </div> 
-                          </div>                        
-                          <div class="setting-container">
-                              <p class="settings-header">Local Storage</p>
+            </div>
+            <div class="modal-body">
+                <div class="row">  
+                    <div class="col" id="settings">
+                        <div class="setting-container">
+                            <p class="settings-header">Apperance</p>
+                            <div class="form-check form-check-inline seeting-apperance">
+                                <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-light" checked>
+                                <label class="form-check-label" for="seeting-apperance"> 
+                                Light
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline seeting-apperance">
+                                <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-dark">
+                                <label class="form-check-label" for="seeting-apperance">
+                                Dark
+                                </label>
+                            </div> 
+                        </div>                        
+                        <div class="setting-container">
+                            <p class="settings-header">Local Storage</p>
+                          
+                            <button class="btn btn-danger" data-bs-target="#restoreModalToggle" data-bs-toggle="modal" title="Restore to default settings and remove all progress">Reset</button>
                             
-                              <button class="btn btn-danger" data-bs-target="#restoreModalToggle" data-bs-toggle="modal" title="Restore to default settings and remove all progress">Reset</button>
-                              
-                          </div>                        
-                      </div>
-                      <div class="col">  
-                          <div class="setting-container">
-                              <p class="settings-header">Sound</p>               
-                              <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="setting-sound" checked>
-                                  <label class="form-check-label" for="setting-sound">Off/On</label>
-                              </div>
-                          </div> 
-                          <div class="setting-container">
-                            <p class="settings-header">Notifications</p>               
+                        </div>                        
+                    </div>
+                    <div class="col">  
+                        <div class="setting-container">
+                            <p class="settings-header">Sound</p>               
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="setting-note" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="setting-sound" checked>
                                 <label class="form-check-label" for="setting-sound">Off/On</label>
                             </div>
-                        </div>                                                      
-                      </div>
-                  </div>          
-                  <div class="modal-footer">  
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" id="settings-save" class="btn btn-modal">Save</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>  
+                        </div> 
+                        <div class="setting-container">
+                          <p class="settings-header">Notifications</p>               
+                          <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="setting-note" checked>
+                              <label class="form-check-label" for="setting-sound">Off/On</label>
+                          </div>
+                      </div>                                                      
+                    </div>
+                </div>          
+                <div class="modal-footer">  
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="settings-save" class="btn btn-modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>  
 
-    <div class="modal fade" id="restoreModalToggle" aria-hidden="true" aria-labelledby="restoreModalToggleLabel" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="restoreModalToggleLabel">Warning!</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Restoring to default settings will erase all saved scores, completed catogories and revert themes.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <div class="modal fade" id="restoreModalToggle" aria-hidden="true" aria-labelledby="restoreModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="restoreModalToggleLabel">Warning!</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Restoring to default settings will erase all saved scores, completed catogories and revert themes.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-            <button id="clear-storage" class="btn btn-modal" title="Restore to defaulr settings and all progress" data-bs-target="#restoreModalToggle" data-bs-toggle="modal">Confirm</button>
+          <button id="clear-storage" class="btn btn-modal" title="Restore to defaulr settings and all progress" data-bs-target="#restoreModalToggle" data-bs-toggle="modal">Confirm</button>
 
-          </div>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="./assets/js/words.js"></script>
-    <script src="./assets/js/flashcard.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="./assets/js/words.js"></script>
+  <script src="./assets/js/flashcard.js"></script>
 </body>
 </html>

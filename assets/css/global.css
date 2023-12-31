@@ -179,7 +179,7 @@ html[data-theme='dark'] {
   --navbar-bg: #111111;
   --icons: #8d8d8d;
   --settings-hover: #6b6b6b;
-  --exit-hover: #b36666;
+  --exit-hover: #690f0f;
 
   --logo-color: #F8F9FA;
 
@@ -364,6 +364,10 @@ body {
   border-color: var(--modal-switch-focus-bg);
   box-shadow: none;  
   background-image: var(--modal-switch-focus);
+}
+
+.form-check-input:hover {
+  cursor: pointer;
 }
 
 /* CARD HEADER - Saif */
