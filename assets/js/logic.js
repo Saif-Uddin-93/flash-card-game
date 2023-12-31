@@ -1,6 +1,6 @@
 addGlobalEventListener("click", ".next-btn", nextBtn);
 //addGlobalEventListener("click", ".prev-btn", prevBtn);
-addGlobalEventListener("click", "#q-hint", loadMsg);
+//addGlobalEventListener("click", "#q-hint", loadMsg);
 addGlobalEventListener("click", ".options", checkAnswer)
 addGlobalEventListener("click", "#clear-storage", settings.clearLocal)
 addGlobalEventListener("click", ".q-settings", settings.loadSettings)
@@ -25,6 +25,15 @@ function callAPI(level, amount){
     //.catch(console.log(`need to wait 5 seconds before loading new quiz`))
 }
 // --------- <API< ---------
+
+
+/* {
+    "theme":"dark",
+    "sound":false,
+    "categoryDone":[],
+    "notification":false,
+    "maxScore":0
+} */
 
 // question number tracker
 let trackQ = -1;
@@ -61,6 +70,7 @@ function showProgress(bars = trackQ+1){
     bar.css("width", `${(100/apiResult.results.length)*bars}%`);
     bar.css("height", `100%`);
     bar.css("background-color", `aquamarine`);
+    /* bar.css("border-right", `solid 1px black`); */
 }
 
 /* function prevBtn() {
