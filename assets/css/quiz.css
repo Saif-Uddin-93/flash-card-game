@@ -238,12 +238,15 @@ html {
   }
 }
 
-.form-check {
+.setting-container .form-check {
   padding-left: 0 !important;
   & .form-check-input {
   float: none !important;
   margin-left: 0 !important;
   }
+}
+.setting-container .form-check-inline {
+  margin-right: 0rem;
 }
 
 #setting-appearance-light, #setting-appearance-dark  {
@@ -341,7 +344,7 @@ html {
 
   #setting-appearance-light, #setting-appearance-dark  {
     &+.form-check-label {
-      margin-right: 4rem;
+      margin-right: 3.75rem;
     }
   }
 
@@ -394,6 +397,7 @@ html {
   .q-font {
     position: relative;
     top: -5.55rem;
+    z-index: -1;
   }
 
   .q-answers {
@@ -424,7 +428,7 @@ html {
   }
   #setting-appearance-light, #setting-appearance-dark  {
     &+.form-check-label {
-      margin-right: 2rem;
+      margin-right: 2.5rem;
     }
   }
   #arrows {

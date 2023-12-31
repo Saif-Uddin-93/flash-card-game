@@ -74,8 +74,8 @@ const soundsLibrary = {
 // --------- >Settings> ---------
 const settings={
   sfxElement: htmlElement("#setting-sound"),
-  lightElement: htmlElement("#setting-appearance-light"),
-  darkElement: htmlElement("#setting-appearance-dark"),
+  light: htmlElement("#setting-appearance-light"),
+  dark: htmlElement("#setting-appearance-dark"),
   soundFX: (save)=> {
     if(!save){
       return localStorage.getItem("quiz-sfx")===null ? settings.sfxElement.checked : localStorage.getItem("quiz-sfx")}
@@ -83,8 +83,8 @@ const settings={
       return settings.sfxElement.checked
     }},
   colourMode: (theme)=> {
-    settings.lightElement.checked = theme === "lightElement"
-    settings.darkElement.checked = theme === "darkElement"
+    settings.light.checked = theme === "light"
+    settings.dark.checked = theme === "dark"
   },
   clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
   save: (btn)=> {
@@ -104,7 +104,7 @@ const settings={
     settings.loadSettings();
   },
   loadSettings: ()=>{
-    const loadTheme = localStorage.getItem("theme")===null ? "lightElement" : localStorage.getItem("theme")
+    const loadTheme = localStorage.getItem("theme")===null ? "light" : localStorage.getItem("theme")
     settings.colourMode(loadTheme)
 
     settings.sfxElement.checked = settings.soundFX()==="true"||true?true:settings.sfxElement.checked;
