@@ -1,43 +1,65 @@
-# flash-card-trivia
+# Game Hub
 
-## Description
+## Overview
 
-FILL IN SECTION
+Game Hub is a collection of short games that utilize free APIs. Currently, it features two games: Trivia Quiz and Flashcard / Hangman.
 
-[Link to deployed web page.](https://saif-uddin-93.github.io/flash-card-trivia/)
+## Technologies Used
 
-## Table of Contents
+- APIs: OpenTDB, Pexels
+- jQuery, Bootstrap
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+## Screenshot
 
-## Installation
+![Trivia Quiz](./assets/images/trivia-quiz.png)
 
-For this project, the developer tool We'll be using is VS Code. A lightweight IDE that allows working in JavaScript. It also allows the use of Extensions which can add extra functionality to the tool to help with debugging and making code more readable. The main extension We'll be using is called, Live Server, by Ritwick Dey. The browser that the web page will be used on is Google Chrome and will work on all Chromium-based web browsers.
+*A snapshot of the Trivia Quiz interface with a clean, user-friendly design.*
 
-## Usage
+![Flashcard](./assets/images/flashcard.png)
 
-FILL IN SECTION
+*A snapshot of the Flashcard interface with a clean, user-friendly design.*
 
-![Add image here](./assets/imgs/code-quiz.gif)
+## Features
+
+- **Trivia Quiz:**
+  - Questions generated from a trivia API.
+  - Each round gives the player 30 seconds to answer a question by choosing from a selection of 4 multiple-choice answers.
+
+- **Flashcard / Hangman:**
+  - A combination of Hangman and Pictionary-style game.
+  - Offers a variety of topics to choose from.
+  - Players have to guess the picture by typing in letters and have three chances to enter the word correctly.
+  
+## How to Use It
+
+1. Clone the repository.
+2. Open the respective HTML files for Trivia Quiz and Flashcard.
+3. Explore the games and enjoy the interactive experience.
+4. Alternatively, you can use the Trivia Quiz and Flashcard directly simply navigate to the [GitHub Pages](https://saif-uddin-93.github.io/flash-card-trivia/).
+
+## Challenges
+
+- GitHub code conflicts and commit issues.
+- API limitations, paywall, and restricted number of calls for testing.
+- Limited APIs for initial idea (JS interview questions).
+- Insufficient team members to divide tasks effectively.
+
+## Successes
+
+- Agreement on splitting tasks to avoid code conflict issues.
+- Implementation of our ideas, resulting in two unique games.
+
+## Future Enhancements
+
+- Add a variety of games.
+- Implement the ability to export/import saved local storage data or save on server storage.
+- Introduce multiplayer games.
 
 ## Credits
 
-FILL IN SECTION
+- Marcin Tatarski (GitHub: [martindocs](https://github.com/martindocs/flash-card-game/tree/main))
+- Saif Uddin (GitHub: [Saif-Uddin-93](https://github.com/Saif-Uddin-93/flash-card-trivia))
 
 ## License
-### MIT License
 
-Copyright (c) 2023 Saif-Uddin-93
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
+Please refer to the [LICENSE](./LICENSE.md) file in this repository for details on how this project is licensed.

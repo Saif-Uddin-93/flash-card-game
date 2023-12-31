@@ -78,7 +78,7 @@
  /* image */
  --image-alt-text: #DBEDFF;
  --image-hint: #000000;
- --image-index-number: #111111;
+ --image-index-number: #DBEDFF;
 
  /* game */
  --loading-text: #000000;
@@ -163,8 +163,7 @@ html[data-theme='light'] {
   /* image */
   --image-alt-text: #DBEDFF;
   --image-hint: #000000;
-
-  --image-index-number: #111111;
+  --image-index-number: #DBEDFF;
 
   /* game */
   --loading-text: #000000;

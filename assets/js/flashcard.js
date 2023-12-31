@@ -107,7 +107,7 @@ $(document).ready(function() {
     - add sound
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
 
-    - Remove point-event and opacity after game reset    
+        
     - rewrite middle part and move absolute to one div for middle part and bottom
     - Add message to inform user how to reset game    
         
