@@ -4,8 +4,9 @@ $(document).ready(function() {
     "theme": "light",
     "sound": true,
     "categoryDone": [],           
-    "notification": true,
+    // "categoryDone": ['fruits', 'clothing'],
     // "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
+    "notification": true,
     "maxScore": 0,
   }
 
@@ -67,9 +68,11 @@ $(document).ready(function() {
   // Helper function to deactive completed categories
   const deactivateCategory = (category) => {
     // target an element by its data-cat 
-    $(`.category[data-cat='${category}']`).css({
-      'pointer-events': 'none',
-      'opacity': '0.5'
+    $(`.category[data-cat='${category}']`)
+    .prop('disabled', true)
+    .addClass('cat-disabled')
+    .css({      
+      'filter': 'blur(1.5px)',      
     });
   };
 
@@ -79,10 +82,10 @@ $(document).ready(function() {
     /**
      * - find the first elements with a class of 'category' 
      * - and first element that not include style attribute 
-     * contains the substring 'pointer-events: none' aka. disabled
+     * contains the substring 'disabled'
      * 
-     */
-    const nextCategory = $('.category[data-cat]:not([style*="pointer-events: none"]):first');
+     */    
+    const nextCategory = $('.category[data-cat]:not([disabled]):first');
  
     // Object has properties, it's not empty
     if (Object.keys(nextCategory).length > 0) {
@@ -117,8 +120,7 @@ $(document).ready(function() {
 
   // Check the localStorage if user alredy played any of the games
   const categoryDone = () => {          
-    const completedCategories = flashcardSettings.categoryDone;
-    // const activeCategory =  $('.cat-active').data('cat');
+    const completedCategories = flashcardSettings.categoryDone;    
 
     // Check if there are completed categories
     if(completedCategories && completedCategories.length > 0) {
@@ -131,7 +133,7 @@ $(document).ready(function() {
       // Activate the next category
       activateNextCategory();
       
-      // Check if all categories are completed      
+      // Check if all categories are completed           
       if(categories.length === completedCategories.length){
         $('#flashcard-start').css({
           'pointer-events': 'none',
