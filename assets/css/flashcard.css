@@ -165,7 +165,7 @@
   margin: 0;
 }
 
-.categories li {
+.categories button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,7 +180,7 @@
   box-shadow: var(--cat-icon-shadow);
 }
 
-li.cat-active {
+button.cat-active {
   color: var(--cat-active); 
   box-shadow: var(--cat-shadow);
   text-shadow: var(--cat-icon-glow);    
@@ -189,6 +189,12 @@ li.cat-active {
 .category:hover {  
   color: var(--cat-hover);   
   text-shadow: var(--cat-icon-glow);
+}
+
+.cat-disabled:hover {
+  cursor: not-allowed;
+  color: var(--cat-icon-disabled);
+  text-shadow: none; 
 }
 
 .category1 {

@@ -59,6 +59,7 @@
  /* flashcard categories */
  --cat-bg: #3498db;
  --cat-icon: #15425f;
+ --cat-icon-disabled: #15425f;
  --cat-icon-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
  --cat-icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
  --cat-border: 2px solid #1b4e70;
@@ -143,6 +144,7 @@ html[data-theme='light'] {
   /* flashcard categories */
   --cat-bg: #3498db;
   --cat-icon: #15425f;
+  --cat-icon-disabled: #15425f;
   --cat-icon-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
   --cat-icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
   --cat-border: 2px solid #1b4e70;
@@ -222,6 +224,7 @@ html[data-theme='dark'] {
   /* flashcard categories */
   --cat-bg: #202020;
   --cat-icon: #575757;
+  --cat-icon-disabled: #575757;
   --cat-icon-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
   --cat-icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
   --cat-border: 2px solid #111111;
