@@ -1,5 +1,5 @@
 // SU: Suggested method for getting highscores
-// SU: Not yet finished.
+
 const htmlElement = (selector) => document.querySelector(selector);
 const highscoreElement = htmlElement('#highscores');
 let highScore;
