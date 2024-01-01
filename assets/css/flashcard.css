@@ -406,7 +406,7 @@ button.cat-active {
   box-shadow: var(--bar-box-shadow-in)
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 768px) { 
   .w-md-100 {
     width: 100% !important;
   }  
