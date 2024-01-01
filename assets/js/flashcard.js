@@ -100,8 +100,7 @@ $(document).ready(function() {
   const showFinalMessage = () => {
     console.log('Congtaz you wont all categories!!');  
     console.log(`
-    - work on mobile
-    - readme
+    - work on mobile 
     - prep for slides
     - if user won all categories show popup and ask if he want geset the game and score
     - add sound
@@ -517,7 +516,8 @@ $(document).ready(function() {
   $('#flashcard-start').on('click', function() {
     
     if(showMessages) {
-      messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000);
+      // messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000);
+      messageDisplay('⌨️ Use the keyboard to input your answers', 'flashcard-msg-bottom', 5000);
     }
     
     // Reset the for each game

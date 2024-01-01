@@ -31,21 +31,21 @@
     </nav>
 
      <!-- card -->
-     <div class="container w-50 text-center mt-5">
+     <div class="container w-50 w-md-100 text-center mt-5">
       <section class="flashcard-container">         
            <div class="row">
-               <div id="flashcard-settings" class="col-md-1">
+               <div id="flashcard-settings" class="col col-md-2 col-xlg-2">
 
                 <!-- settings icon -->
                 <button id="f-settings" class="f-settings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
                   <i class="fas fa-cog"></i>               
                 </button>
                </div>              
-               <div id="flashcard-trophy" class="col-md-10 header flashcard-trophy" title="Max Score">
+               <div id="flashcard-trophy" class="col col-md-8 col-xlg-8 header flashcard-trophy" title="Max Score">
                 <img src="./assets/svg/trophy.svg" alt="Icon represent max user score">              
                 <span id="flashcard-trophy-num" class="flashcard-trophy-num"></span>
                </div>
-               <div id="flashcard-exit" class="col-md-1 exit"> ✖ </div>
+               <div id="flashcard-exit" class="col col-md-2 col-xlg-2"> ✖ </div>
            </div>          
            <div id="flashcard-bar">
               
@@ -64,14 +64,14 @@
             <div class="flashcard">
               <div class="flashcard-inner">
                 <div class="flashcard-front">
-                  <div class="row justify-content-between">
-                    <div id="flashcard-hint" class="col-sm-2 col-lg-2 flashcard-hint">Hint</div>
-                    <div class="col-sm-2 col-lg-2 d-flex justify-content-center">
+                  <div class="row justify-content-center">
+                    <div id="flashcard-hint" class="col col-md-3 col-lg-2 flashcard-hint">Hint</div>
+                    <div class="col col-md-6 col-lg-8 d-flex justify-content-center">
                       <div class="flashcard-hears" id="flashcard-heart3">❤️</div>
                       <div class="flashcard-hears" id="flashcard-heart2">❤️</div>
                       <div class="flashcard-hears" id="flashcard-heart1">❤️</div>
                     </div>
-                    <div id="flashcard-points" class="col-sm-2 col-lg-2 f-points"></div> 
+                    <div id="flashcard-points" class="col col-md-3 col-lg-2 f-points"></div> 
                   </div>
 
                   <!-- blink screen on error -->
