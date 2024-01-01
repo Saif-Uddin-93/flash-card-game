@@ -165,7 +165,29 @@ function endScreen(){
     Timer.stop();
     Timer.setTime(0);
     console.log("THE END!!");
-    //location.href = "highscores.html";
+    cssStyle("#end-screen","display","block");
+    cssStyle("#q-number","display","none");
+    cssStyle("#q-a","display","none");
+    cssStyle("#q-answers","display","none");
+    cssStyle(".control","display","none");
+    cssStyle(".card-header","visibility","hidden");
+    cssStyle(".q-font","visibility","hidden");
+    $("#final-score").text(points);
+}
+
+function submitScore() {
+    let highScore;
+    let qName = $("#initials").val();
+    if(localStorage.getItem("q-highScore")===null){
+        console.log("HIGHSCORE EMPTY!!!")
+        highScore = {};
+    }else{
+        console.log(localStorage.getItem("q-highScore"));
+        highScore = JSON.parse(localStorage.getItem("q-highScore"));
+    }
+    highScore[qName] = points;
+    localStorage.setItem("q-highScore", JSON.stringify(highScore));
+    location.href = "highscores.html"
 }
 
 /* function clearAnswers(){

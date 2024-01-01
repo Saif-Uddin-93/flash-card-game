@@ -1,14 +1,19 @@
 // SU: Suggested method for getting highscores
 // SU: Not yet finished.
+const htmlElement = (selector) => document.querySelector(selector);
 const highscoreElement = htmlElement('#highscores');
-let names = Object.keys(localStorage);
+let highScore;
+if(localStorage.getItem("q-highScore")===null){
+    console.log("HIGHSCORE EMPTY!!!")
+    highScore = {};
+}else{
+    console.log(localStorage.getItem("q-highScore"));
+    highScore = JSON.parse(localStorage.getItem("q-highScore"));
+}
 
+let names = Object.keys(highScore);
 
-names = names.filter((element, index) => element.includes("score:"))
-let namesIndecies = names.map((element, index) =>  index);
-
-
-let scores = Object.values(localStorage);
+let scores = Object.values(highScore);
 
 const combinedArray = scores.map((element, index) => ({ element, index })).sort((a, b) => b.element - a.element);
 
@@ -20,8 +25,7 @@ for (let i = 0; i<names.length; i++) scoreList += `<li>${names[i]} - ${scores[i]
 
 highscoreElement.innerHTML = scoreList; 
 
-function clearScore(){
-    localStorage.setItem("q-scores", "");
+/* function clearScore(){
+    localStorage.setItem("q-highScore", "");
     highscoreElement.innerHTML='';
-}
-
+} */
