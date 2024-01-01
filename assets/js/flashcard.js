@@ -99,8 +99,7 @@ $(document).ready(function() {
 
   const showFinalMessage = () => {
     console.log('Congtaz you wont all categories!!');  
-    console.log(`
-    - work on mobile 
+    console.log(`   
     - prep for slides
     - if user won all categories show popup and ask if he want geset the game and score
     - add sound

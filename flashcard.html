@@ -93,12 +93,12 @@
                   <!-- acknowledge -->
                   <div class="linking-back">
                     <div class="row justify-content-between">                      
-                      <div class="col-md-3">
+                      <div class="col col-md-3">
                         <a href="https://www.pexels.com" target="_blank" title="Photos provided by Pexels">
                         <img class="pexels-logo" src="https://images.pexels.com/lib/api/pexels-white.png" />
                         </a>
                       </div>
-                      <div class="col-md-3"> 
+                      <div class="col col-md-3"> 
                         <span id="flashcard-number" class="flashcard-number"></span>                       
                       </div>
                     </div>              
@@ -156,26 +156,7 @@
                           <i class="fas fa-tshirt"></i>
                         </button>
                       </div>
-                      <!-- <ul class="categories" id="categories">                      
-                        <li class="category cat-active category1" data-cat="animals" title="animals">
-                          <i class="fas fa-cat"></i>
-                        </li>                                          
-                        <li class="category category2" data-cat="fruits" title="fruits">
-                          <i class="fas fa-apple-alt"></i>
-                        </li>                                          
-                        <li class="category category3" data-cat="countries" title="countries">
-                          <i class="fas fa-globe-africa"></i>
-                        </li>                        
-                        <li class="category category4" data-cat="professions" title="professions">
-                          <i class="fas fa-user-tie"></i>
-                        </li>
-                        <li class="category category5" data-cat="sports" title="sports">
-                          <i class="fas fa-running"></i>
-                        </li>
-                        <li class="category category6" data-cat="clothing"  title="clothing">
-                          <i class="fas fa-tshirt"></i>
-                        </li>
-                      </ul> -->
+
                       <div class="start-button" id="flashcard-start">
                         <p>START</p>
                       </div>
@@ -212,19 +193,38 @@
                 <div class="row">  
                     <div class="col" id="settings">
                         <div class="setting-container">
+                          <div class="row">
                             <p class="settings-header">Apperance</p>
+                            <div class="col">
+                              <div class="form-check form-check-inline seeting-apperance">
+                                  <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-light" checked>
+                                  <label class="form-check-label" for="seeting-apperance"> 
+                                  Light
+                                  </label>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-check form-check-inline seeting-apperance">
+                                <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-dark">
+                                <label class="form-check-label" for="seeting-apperance">
+                                Dark
+                                </label>
+                              </div> 
+                            </div>
+                          </div>
+                            <!-- <p class="settings-header">Apperance</p>
                             <div class="form-check form-check-inline seeting-apperance">
                                 <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-light" checked>
                                 <label class="form-check-label" for="seeting-apperance"> 
                                 Light
                                 </label>
-                            </div>
-                            <div class="form-check form-check-inline seeting-apperance">
+                            </div> -->
+                            <!-- <div class="form-check form-check-inline seeting-apperance">
                                 <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-dark">
                                 <label class="form-check-label" for="seeting-apperance">
                                 Dark
                                 </label>
-                            </div> 
+                            </div>  -->
                         </div>                        
                         <div class="setting-container">
                             <p class="settings-header">Local Storage</p>
