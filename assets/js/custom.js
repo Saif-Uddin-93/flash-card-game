@@ -86,7 +86,7 @@ const settings={
     settings.light.checked = theme === "light"
     settings.dark.checked = theme === "dark"
   },
-  clearLocal: ()=> {localStorage.clear(); sessionStorage.clear()},
+  clearLocal: ()=> {localStorage.clear(); sessionStorage.clear(); settings.loadSettings()},
   save: (btn)=> {
     localStorage.setItem("quiz-sfx", settings.soundFX(true))
     
