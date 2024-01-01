@@ -418,28 +418,29 @@ html {
 
   .q-settings {
     position: absolute;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    height: auto;
     top: -0.2rem;
     right: 8rem;
   }
 
   .exit {
     position: relative;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    height: auto;
     top: -0.5rem;
     right: -17rem;
   }
 
+  .q-settings, .exit {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    z-index: 1;
+  }
+
   .q-font {
+    visibility: hidden;
     position: relative;
     top: -5.55rem;
-    z-index: -1;
+    width: 95%;
   }
 
   .q-answers {

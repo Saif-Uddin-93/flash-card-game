@@ -156,6 +156,7 @@ $('#mode-level').on('click', 'button',function (){
   console.log(mode, questions);
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle("#next-btn", "visibility", "visible");
+  cssStyle(".q-font", "visibility", "visible");
   //cssStyle("#q-answers", "display", "flex");
   
   changeText("#q-number", `0/${questions}`);
