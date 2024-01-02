@@ -693,19 +693,40 @@ $(document).ready(function() {
     window.location.reload();
   });
 
-  // Event listener to trigger the off screen keyboard on mobiles  
-  $('#keyboard').on('click', function() {
-    // Checks whether the selected element is currently focused
-    const isInputFocused = $('#hiddenInput').is(':focus'); 
+  // // Event listener to trigger the off screen keyboard on mobiles  
+  // $('#keyboard').on('click', function() {
+  //   // Checks whether the selected element is currently focused
+  //   const isInputFocused = $('#hiddenInput').is(':focus'); 
 
-    if(isInputFocused) {
-      // If we press button and the input is focused, blur it to hide the keyboard
-      $('#hiddenInput').blur();
-      $('#keyboard').removeClass('hide-keyboard');
-    }else{
-      // If we press button and the input is not focused, focus it to show the keyboard
-      $('#hiddenInput').focus();
-      $('#keyboard').addClass('hide-keyboard');
+  //   if(isInputFocused) {
+  //     // If we press button and the input is focused, blur it to hide the keyboard
+  //     $('#hiddenInput').blur();
+  //     $('#keyboard').removeClass('hide-keyboard');
+  //   }else{
+  //     // If we press button and the input is not focused, focus it to show the keyboard
+  //     $('#hiddenInput').focus();
+  //     $('#keyboard').addClass('hide-keyboard');
+  //   }
+  // });
+
+  $('#keyboard').on('click', function() {
+    const hiddenInput = $('#hiddenInput');
+    
+    // Show the input field and focus on it
+    hiddenInput.show().focus();
+    
+    // Add the class to hide the keyboard icon
+    // $('#keyboard').addClass('hide-keyboard');
+  });
+
+  // Event listener to detect when the user types in the input field
+  $('#hiddenInput').on('input', function() {
+      const typedText = $(this).val();
+            
+      // console.log('Typed text:', typedText);
+    // Listen for keyboard press only when game started
+    if(gameStarted){
+      handleKeyPress(typedText);
     }
   });
 
