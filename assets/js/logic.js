@@ -11,9 +11,9 @@ addGlobalEventListener("click", ".mode-btn", scroll)
 // --------- >API> ---------
 const difficulty = (lvl) => lvl||"easy";
 let apiResult = {};
-function callAPI(level, amount){
+function callAPI(level, amount, cat){
     const questionAmount = amount;
-    const category = 18;// 18 is computer science
+    const category = cat||18;// 18 is computer science
     difficulty(level);
     //const qType = "multiple";// qType must not change
     

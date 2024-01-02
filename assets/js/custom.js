@@ -181,6 +181,12 @@ function decodeHTML(html) {
   return doc.documentElement.textContent;
 }
 
+let cat;
+$('.dropdown-item').on('click', function (eventObj){
+  $("#dropdownMenuButton").text(eventObj.target.textContent);
+  cat = eventObj.target.value;
+});
+
 // render the questions after selecting mode
 $('#mode-level').on('click', 'button',function (){
 
@@ -189,7 +195,7 @@ $('#mode-level').on('click', 'button',function (){
   let questions = $("#mode-number").val() > 34 ? 10 : $("#mode-number").val();
   questions = questions < 1 ? 10 : questions;
 //  cssStyle("#q-answers", "display", "flex");
-  callAPI(mode, questions);
+  callAPI(mode, questions, cat);
   console.log(mode, questions);
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle("#next-btn", "visibility", "visible");
