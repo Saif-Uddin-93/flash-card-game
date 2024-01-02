@@ -17,6 +17,9 @@ html {
     .mode-container{
       border-bottom: 1px solid #ccc;
     }
+    #dropdownMenuButton {
+      background-color: #8cbaff;
+    }
   }
   &[data-theme='dark']{
     .card, .options, .navbar, .mode-container{
@@ -49,29 +52,6 @@ html {
       border-color: #282828;
     }
   }
-}
-
-.dropdown {
-  display: flex;
-  /* flex-direction: column; */
-  align-items: center;
-  & button, label{
-    width: fit-content;
-  }
-  top: 11rem;
-}
-
-#footer-msg {
-  border-radius: 8px;
-}
-
-button#submit{
-  border-radius: 8px;
-  margin: 0.5rem;
-  color: white;
-}
-#initials {
-  width: 8rem;
 }
 
 /* CARD HEADER */
@@ -229,12 +209,36 @@ button#submit{
 } */
 
 /* ---- SU START---- */
-.hide {
+/* .hide {
   opacity: 0;
-  /* transition: opacity 1s ease-in-out; */
+  transition: opacity 1s ease-in-out;
   &.visible {
     opacity: 1;
+  } 
+} */
+
+.dropdown {
+  & button, label{
+    width: fit-content;
+    min-width: 10.5rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
   }
+  top: 11.3rem;
+}
+
+#footer-msg {
+  border-radius: 8px;
+}
+
+button#submit{
+  border-radius: 8px;
+  margin: 0.5rem;
+  color: white;
+}
+
+#initials {
+  width: 8rem;
 }
 
 .fade-in {
