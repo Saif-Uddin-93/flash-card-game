@@ -396,6 +396,10 @@ button#submit{
   display: none;
 }
 
+#flashcard-trophy {
+  visibility: hidden;
+}
+
 @media(width < 431px){
   #main {
     position: relative;
@@ -404,6 +408,13 @@ button#submit{
 
   .navbar {
     margin-bottom: 5rem;
+  }
+
+  #flashcard-trophy {
+    position: absolute;
+    top: 3rem;
+    left: 0.1rem;
+    z-index: 11;
   }
 
   #arrows {
