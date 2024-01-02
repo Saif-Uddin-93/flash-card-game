@@ -724,10 +724,15 @@ $(document).ready(function() {
   $('#hiddenInput').on('input', function() {
       const typedText = $(this).val();
             
-      // console.log('Typed text:', typedText);
-    // Listen for keyboard press only when game started
-    if(gameStarted){
-      handleKeyPress(typedText.toUpperCase());
+     // Check if a single letter is entered (assuming that's the expected behavior)
+    if (typedText.length === 1) {
+      // Listen for keyboard press only when the game has started
+      if (gameStarted) {
+          handleKeyPress(typedText.toUpperCase());
+      }
+
+      // Clear the input field after processing the entered letter
+      $(this).val('');
     }
   });
 
