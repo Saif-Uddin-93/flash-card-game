@@ -362,6 +362,10 @@ body {
   cursor: pointer;
 }
 
+.seeting-apperance {
+  flex-direction: column;
+}
+
 /* CARD HEADER - Saif */
 .bar {
   height: .75rem;
