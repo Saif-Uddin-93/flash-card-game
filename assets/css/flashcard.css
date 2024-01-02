@@ -495,3 +495,13 @@ button.cat-active {
     display: block;
   }
 }
+
+@media (max-width: 375px) {
+  .flashcard {
+    height: 350px;
+  }
+
+  .categories-pick {
+    top: 8px;
+  }
+}
