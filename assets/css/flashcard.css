@@ -103,19 +103,19 @@
   border-radius: 8px;
 }
 
-.linking-back {
+.image-index {
   position: absolute;
   bottom: 15px;
   width: 100%;
 }
 
-.pexels-logo {  
+/* .pexels-logo {  
   height: 27px;
   background: rgb(0, 0, 0, 0.25);
   padding-right: 5px;
   border-radius: 2.5px;
   border: 1px solid #05a081;
-}
+} */
 
 .flashcard-number{
   color: var(--image-index-number);
@@ -123,6 +123,7 @@
   font-size: .9rem;
   border-radius: 2.5px;
   padding: 5px 8px;
+  margin-right: 10px;
 }
 
 .categories-container {
@@ -244,12 +245,19 @@ button.cat-active {
   box-shadow: var(--cat-start-shadow);
   font-weight: 700;
   letter-spacing: 2px;
+  border: transparent;
 }
 
 .start-button:hover {
   cursor: pointer;
   color: var(--cat-start-hover-text);
   background: var(--cat-start-hover);  
+}
+
+.start-disabled:hover {
+  cursor: not-allowed;
+  color: var(--cat-start-btn-disabled);
+  text-shadow: none; 
 }
 
 .categories-ring {
@@ -404,6 +412,34 @@ button.cat-active {
   background-color: var(--bar-bg-int);  
   position: relative;
   box-shadow: var(--bar-box-shadow-in)
+}
+
+.finalMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.achievementUnlocked {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.giphy {
+  display: flex;
+  justify-content: center;
+}
+
+.giphy img{
+  width: 250px;
+  height: auto;
+}
+
+.social-media-icons i {
+  font-size: 2rem;
+  margin: 0 8px;
 }
 
 @media (max-width: 768px) { 

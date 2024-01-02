@@ -90,9 +90,12 @@
                     </div>
                   </div>                 
 
-                  <!-- acknowledge -->
-                  <div class="linking-back">
-                    <div class="row justify-content-between">                      
+                  <!-- Image index -->
+                  <div class="image-index">
+                    <div class="d-flex justify-content-end">
+                      <span id="flashcard-number" class="flashcard-number"></span>
+                    </div>
+                    <!-- <div class="row justify-content-between">                      
                       <div class="col col-md-3">
                         <a href="https://www.pexels.com" target="_blank" title="Photos provided by Pexels">
                         <img class="pexels-logo" src="https://images.pexels.com/lib/api/pexels-white.png" />
@@ -101,7 +104,7 @@
                       <div class="col col-md-3"> 
                         <span id="flashcard-number" class="flashcard-number"></span>                       
                       </div>
-                    </div>              
+                    </div>               -->
                   </div> 
 
                   <!-- end game message -->
@@ -115,7 +118,7 @@
                   </div>
 
                   <!-- messages middle screen -->
-                  <div id="flashcard-msg" class="flashcard-msg">
+                  <div id="flashcard-msg" class="flashcard-msg">                    
                   </div>
 
                   <!-- messages bottom screen -->
@@ -157,9 +160,10 @@
                         </button>
                       </div>
 
-                      <div class="start-button" id="flashcard-start">
-                        <p>START</p>
-                      </div>
+                      <!-- Start button -->
+                      <button class="start-button" id="flashcard-start">
+                        START
+                      </button>
                       
                   </div>   
                 </div>
@@ -211,20 +215,7 @@
                                 </label>
                               </div> 
                             </div>
-                          </div>
-                            <!-- <p class="settings-header">Apperance</p>
-                            <div class="form-check form-check-inline seeting-apperance">
-                                <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-light" checked>
-                                <label class="form-check-label" for="seeting-apperance"> 
-                                Light
-                                </label>
-                            </div> -->
-                            <!-- <div class="form-check form-check-inline seeting-apperance">
-                                <input class="form-check-input" type="radio" name="seeting-apperance" id="setting-appearance-dark">
-                                <label class="form-check-label" for="seeting-apperance">
-                                Dark
-                                </label>
-                            </div>  -->
+                          </div>                          
                         </div>                        
                         <div class="setting-container">
                             <p class="settings-header">Local Storage</p>
@@ -259,6 +250,7 @@
     </div>
   </div>  
 
+  <!-- Reset game settings -->
   <div class="modal fade" id="restoreModalToggle" aria-hidden="true" aria-labelledby="restoreModalToggleLabel" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -277,8 +269,53 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  
 
+  <!-- Final message -->
+  <div class="modal fade" id="finalMessage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">           
+            <div class="modal-header d-flex justify-content-center">
+                <h3 class="modal-title">Achievement Adventure Completed!</h3>               
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                  <div class="col achievementUnlocked">
+                      <h4>Congratulations, Word Wizard!</h4>
+                      <p>You've mastered all categories in the Flashcard game!</p>
+                      <p>Get ready for exciting future updates and adventures!</p>
+                      <p>Follow us on social media for exclusive updates:</p>
+                      <div class="social-media-icons">
+                          <a href="https://twitter.com/MartinTatarski" target="_blank"><i class="fab fa-twitter icon-twitter"></i></a>
+                          
+                          <a href="https://www.linkedin.com/in/marcin-tatarski/" target="_blank"><i class="fab fa-linkedin icon-linkedin"></i></a>                          
+                      </div>
+                      <div class="additional-info">
+                        <p>Thank you for your dedication and skill in mastering the Flashcard game.</p>
+                        <p>We appreciate your support and hope you continue enjoying the experience!</p>
+                      </div>
+                      
+                  </div>
+                  <div class="col giphy">
+                      <img id="giphy" src="" alt="">
+                  </div>
+              </div>
+          </div>          
+          <div class="modal-body resetInstructions">
+            <h4>Game Reset Instructions</h4>
+            <p>If you wish to start the game anew:</p>
+            <ol>
+                <li>Go to the settings ⚙️ in the game.</li>
+                <li>Find the reset option under <strong>Local Storage</strong>.</li>
+                <li>Click on the <strong>Reset</strong> option to reset your game progress.</li>
+            </ol>
+          </div>            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="restart-game">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>

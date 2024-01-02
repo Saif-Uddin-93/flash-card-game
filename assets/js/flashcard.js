@@ -5,7 +5,7 @@ $(document).ready(function() {
     "sound": true,
     "categoryDone": [],           
     // "categoryDone": ['fruits', 'clothing'],
-    // "categoryDone": ['animals', 'fruits', 'clothing', 'sports', 'countries', 'professions'],
+    // "categoryDone": ['fruits', 'clothing', 'sports', 'countries', 'professions'],
     "notification": true,
     "maxScore": 0,
   }
@@ -21,13 +21,13 @@ $(document).ready(function() {
   }
   
   // Initialize game variables
-  const categories = words; // categories from the 'assets/js/words.js' file
-  let wordsList = [];
-  let currentWordIndex = 0;
-  let currentWord = "";  
-  let currentHint = "";
-  let guessedLetters = [];
-  let score = 0;  
+  const categories = words; // categories stored in 'assets/js/words.js' file
+  let wordsList = []; // array of words from choosen category
+  let currentWordIndex = 0; // word index in specified category
+  let currentWord = ""; // current word
+  let currentHint = ""; // current image hint
+  let guessedLetters = []; // guessed letters 
+  let score = 0; // Current game score
   let gameStarted = false; // Flag to check if the game has started  
   let showMessages = true; // Flag to show messages
   let incorrectGuessCounter = 0; // Counter for incorrect guesses
@@ -39,9 +39,9 @@ $(document).ready(function() {
   const updateLocalStorage = (prop, change) => {   
     // const settingsObject = flashcardSettings[0];  
     
-    // If category is updated
+    // If prop is category is updated
     if(prop === 'categoryDone'){
-      flashcardSettings[prop].push(change);      
+      flashcardSettings[prop].push(change); // add done category to the list     
     }
 
     // Ensure flashcardSettings is an object
@@ -52,17 +52,16 @@ $(document).ready(function() {
     return localStorage.setItem('flashcard', JSON.stringify(flashcardSettings));
   }
 
+  // Function to update game settings
   const updateSettings = () => {
-    // const sound = flashcardSettings['sound'];
-    
     const notification = flashcardSettings['notification'];
-    showMessages = notification;
+    showMessages = notification; // reset messages flag
         
     const theme = flashcardSettings['theme'];        
     document.documentElement.setAttribute('data-theme', theme);
   }
   
-  // Refresh the flashcard settings
+  // Update the game settings
   updateSettings();
 
   // Helper function to deactive completed categories
@@ -81,9 +80,7 @@ $(document).ready(function() {
     // Find the next available category
     /**
      * - find the first elements with a class of 'category' 
-     * - and first element that not include style attribute 
-     * contains the substring 'disabled'
-     * 
+     * - first element that not include "disabled" attribute   
      */    
     const nextCategory = $('.category[data-cat]:not([disabled]):first');
  
@@ -97,23 +94,17 @@ $(document).ready(function() {
     }    
   };
 
-  const showFinalMessage = () => {
-    console.log('Congtaz you wont all categories!!');  
+  const showFinalMessage = () => {   
     console.log(`   
     - prep for slides
-    - if user won all categories show popup and ask if he want geset the game and score
     - add sound
+    - if user won all categories show popup and ask if he want geset the game and score    
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
-
         
-    - rewrite middle part and move absolute to one div for middle part and bottom
-    - Add message to inform user how to reset game    
-        
+    - rewrite middle part and move absolute to one div for middle part and bottom  
     - add function to setTimet content    
-    - create favicon for the app    
-        
-    `)
-    
+    - create favicon for the app            
+    `)    
   }
 
   // Check the localStorage if user alredy played any of the games
@@ -133,16 +124,17 @@ $(document).ready(function() {
       
       // Check if all categories are completed           
       if(categories.length === completedCategories.length){
-        $('#flashcard-start').css({
-          'pointer-events': 'none',
-          'opacity': '0.5'
+        $('#flashcard-start')
+        .prop('disabled', true)
+        .addClass('start-disabled')
+        .css({      
+          'filter': 'blur(1.5px)',  
         });
-        showFinalMessage();
       }
     }
   }
 
-  // Disable completed categories
+  // Check all catetegories and disable completed
   categoryDone();
   
   // Function to initialize or reset the game
@@ -179,19 +171,44 @@ $(document).ready(function() {
       // Hide the spinner once the fetch is complete, whether successful or not
       $('#loading-container').hide();
     
+      // Show progress for the current category
       progressBar(wordsList.length);
 
       // Reset the flashcard variables for the new image
-      guessedLetters = [];         
+      guessedLetters = []; // Reset container for the guessed word        
       updateWordDisplay(); // Update the display
       updateScoreDisplay(); // Update the score
     });
   }
 
-  // Function to track progrss of completed words
+  // Function to get random image from Giphy API
+  const getGiphyImage = () => {
+
+    const apiKey = '';
+    const url = `https://api.giphy.com/v1/gifs/search?q=wizard&api_key=${apiKey}
+    `;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {             
+      shuffleArray(data.data); // randomize fetched data
+
+      // Crate the url with random image 
+      $('#giphy').attr('src', data.data[0].images.fixed_height.url) ;     
+    })
+    .catch(error => console.error('Error fetching image:', error))
+  }
+  
+  // Function to track progress of completed words
   const progressBar = (numOfImages) => {
+
+    // Caluculate progress bar values for each image
     const progress = ((currentWordIndex + 1) / numOfImages) * 100;
+
+    // Display progress bar
     $('#progress').css('width', `${progress}%`); 
+
+    // Display divider for the progress bar
     if(currentWordIndex + 1 >= numOfImages){
       $('#progress').css('border-right', 'none');
     }else {
@@ -229,25 +246,26 @@ $(document).ready(function() {
     $('#flashcard-points').text(`Score: ${score}`);
   }
 
-  // Function to show the message on the center of the screen
+  // Function to show the message in the center of the screen
   const messageDisplay = (str, id, time) => {
     const msg = $(`#${id}`);
 
     msg.text(str);
     msg.show();
 
-    // Hide the message after 1sec
+    // Hide the message after x sec
     setTimeout(() => {      
       msg.hide();
       msg.text('').removeAttr('style');
     }, time);
   }
 
+  // Show the message in the main screen
   if(showMessages) {
     messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000);
   }
   
-  // Function to blink background screen
+  // Function to 'blink' background in red on wrong answer
   const blinkScreen= (classType) => {
     const blink = $('#flashcard-blink');
     blink.addClass(classType);
@@ -258,7 +276,7 @@ $(document).ready(function() {
     }, 1000);
   }
 
-  // Hearts display
+  // Function to display hearts 
   const heartDisplay = (num, opacity) => {
     const heart = $(`#flashcard-heart${num}`);
     heart.css('opacity', opacity); 
@@ -285,6 +303,7 @@ $(document).ready(function() {
     }
   }
 
+  // Update max score to the user
   maxScoreDisplay();
  
   // Function to handle key presses
@@ -317,13 +336,10 @@ $(document).ready(function() {
             $('#flashcard-number').text(`${totalWords + 1}/${wordsList.length}`);
           }
 
-          updateScoreDisplay(); // Update the score display          
-          // maxScoreDisplay();  // Update the score max user score
+          updateScoreDisplay(); // Update the score display       
           handleNextWordClick(); // Move to the next word
-        } else {
-          // Guessed a correct letter
-          // messageDisplay('✔', 'green');                 
-        }
+        } 
+        
       } else {        
         // If letter is not in the currentWord  
         blinkScreen('blink-error');       
@@ -334,6 +350,7 @@ $(document).ready(function() {
         // Remove heart with each incorrect guess
         heartDisplay(incorrectGuessCounter, 0);
 
+        // Show the message to the user when one life/heart left
         if(showMessages && incorrectGuessCounter === 2) {
           messageDisplay('❤️ One live left!', 'flashcard-msg-bottom', 5000);
         }
@@ -341,11 +358,10 @@ $(document).ready(function() {
         // Check if user has made three incorrect guesses
         if (incorrectGuessCounter >= 3) {
 
-          // Set the image 50% opacity to show the message
-          // $('#find-image').css('opacity', 0.5);
+          // Set the last guessed image to 35% opacity before showing the message
           imageDisplay(0.35);
 
-          // User lost
+          // User lost meaasge
           messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000);
 
           setTimeout(() => {            
@@ -366,17 +382,16 @@ $(document).ready(function() {
       initializeGame();
     } else {
 
-      // Set the image 50% opacity to show the message
-      // $('#find-image').css('opacity', 0.5);
+      // Set the last guessed image to 35% opacity before showing the message    
       imageDisplay(0.35);
+      
+      // Get the user's choosen category
+      const activeCategory = ($('.cat-active').data('cat')).toUpperCase();
 
-      // User won
-      messageDisplay('Congratulations! You won!', 'flashcard-msg', 3000);
+      // User won message with current completed category
+      messageDisplay(`Congratulations! You\'ve unlocked the ${activeCategory} category`, 'flashcard-msg', 3000);
 
-      maxScoreDisplay();  // Update the score max user score
-      // Current category
-      // const activeCategory =  $('.cat-active').data('cat');
-      // console.log(activeCategory);
+      maxScoreDisplay();  // Update the score max user score      
      
       // User has finished the game
       setTimeout(()=>{
@@ -386,64 +401,83 @@ $(document).ready(function() {
   }
 
   // Function to show the end game screen
-  function showEndGameScreen(totalScore, win) {
-    // Display total score and message
-    // const message = win ? 'Congratulations! You won!' : 'Sorry, you lost. Better luck next time.';
-
+  function showEndGameScreen(totalScore, win) {    
     if(win){
+
+      // Find active category
+      const activeCategory =  $('.cat-active').data('cat');
+
+      // Update localStore with completed categories
+      updateLocalStorage('categoryDone', activeCategory);
+
+      // Create new button
       const button = $('<button>');
-      button.addClass('btn btn-modal').attr("id", "continue-game").text('Continue');
-      $('#end-game-buttons').append(button);   
-      
-      // Event listener to continue the flashcard game on user win      
-      $('#continue-game').on('click', function continueGame() {
 
-        // Find active category
-        const activeCategory =  $('.cat-active').data('cat');
-        
-        // Update localStore with completed categories
-        updateLocalStorage('categoryDone', activeCategory);
-        
-        // Update hearts opacity
-        updateHeartDisplay();
-        // const totalHearts = $('.flashcard-hears').length;
-        // $('.flashcard-hears').each(function(index, _) {
-        //   let reversedIndex = totalHearts - index;          
-        //   heartDisplay(reversedIndex, 1);
-        // });
-        
-        // Update image opacity
-        imageDisplay(1);
+      // If youer completed all categories 
+      if(categories.length === flashcardSettings.categoryDone.length){
 
-        // Disable completed categories
-        categoryDone();
+        // Clear any elements in the container
+        $('#end-game-buttons').empty();
 
-        // Reset the elements state        
-        $('#flashcard-outer').show(); // Show flashcard category menu        
-        $('#end-game-container').hide(); // Show the end game screen
-        // $('#guess-word').css('visibility', 'hidden'); // show the generated word on the screen
-        $('#guess-word').empty(); // Remove any existing word
-        $('#continue-game').remove(); // Remove
-        $('#end-game-message').text('');
-        incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
-        score = 0;  
+        // Create final message button
+        button.attr('type', 'button')
+        .addClass('btn btn-modal')        
+        .attr('data-bs-toggle', 'modal')
+        .attr('data-bs-target', '#finalMessage')       
+        .text('Finish Game');
+
+        // Get random image from Giphy API
+        getGiphyImage();
+
+        // Append button to DOM
+        $('#end-game-buttons').append(button);   
+
+      }else{    
         
-        if(showMessages) {
-          messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000);
-        }
-        // Remove event imediately after is called 
-        // $(this).off('click', continueGame);
-      });
+        // If user still have some categories uncompleted
+        button.addClass('btn btn-modal').attr("id", "continue-game").text('Continue');
+        $('#end-game-buttons').append(button);   
+
+        // Event listener to continue the flashcard game on user win      
+        $('#continue-game').on('click', function continueGame() {
+          
+          // Update hearts opacity
+          updateHeartDisplay();      
+          
+          // Update image opacity
+          imageDisplay(1);
+  
+          // Disable completed categories
+          categoryDone();
+  
+          // Reset the elements state        
+          $('#flashcard-outer').show(); // Show flashcard category menu        
+          $('#end-game-container').hide(); // Show the end game screen       
+          $('#guess-word').empty(); // Remove any existing word
+          $('#continue-game').remove(); // Remove
+          $('#end-game-message').text('');
+          incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
+          score = 0;  // Rest the score
+          
+          // Show user message how to reset the settings
+          if(showMessages) {
+            messageDisplay('Reset category in ⚙️ settings', 'flashcard-msg-bottom', 4000);
+          }
+
+        });
+      }      
     }
 
-    // $('#end-game-message').text(`${message} Total Score: ${totalScore} points`);
+    // Display score after win or loss game
     $('#end-game-message').text(`Total Score: ${totalScore} points`);
 
+    // Hide container of guessed words
     $('#guess-word').css('visibility', 'hidden');
 
     // Disable key press   
     gameStarted = false;
 
+    // Show user message how to exit the game
     if(showMessages) {
       messageDisplay('✖ to Exit the Game', 'flashcard-msg-bottom', 4000);
     }
@@ -481,30 +515,27 @@ $(document).ready(function() {
       },
     })
     .then(response => response.json())
-    .then(data => { 
-      // console.log(data)      
+    .then(data => {             
       return data;
     })
     .catch(error => console.error('Error fetching image:', error))
   }
 
-   // Event listener to flip the card on 'HINT' click
-   $('#flashcard-hint').on('click', function(){
+    // Event listener to flip the card on 'HINT' click
+    $('#flashcard-hint').on('click', function(){
 
-    $('.flashcard-inner').addClass('flashcard-flip');
-    
-    // Remove the 'flashcard-flip' and reverse flashcard back to front
-    setTimeout(function(){
-      $('.flashcard-inner').removeClass('flashcard-flip');
-    }, 2000);
-
+      $('.flashcard-inner').addClass('flashcard-flip');
+      
+      // Remove the 'flashcard-flip' and reverse flashcard back to front
+      setTimeout(function(){
+        $('.flashcard-inner').removeClass('flashcard-flip');
+      }, 2000);
   });
 
   // Event listener to apply/remove highlighting for icons on the start screen
   $('#categories').on('click', '.category', function() {
-    $('.category').removeClass('cat-active'); // Removes any prev acvtive icon
+    $('.category').removeClass('cat-active'); // Removes any prev active icon
     const category = $(this);
-    // const category = $(this).parent();
     
     // Apply new active icon
     if(!category.hasClass('cat-active')) category.addClass('cat-active');
@@ -514,8 +545,8 @@ $(document).ready(function() {
   // Event listener to hide the start screen and fetch the image
   $('#flashcard-start').on('click', function() {
     
-    if(showMessages) {
-      // messageDisplay('❤️ Start with 3 lives', 'flashcard-msg-bottom', 5000);
+    // Show user how to play the game
+    if(showMessages) {      
       messageDisplay('⌨️ Use the keyboard to input your answers', 'flashcard-msg-bottom', 5000);
     }
     
@@ -532,12 +563,11 @@ $(document).ready(function() {
     $('#flashcard-outer').hide();
 
     // Show the spinner when fetching the image
-    $('#loading-container').show(); // display 'block'
+    $('#loading-container').show(); 
 
     // Assign the list of words to global words list
     wordsList = getCategory(activeCategory);  
-    
-    // progressBar(wordsList.length)
+   
     //Total number of words
     $('#flashcard-number').text(`1/${wordsList.length}`);
     
@@ -545,7 +575,9 @@ $(document).ready(function() {
    
     gameStarted = true; // Start the game
 
-    // // Get the current word
+
+    /* TEMP VARIABLES FOR TESTING */
+    
     // currentWord = wordsList[currentWordIndex].word.toUpperCase();
     // //  TEMP code to mimic fetch
     // console.log(currentWord)
@@ -562,6 +594,7 @@ $(document).ready(function() {
     //   $('#loading-container').hide();
     // }, 1000)
   
+    /* END TEMP VARIABLES */
 
     $('#flashcard-outer').hide();
     
@@ -578,13 +611,12 @@ $(document).ready(function() {
  
   // Restart the flashcard game 
   $('#reset-game').on('click', function() {
-    // Reload the page with cleared leaderboard
+    // Reload the page 
     window.location.reload();
   }); 
 
   // Event listeners for exit the game
-  $('#flashcard-exit').on('click', function() {    
-    // showEndGameScreen(score, false);
+  $('#flashcard-exit').on('click', function() {        
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
     $('#guess-word').css('visibility', 'hidden');
@@ -601,6 +633,7 @@ $(document).ready(function() {
     const soundOn = $('#setting-sound').prop('checked');
     const noteOn = $('#setting-note').prop('checked');
     
+    // Get all current settings
     const changes = {
       "theme": appearanceDark ? "dark" : "light",
       "sound": soundOn,
@@ -652,8 +685,12 @@ $(document).ready(function() {
     $('#setting-sound').prop('checked', true);
     $('#setting-note').prop('checked', true);
 
+    window.location.reload();  
+  });
+
+  // Event listener to listen to user closing the final massage (completed all categories) window
+  $('#restart-game').on('click', function() {
     window.location.reload();
-  
   });
 
 });
