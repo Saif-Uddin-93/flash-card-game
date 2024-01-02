@@ -51,6 +51,16 @@ html {
   }
 }
 
+.dropdown {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  & button, label{
+    width: fit-content;
+  }
+  top: 11rem;
+}
+
 #footer-msg {
   border-radius: 8px;
 }
