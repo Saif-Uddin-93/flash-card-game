@@ -1,6 +1,9 @@
 // SU: Suggested method for getting highscores
-
 const htmlElement = (selector) => document.querySelector(selector);
+document.addEventListener('DOMContentLoaded', function () {
+    const loadTheme = localStorage.getItem("theme")===null ? "light" : localStorage.getItem("theme");
+    htmlElement("html").setAttribute("data-theme",loadTheme);
+ });
 const highscoreElement = htmlElement('#highscores');
 let highScore;
 if(localStorage.getItem("q-highScore")===null){

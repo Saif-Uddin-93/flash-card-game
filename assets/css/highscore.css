@@ -47,34 +47,42 @@ button {
 
 html {
   &[data-theme='light']{
+    background-color: #F8F9FA;
     a {
       color: #563d7c;
+      color: #0d6efd;
       &:hover {
         color: #8570a5;
+        color: #3e8bff;
       }
     }
     button {
       background-color: #563d7c;
+      background-color: #0d6efd;
       color: white;
     }
     li:nth-child(odd) {
       background-color: #f3edfc;
     }
   }
-
+  
   &[data-theme='dark']{
+    background-color: #474747;
     a {
       color: #563d7c;
+      color: #282828;
       &:hover {
         color: #8570a5;
+        color: #353535;
       }
     }
     button {
       background-color: #563d7c;
+      background-color: #282828;
       color: white;
     }
     li:nth-child(odd) {
-      background-color: #f3edfc;
+      background-color: #515151;
     }
   }
 }
