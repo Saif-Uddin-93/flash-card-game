@@ -192,13 +192,13 @@ $(document).ready(function() {
     .then(response => response.json())
     .then(data => {             
       shuffleArray(data.data); // randomize fetched data
-
-      // Crate the url with random image 
-      $('#giphy').attr('src', data.data[0].images.fixed_height.url) ;     
+      
+      // Crate the url with first random image 
+      $('#giphy').attr('src', data.data[0].images.fixed_height.url).attr('alt', data.data[0].title);     
     })
     .catch(error => console.error('Error fetching image:', error))
   }
-  
+   
   // Function to track progress of completed words
   const progressBar = (numOfImages) => {
 

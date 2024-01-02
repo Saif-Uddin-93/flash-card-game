@@ -85,6 +85,10 @@
  --loading-text: #000000;
  --game-bg: #DBEDFF;
  --game-text: #000000;
+
+ /* social media */
+ --social-media-bg: #205d85;
+ --social-media-hover: #3498db;
 }
 
 /* LIGT MODE */
@@ -171,6 +175,10 @@ html[data-theme='light'] {
   --loading-text: #000000;
   --game-bg: #DBEDFF;
   --game-text: #000000;
+
+   /* social media */
+  --social-media-bg: #205d85;
+  --social-media-hover: #3498db;
 }
 
 /* DARK MODE */
@@ -203,7 +211,7 @@ html[data-theme='dark'] {
 
   --btn-text: #ffffff;
   --btn-bg: #111111;
-  --btn-hover: rgb(34, 34, 34);     
+  --btn-hover: #222222;     
 
   /* progress bar */
   --bar-bg-out: #484850;
@@ -251,6 +259,10 @@ html[data-theme='dark'] {
   --loading-text: #D3D3D3;
   --game-bg: #333333;
   --game-text: #D3D3D3;
+
+   /* social media */
+  --social-media-bg: #111111;
+  --social-media-hover: #222222;  
 }
 
 /* RESET */
