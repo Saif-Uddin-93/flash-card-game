@@ -20,6 +20,9 @@ html {
     #dropdownMenuButton {
       background-color: #8cbaff;
     }
+    .dropdown-item{
+      --bs-dropdown-link-hover-bg: rgb(224, 238, 249);
+    }
   }
   &[data-theme='dark']{
     .card, .options, .navbar, .mode-container{
@@ -50,6 +53,13 @@ html {
     button#submit{
       background-color: #282828;
       border-color: #282828;
+    }
+    .dropdown-menu.show{
+      background-color: #6c757d;
+    }
+    .dropdown-item{
+      color: white !important;
+      --bs-dropdown-link-hover-bg: #565E64;
     }
   }
 }
