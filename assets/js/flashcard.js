@@ -265,7 +265,7 @@ $(document).ready(function() {
     messageDisplay('🏆 Your Highest Score', 'flashcard-msg-bottom', 3000);
   }
   
-  // Function to 'blink' background in red on wrong answer
+  // Function to 'blink' background in red on wrong answers
   const blinkScreen= (classType) => {
     const blink = $('#flashcard-blink');
     blink.addClass(classType);
@@ -282,7 +282,7 @@ $(document).ready(function() {
     heart.css('opacity', opacity); 
   }
 
-  // Function to restoring the display of the hearts
+  // Function to restoring the hearts display
   const updateHeartDisplay = () => {
     const totalHearts = $('.flashcard-hears').length;
     $('.flashcard-hears').each(function(index, _) {
@@ -308,7 +308,6 @@ $(document).ready(function() {
  
   // Function to handle key presses
   const handleKeyPress = (e) => {
-    // const pressedKey = e.key.toUpperCase();
     const pressedKey = e;
     
     // Check if the pressed key is a letter and hasn't been guessed before
@@ -475,6 +474,9 @@ $(document).ready(function() {
     // Hide container of guessed words
     $('#guess-word').css('visibility', 'hidden');
 
+    // Hide keyboard icon for smaller screens
+    $('.keyboard').removeClass('keyboard-visible');
+
     // Disable key press   
     gameStarted = false;
 
@@ -624,8 +626,10 @@ $(document).ready(function() {
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
     $('#guess-word').css('visibility', 'hidden');
-    updateHeartDisplay();
-    score = 0;
+
+    updateHeartDisplay(); // Reset the hearts display
+    score = 0; // Reset the score    
+    $('.keyboard').removeClass('keyboard-visible'); // Hide keyboard icon for smaller screens
   });
 
   // Event listener for user settings
@@ -697,37 +701,20 @@ $(document).ready(function() {
     window.location.reload();
   });
 
-  // // Event listener to trigger the off screen keyboard on mobiles  
-  // $('#keyboard').on('click', function() {
-  //   // Checks whether the selected element is currently focused
-  //   const isInputFocused = $('#hiddenInput').is(':focus'); 
 
-  //   if(isInputFocused) {
-  //     // If we press button and the input is focused, blur it to hide the keyboard
-  //     $('#hiddenInput').blur();
-  //     $('#keyboard').removeClass('hide-keyboard');
-  //   }else{
-  //     // If we press button and the input is not focused, focus it to show the keyboard
-  //     $('#hiddenInput').focus();
-  //     $('#keyboard').addClass('hide-keyboard');
-  //   }
-  // });
-
+  // Event listener to trigger off screen keyboard on small screens
   $('#keyboard').on('click', function() {
     const hiddenInput = $('#hiddenInput');
     
     // Show the input field and focus on it
-    hiddenInput.show().focus();
-    
-    // Add the class to hide the keyboard icon
-    // $('#keyboard').addClass('hide-keyboard');
+    hiddenInput.show().focus();    
   });
 
   // Event listener to detect when the user types in the input field
   $('#hiddenInput').on('input', function() {
       const typedText = $(this).val();
             
-     // Check if a single letter is entered (assuming that's the expected behavior)
+     // Check if a single letter is entered 
     if (typedText.length === 1) {
       // Listen for keyboard press only when the game has started
       if (gameStarted) {
