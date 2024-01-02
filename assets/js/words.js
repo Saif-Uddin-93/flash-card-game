@@ -1,7 +1,7 @@
 const words = [
     {
       "animals": [
-        { "word": "Elephant", "hint": "Largest land mammal with long tusks" },
+        // { "word": "Elephant", "hint": "Largest land mammal with long tusks" },
         { "word": "Tiger", "hint": "Striped big cat known for its strength" },
         // { "word": "Giraffe", "hint": "Tall, long-necked African herbivore" },
         // { "word": "Penguin", "hint": "Flightless bird found in the Southern Hemisphere" },

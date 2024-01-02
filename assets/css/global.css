@@ -71,6 +71,7 @@
  --cat-start-btn-bg: #FF6F61;
  --cat-start-btn-text: #000;
  --cat-start-btn-border: #1b4e70;
+ --cat-start-btn-disabled: #000;
  --cat-start-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
  --cat-start-hover-text: #F8F9FA;
  --cat-start-hover: #FF6F61;
@@ -156,6 +157,7 @@ html[data-theme='light'] {
   --cat-start-btn-bg: #FF6F61;
   --cat-start-btn-text: #000;
   --cat-start-btn-border: #1b4e70;
+  --cat-start-btn-disabled: #000;
   --cat-start-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
   --cat-start-hover-text: #F8F9FA;
   --cat-start-hover: #FF6F61;
@@ -235,6 +237,7 @@ html[data-theme='dark'] {
   --cat-start-btn-bg: crimson;
   --cat-start-btn-text: #111111;
   --cat-start-btn-border: #1b4e70;
+  --cat-start-btn-disabled: #111111;
   --cat-start-shadow: 0 0 15px rgba(220, 10, 10, 0.5);
   --cat-start-hover-text: #F8F9FA;
   --cat-start-hover: crimson;
