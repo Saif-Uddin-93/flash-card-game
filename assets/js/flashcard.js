@@ -238,7 +238,7 @@ $(document).ready(function() {
     }
 
     // show the generated word on the screen
-    $('.guess-word').css('visibility', 'visible');
+    $('.guess-word').css('visibility', 'visible');    
   }
 
   // Function to update the score display on the screen
@@ -551,6 +551,9 @@ $(document).ready(function() {
       messageDisplay('⌨️ Use the keyboard to input your answers', 'flashcard-msg-bottom', 5000);
     }
     
+    // Show the keyboard icon on tablets and smaller screens
+    $('.keyboard').addClass('keyboard-visible');
+
     // Reset the for each game
     incorrectGuessCounter = 0;
 
