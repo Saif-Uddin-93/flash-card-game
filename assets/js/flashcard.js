@@ -366,6 +366,9 @@ $(document).ready(function() {
           // Set the last guessed image to 35% opacity before showing the message
           imageDisplay(0.35);
 
+          // Disable key press   
+          gameStarted = false;
+
           // User lost meaasge
           messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000);
 
@@ -389,6 +392,9 @@ $(document).ready(function() {
 
       // Set the last guessed image to 35% opacity before showing the message    
       imageDisplay(0.35);
+
+      // Disable key press   
+      gameStarted = false;
       
       // Get the user's choosen category
       const activeCategory = ($('.cat-active').data('cat')).toUpperCase();
@@ -406,7 +412,8 @@ $(document).ready(function() {
   }
 
   // Function to show the end game screen
-  function showEndGameScreen(totalScore, win) {    
+  function showEndGameScreen(totalScore, win) {         
+
     if(win){
 
       // Find active category
@@ -414,18 +421,18 @@ $(document).ready(function() {
 
       // Update localStore with completed categories
       updateLocalStorage('categoryDone', activeCategory);
-
-      // Create new button
-      const button = $('<button>');
-
+      
       // If youer completed all categories 
       if(categories.length === flashcardSettings.categoryDone.length){
+
+        // Create new button
+        const finalBtn = $('<button>');
 
         // Clear any elements in the container
         $('#end-game-buttons').empty();
 
         // Create final message button
-        button.attr('type', 'button')
+        finalBtn.attr('type', 'button')
         .addClass('btn btn-modal')        
         .attr('data-bs-toggle', 'modal')
         .attr('data-bs-target', '#finalMessage')       
@@ -437,11 +444,18 @@ $(document).ready(function() {
         // Append button to DOM
         $('#end-game-buttons').append(button);   
 
-      }else{    
+      }else{            
         
-        // If user still have some categories uncompleted
-        button.addClass('btn btn-modal').attr("id", "continue-game").text('Continue');
-        $('#end-game-buttons').append(button);   
+        // Get all buttons in the 'end-game-buttons' container
+        const isOneButton = $('#end-game-buttons').find('button');
+        
+        // Check if the 'Continue' buton alredy exist 
+        if(isOneButton.length === 1){
+          const continueBtn = $('<button>');
+          continueBtn.addClass('btn btn-modal').attr("id", "continue-game").text('Continue');
+  
+          $('#end-game-buttons').append(continueBtn);   
+        }
 
         // Event listener to continue the flashcard game on user win      
         $('#continue-game').on('click', function continueGame() {
@@ -482,8 +496,8 @@ $(document).ready(function() {
     // Hide keyboard icon for smaller screens
     $('.keyboard').removeClass('keyboard-visible');
 
-    // Disable key press   
-    gameStarted = false;
+    // // Disable key press   
+    // gameStarted = false;
 
     // Show user message how to exit the game
     if(showMessages) {
@@ -591,7 +605,7 @@ $(document).ready(function() {
     
     // currentWord = wordsList[currentWordIndex].word.toUpperCase();
     // //  TEMP code to mimic fetch
-    // console.log(currentWord)
+    console.log(currentWord)
     // console.log(wordsList)
 
     // guessedLetters = [];
@@ -662,6 +676,9 @@ $(document).ready(function() {
 
     // Refresh the flashcard settings
     updateSettings();   
+
+    // Close the modal settings on save press
+    $('#settingsModal').modal('hide');
         
   });
 
