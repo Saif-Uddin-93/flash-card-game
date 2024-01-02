@@ -99,7 +99,23 @@ const settings={
     Timer.timeoutSet(()=>{
       btn.target.classList.remove("saved");
       btn.target.textContent = "Save";  
-    }, 1)
+    }, 1);
+    
+    /* let notifications;
+    if(localStorage.getItem("flashcard")==null){
+      //console.log("notifications not set")
+      notifications = {
+        theme: "light", 
+        sound: true, 
+        categoryDone: [], 
+        notification: $("#setting-note").checked, 
+        maxScore: 0};
+      localStorage.setItem("flashcard", JSON.stringify(notifications));
+    }else{
+        //console.log(localStorage.getItem("flashcard"));
+        notifications = JSON.parse(localStorage.getItem("flashcard"));
+        notifications.notification = $("#setting-note").checked;
+    } */
 
     settings.loadSettings();
   },
@@ -112,6 +128,27 @@ const settings={
 
     $('#q-slider').attr("value", `${localStorage.getItem("q-font-size")||"40"}`);
     $('#q-a').css("font-size", `${localStorage.getItem("q-font-size")||"40"}px`);
+
+    /* if(localStorage.getItem("flashcard")==null){
+      //console.log("notifications not set")
+      notifications = {
+        theme: "light", 
+        sound: true, 
+        categoryDone: [], 
+        notification: true,//$("#setting-note").checked, 
+        maxScore: 0};
+      localStorage.setItem("flashcard", JSON.stringify(notifications));
+    }else{
+        //console.log(localStorage.getItem("flashcard"));
+        notifications = JSON.parse(localStorage.getItem("flashcard"));
+        //notifications.notification = $("#setting-note").checked;
+    }
+
+    if (notifications.notification){
+      $("#footer-msg").attr("visibility", "hidden");
+    } else {
+      $("#footer-msg").attr("visibility", "visible");
+    } */
 
     //placeholder to load current selected theme
     //(theme = loadTheme)=>{
@@ -157,6 +194,7 @@ $('#mode-level').on('click', 'button',function (){
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle("#next-btn", "visibility", "visible");
   cssStyle(".q-font", "visibility", "visible");
+  cssStyle("#flashcard-trophy", "visibility", "visible");
   //cssStyle("#q-answers", "display", "flex");
   
   changeText("#q-number", `0/${questions}`);

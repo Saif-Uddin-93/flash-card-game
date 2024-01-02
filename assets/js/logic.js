@@ -149,10 +149,10 @@ function checkAnswer(eventObj){
     Timer.timeoutSet(nextBtn, 2);
 }
 
-function loadMsg(msg, hint=false){
+function loadMsg(msg, hint=false, visibility = $("#setting-note").checked ? "visible" : "hidden") {
     msg = (typeof msg)!=="string" ? "MESSAGE!" : msg;
     changeText("#footer-msg", msg);
-    cssStyle("#footer-msg","visibility","visible");
+    cssStyle("#footer-msg", "visibility", visibility);
     if(hint)Timer.deductTime(10);
 }
 

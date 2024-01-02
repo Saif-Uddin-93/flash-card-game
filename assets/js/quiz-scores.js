@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loadTheme = localStorage.getItem("theme")===null ? "light" : localStorage.getItem("theme");
     htmlElement("html").setAttribute("data-theme",loadTheme);
  });
-const highscoreElement = htmlElement('#highscores');
+const highscoreElement = htmlElement('#highscores') ? htmlElement('#highscores') : undefined;
 let highScore;
 if(localStorage.getItem("q-highScore")===null){
     console.log("HIGHSCORE EMPTY!!!")
@@ -26,7 +26,7 @@ names = combinedArray.map(obj => names[obj.index]);
 let scoreList='';
 for (let i = 0; i<names.length; i++) scoreList += `<li>${names[i]} - ${scores[i]}</li>`;
 
-highscoreElement.innerHTML = scoreList; 
+if (highscoreElement!==undefined)highscoreElement.innerHTML = scoreList; 
 
 /* function clearScore(){
     localStorage.setItem("q-highScore", "");
