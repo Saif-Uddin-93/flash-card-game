@@ -172,6 +172,7 @@ function endScreen(){
     cssStyle(".control","display","none");
     cssStyle(".card-header","visibility","hidden");
     cssStyle(".q-font","visibility","hidden");
+    cssStyle("#footer-msg","visibility","hidden");
     $("#final-score").text(points);
 }
 
