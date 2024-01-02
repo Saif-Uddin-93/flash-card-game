@@ -308,7 +308,8 @@ $(document).ready(function() {
  
   // Function to handle key presses
   const handleKeyPress = (e) => {
-    const pressedKey = e.key.toUpperCase();
+    // const pressedKey = e.key.toUpperCase();
+    const pressedKey = e;
     
     // Check if the pressed key is a letter and hasn't been guessed before
     // If it finds a match, it returns true, otherwise it returns false.
@@ -506,7 +507,7 @@ $(document).ready(function() {
 
   // Fuction to fetch image from Pexels API
   const fetchImage = (word) => {
-    const apiKey = '';
+    const apiKey = 'ncbwYPbVrmfLFi8cYdVirrVO4Jp1yTT0X4oGZ6VmOFOM7dcz8gbpBBZb';
     const url = `https://api.pexels.com/v1/search?query=${word}&per_page=40`;
     
     return fetch(url, {
@@ -605,7 +606,7 @@ $(document).ready(function() {
 
     // Listen for keyboard press only when game started
     if(gameStarted){
-      handleKeyPress(e);
+      handleKeyPress(e.key.toUpperCase());
     }
   });
  
