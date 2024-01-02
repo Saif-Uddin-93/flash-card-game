@@ -440,7 +440,13 @@ button.cat-active {
 .social-media-icons i {
   font-size: 2rem;
   margin: 0 8px;
+  color: var(--social-media-bg);
 }
+
+.social-media-icons i:hover {
+  color: var(--social-media-hover);
+}
+
 
 @media (max-width: 768px) { 
   .w-md-100 {
