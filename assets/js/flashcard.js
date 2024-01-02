@@ -507,7 +507,7 @@ $(document).ready(function() {
 
   // Fuction to fetch image from Pexels API
   const fetchImage = (word) => {
-    const apiKey = 'ncbwYPbVrmfLFi8cYdVirrVO4Jp1yTT0X4oGZ6VmOFOM7dcz8gbpBBZb';
+    const apiKey = '';
     const url = `https://api.pexels.com/v1/search?query=${word}&per_page=40`;
     
     return fetch(url, {

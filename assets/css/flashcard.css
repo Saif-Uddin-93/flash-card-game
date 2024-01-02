@@ -267,6 +267,7 @@ button.cat-active {
 }
 
 .keyboard {
+  display: none;
   border: none;
   background: transparent;
 }
@@ -483,5 +484,9 @@ button.cat-active {
 
   .flashcard {
     height: 450px;
+  }
+
+  .categories-pick {
+    top: 35px;
   }
 }
