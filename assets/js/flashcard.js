@@ -190,7 +190,8 @@ $(document).ready(function() {
 
     fetch(url)
     .then(response => response.json())
-    .then(data => {             
+    .then(data => {   
+      console.log(data.data)          
       shuffleArray(data.data); // randomize fetched data
       
       // Crate the url with first random image 
@@ -200,10 +201,14 @@ $(document).ready(function() {
   }
    
   // Function to track progress of completed words
-  const progressBar = (numOfImages) => {
+  const progressBar = (numOfImages) => {    
 
-    // Caluculate progress bar values for each image
-    const progress = ((currentWordIndex + 1) / numOfImages) * 100;
+    let progress = 0;
+
+    if(numOfImages > 0) {
+      // Caluculate progress bar values for each image
+      progress = ((currentWordIndex + 1) / numOfImages) * 100;
+    }
 
     // Display progress bar
     $('#progress').css('width', `${progress}%`); 
@@ -626,6 +631,8 @@ $(document).ready(function() {
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
     $('#guess-word').css('visibility', 'hidden');
+
+    progressBar(0); // Reset the progress bar
 
     updateHeartDisplay(); // Reset the hearts display
     score = 0; // Reset the score    
