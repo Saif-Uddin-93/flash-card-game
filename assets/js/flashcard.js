@@ -727,7 +727,7 @@ $(document).ready(function() {
       // console.log('Typed text:', typedText);
     // Listen for keyboard press only when game started
     if(gameStarted){
-      handleKeyPress(typedText);
+      handleKeyPress(typedText.toUpperCase());
     }
   });
 
