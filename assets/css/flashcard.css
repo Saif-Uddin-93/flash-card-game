@@ -271,11 +271,11 @@ button.cat-active {
   background: transparent;
 }
 
-#hiddenInput {
+/* #hiddenInput {
   position: absolute;
   top: -9999px;
   left: -9999px;
-}
+} */
 
 /* .hide-keyboard::after { 
   position: absolute;
