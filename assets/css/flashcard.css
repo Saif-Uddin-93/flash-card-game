@@ -277,7 +277,7 @@ button.cat-active {
   left: -9999px;
 }
 
-.hide-keyboard::after { 
+/* .hide-keyboard::after { 
   position: absolute;
   content: '';
   width: 24px;
@@ -286,7 +286,7 @@ button.cat-active {
   top: 80.4%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
-}
+} */
 
 .categories-ring {
   position: absolute;
