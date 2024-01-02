@@ -34,18 +34,19 @@
      <div class="container w-50 w-md-100 text-center mt-5">
       <section class="flashcard-container">         
            <div class="row">
-               <div id="flashcard-settings" class="col col-md-2 col-xlg-2">
-
+               <div id="flashcard-settings" class="d-flex col col-md-2 col-xlg-2">
                 <!-- settings icon -->
-                <button id="f-settings" class="f-settings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
-                  <i class="fas fa-cog"></i>               
+                <button id="f-settings" class="f-settings me-auto" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                  <i class="fas fa-cog px-2"></i>               
                 </button>
                </div>              
                <div id="flashcard-trophy" class="col col-md-8 col-xlg-8 header flashcard-trophy" title="Max Score">
                 <img src="./assets/svg/trophy.svg" alt="Icon represent max user score">              
                 <span id="flashcard-trophy-num" class="flashcard-trophy-num"></span>
                </div>
-               <div id="flashcard-exit" class="col col-md-2 col-xlg-2"> ✖ </div>
+               <div id="flashcard-exit" class="d-flex col col-md-2 col-xlg-2"> 
+                <div class="ms-auto px-2"> ✖ </div>
+              </div>
            </div>          
            <div id="flashcard-bar">
               
