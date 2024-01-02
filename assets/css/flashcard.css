@@ -260,6 +260,34 @@ button.cat-active {
   text-shadow: none; 
 }
 
+.screen-keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keyboard {
+  border: none;
+  background: transparent;
+}
+
+#hiddenInput {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.hide-keyboard::after { 
+  position: absolute;
+  content: '';
+  width: 24px;
+  height: 2px;
+  background-color: red;
+  top: 80.4%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
 .categories-ring {
   position: absolute;
   border-radius: 50%;
@@ -452,4 +480,8 @@ button.cat-active {
   .w-md-100 {
     width: 100% !important;
   }   
+
+  .flashcard {
+    height: 450px;
+  }
 }
