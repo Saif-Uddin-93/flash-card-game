@@ -14,6 +14,9 @@ html {
       background-color: #0d6efd;
       border-color: #0d6efd;
     }
+    .mode-container{
+      border-bottom: 1px solid #ccc;
+    }
   }
   &[data-theme='dark']{
     .card, .options, .navbar, .mode-container{
@@ -22,6 +25,9 @@ html {
       & .card-footer {
         background-color: #282828;
       }
+    }
+    .mode-container{
+      border-bottom: 1px solid #282828;
     }
     .mode .btn{
       background-color: #282828;
@@ -139,7 +145,6 @@ button#submit{
   bottom: 0;
   background: var(--main-bg);
   border-radius: 8px;
-  border-bottom: 1px solid #ccc;
   z-index: 10;
 }
 
