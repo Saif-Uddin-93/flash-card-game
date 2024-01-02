@@ -85,7 +85,7 @@ function loadQuestion(level=difficulty(), questionNo=trackQ){
     Timer.setTime(30);
     const q=apiResult.results[questionNo].question;//questions[level][questionNo].question;
     console.log(q);
-    changeText("#q-a", q);
+    changeText("#q-a", decodeHTML(q));
     //clearAnswers();
     loadAnswers();
 }
@@ -122,8 +122,8 @@ function checkAnswer(eventObj){
         element.disabled=true;
     });
     htmlElement(`#next-btn`).disabled=true;
-    const targetText = eventObj.target.innerHTML;
-    const answer = apiResult.results[trackQ].correct_answer;
+    const targetText = decodeHTML(eventObj.target.innerHTML);
+    const answer = decodeHTML(apiResult.results[trackQ].correct_answer);
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
     points = points>$("#mode-number").val() ? $("#mode-number").val() : points;

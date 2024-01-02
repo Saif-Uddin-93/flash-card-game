@@ -51,6 +51,11 @@ html {
   }
 }
 
+#footer-msg {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
 button#submit{
   border-radius: 8px;
   margin: 0.5rem;
@@ -181,7 +186,7 @@ button#submit{
   appearance: textfield;
   -moz-appearance: textfield; /* Firefox */
   font-size: 2rem;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .mode-input::-webkit-inner-spin-button,
@@ -321,14 +326,13 @@ button#submit{
   background-color: white;
 }
 
-.options {
+.options /* , #footer-msg */ {
+  height: auto !important;
   &:hover{
     color: white;
     background-color: var(--quiz-grey) !important
   }
-}
 
-.options /* , #footer-msg */ {
   &.correct {
     background-color: var(--correct-bg) !important;
     color: white !important;

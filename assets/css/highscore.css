@@ -68,6 +68,7 @@ html {
   
   &[data-theme='dark']{
     background-color: #474747;
+    color: white;
     a {
       color: #563d7c;
       color: #282828;
