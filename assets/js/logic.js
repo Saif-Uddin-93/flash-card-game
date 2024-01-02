@@ -126,8 +126,18 @@ function checkAnswer(eventObj){
     const answer = decodeHTML(apiResult.results[trackQ].correct_answer);
     const msg = targetText===answer ? "Correct!" : "Wrong!";
     points = msg==="Correct!" ? points+1 : points;
-    points = points>$("#mode-number").val() ? $("#mode-number").val() : points;
+    //points = points>$("#mode-number").val() ? $("#mode-number").val() : points;
     $("#q-points").text(`Score: ${points}`);
+    let highScore;
+    if(localStorage.getItem("q-highScore")===null){
+        console.log("HIGHSCORE EMPTY!!!")
+        highScore=0;
+    }else{ 
+        highScore = JSON.parse(localStorage.getItem("q-highScore"));
+        highScore = Object.values(highScore).sort((a,b)=> b-a);
+        highScore = highScore[0];
+    }
+    $("#flashcard-trophy-num" ).text(`${highScore}`);
     const css = msg==="Correct!" ? "correct" : "incorrect";
     if(msg==="Correct!"){
         if(settings.sfxElement.checked)soundsLibrary.play().correct();

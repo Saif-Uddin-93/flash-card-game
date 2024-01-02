@@ -194,10 +194,19 @@ $('#mode-level').on('click', 'button',function (){
   $('.mode-container').css('display', 'none');// hide the modal
   cssStyle("#next-btn", "visibility", "visible");
   cssStyle(".q-font", "visibility", "visible");
+  cssStyle("#q-a", "display", "flex");
   cssStyle("#flashcard-trophy", "visibility", "visible");
-  //cssStyle("#q-answers", "display", "flex");
-  
   changeText("#q-number", `0/${questions}`);
+  let highScore;
+  if(localStorage.getItem("q-highScore")===null){
+      console.log("HIGHSCORE EMPTY!!!")
+      highScore=0;
+  }else{ 
+      highScore = JSON.parse(localStorage.getItem("q-highScore"));
+      highScore = Object.values(highScore).sort((a,b)=> b-a);
+      highScore = highScore[0];
+  }
+  $("#flashcard-trophy-num" ).text(`${highScore}`);
   trackQ = -1;
   /* 
   getQuestions(mode, modeNumber)

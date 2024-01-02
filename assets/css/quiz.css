@@ -118,6 +118,10 @@ button#submit{
 }
 
 /* ANSWERS */
+#q-a {
+  display: none;
+}
+
 #q-answers {
   display: none; /* SU: change display to flex before question loads */
 }
