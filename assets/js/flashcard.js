@@ -20,6 +20,7 @@ $(document).ready(function() {
     return storage === null ? setLocalStorage : storage;
   }
   
+  
   // Initialize game variables
   const categories = words; // categories stored in 'assets/js/words.js' file
   let wordsList = []; // array of words from choosen category
@@ -34,6 +35,27 @@ $(document).ready(function() {
   
   // Initialize localStorage 
   const flashcardSettings = getLocalStorage();
+
+  // Function to show word input at the top or bottom, depend of the screen size
+  const checkScreenSize = () => {
+    const screenSize = window.innerWidth;
+  
+    // If the screen size is smaller than 768px
+    if (screenSize < 768) {
+      // Show mobile version word input at the top of the image      
+      $('#screen-keyboard').show();
+      // Hide   the desktop version word input below image
+      $('#desktop').hide();
+    } else {
+      // Show desktop version
+      $('#desktop').show();
+      // Hide mobile version
+      $('#screen-keyboard').hide();
+    }
+  }
+
+  // Initial check for screen size on page load
+  checkScreenSize();
   
   // Function to update data in localStorage
   const updateLocalStorage = (prop, change) => {   
@@ -226,7 +248,8 @@ $(document).ready(function() {
  
   // Function to update the word display on the screen
   const updateWordDisplay = () => {
-    const wordContainer = $('#guess-word');
+    // const wordContainer = $('#guess-word');
+    const wordContainer = $('.input-word');
 
     // Clear the word container before updating display on the screen
     wordContainer.empty(); 
@@ -475,7 +498,8 @@ $(document).ready(function() {
           // Reset the elements state        
           $('#flashcard-outer').show(); // Show flashcard category menu        
           $('#end-game-container').hide(); // Show the end game screen       
-          $('#guess-word').empty(); // Remove any existing word
+          // $('#guess-word').empty(); // Remove any existing word
+          $('.input-word').empty(); // Remove any existing word
           $('#continue-game').remove(); // Remove
           $('#end-game-message').text('');
           incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
@@ -494,7 +518,8 @@ $(document).ready(function() {
     $('#end-game-message').text(`Total Score: ${totalScore} points`);
 
     // Hide container of guessed words
-    $('#guess-word').css('visibility', 'hidden');
+    // $('#guess-word').css('visibility', 'hidden');
+    $('.input-word').css('visibility', 'hidden');
 
     // Hide keyboard icon for smaller screens
     $('.keyboard').removeClass('keyboard-visible');
@@ -647,7 +672,8 @@ $(document).ready(function() {
   $('#flashcard-exit').on('click', function() {        
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
-    $('#guess-word').css('visibility', 'hidden');
+    // $('#guess-word').css('visibility', 'hidden');
+    $('.input-word').css('visibility', 'hidden');
 
     progressBar(0); // Reset the progress bar
 
@@ -730,24 +756,11 @@ $(document).ready(function() {
 
 
   // Event listener to trigger off screen keyboard on small screens
-  $('#keyboard').on('click', function(e) {
-    e.preventDefault();
-    // const hiddenInput = $('#hiddenInput');
+  $('#keyboard').on('click', function() {
+    const hiddenInput = $('#hiddenInput');
     
-    // // Show the input field and focus on it
-    // hiddenInput.show().focus();    
-
-
-    const target = $($(this).attr('href'));
-
-    // Calculate the position of the input, including any additional offset if needed
-    const targetPosition = target.offset().top - 50; // Adjust the offset as needed
-
-    // Scroll to the input
-    $('html, body').animate({
-      scrollTop: targetPosition
-    }, 500); // Adjust the duration as needed
-
+    // Show the input field and focus on it
+    hiddenInput.show().focus();    
   });
 
   // Event listener to detect when the user types in the input field
@@ -809,6 +822,12 @@ $(document).ready(function() {
     if (!$toggleImg.is($(this)) && !$toggleImg.has($(this)).length) {     
       $toggleImg.removeClass('instructions-img-zoom');
     }
+  });
+
+
+  // Check screen size on window resize
+  $(window).on('resize', function () {
+    checkScreenSize();
   });
 
 
