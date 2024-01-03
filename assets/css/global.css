@@ -292,11 +292,11 @@ body {
 }
 
 /* CONTROLS */
-.exit, .f-settings, .q-settings{
+.exit, .f-settings, .q-settings, .f-instructions{
   color: var(--icons);
 }
 
-.f-settings {
+.f-settings, .f-instructions {
   border: 0;
   background: transparent;
   padding: 0;
