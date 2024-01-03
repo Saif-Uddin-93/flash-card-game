@@ -730,11 +730,24 @@ $(document).ready(function() {
 
 
   // Event listener to trigger off screen keyboard on small screens
-  $('#keyboard').on('click', function() {
-    const hiddenInput = $('#hiddenInput');
+  $('#keyboard').on('click', function(e) {
+    e.preventDefault();
+    // const hiddenInput = $('#hiddenInput');
     
-    // Show the input field and focus on it
-    hiddenInput.show().focus();    
+    // // Show the input field and focus on it
+    // hiddenInput.show().focus();    
+
+
+    const target = $($(this).attr('href'));
+
+    // Calculate the position of the input, including any additional offset if needed
+    const targetPosition = target.offset().top - 50; // Adjust the offset as needed
+
+    // Scroll to the input
+    $('html, body').animate({
+      scrollTop: targetPosition
+    }, 500); // Adjust the duration as needed
+
   });
 
   // Event listener to detect when the user types in the input field
@@ -797,6 +810,9 @@ $(document).ready(function() {
       $toggleImg.removeClass('instructions-img-zoom');
     }
   });
+
+
+  
 
 
 

@@ -261,9 +261,11 @@ button.cat-active {
 }
 
 .screen-keyboard {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* justify-content: center; */
   margin-top: 20px;
 }
 
@@ -275,8 +277,13 @@ button.cat-active {
 
 #hiddenInput {
   position: absolute;
-  top: -9999px;
-  left: -9999px;
+  visibility: hidden;
+  width: 30px;
+  height: 25px;
+  left: 55%;
+  /* visibility: hidden; */
+  /* top: -9999px;
+  left: -9999px; */
 }
 
 /* .hide-keyboard::after { 
