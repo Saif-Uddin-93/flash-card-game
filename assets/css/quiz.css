@@ -14,6 +14,9 @@ html {
       background-color: #0d6efd;
       border-color: #0d6efd;
     }
+    .arrow-up, .arrow-down{
+      color: #282828;
+    }
     .mode-container{
       border-bottom: 1px solid #ccc;
     }
@@ -37,6 +40,9 @@ html {
         background-color: #282828;
       }
     }
+    .arrow-up, .arrow-down{
+      color: #ffffff;
+    }
     .mode-container{
       border-bottom: 1px solid #282828;
     }
@@ -45,6 +51,11 @@ html {
       border-color: black;
       &:hover{
         background-color: #303030;
+      }
+    }
+    .q-tip{
+      &.min-max::after, &.difficulty::after{
+        color: rgb(254, 65, 90);
       }
     }
     /* CSS for slider thumb */
@@ -209,13 +220,14 @@ html {
 
 .arrow-up,
 .arrow-down {
-  /* position: absolute; */
-  /* top: 30px; */
-  /* right: 1.3rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 1rem;
-  /* padding: 5px; */
   user-select: none;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 
@@ -295,7 +307,7 @@ button#submit{
 #arrows {
   width: 1rem;
   position: relative;
-  top: -3.2rem;
+  top: -3.5rem;
   right: -3rem;
 }
 
