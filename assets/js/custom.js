@@ -195,14 +195,16 @@ $('#mode-level').on('click', 'button',function (){
   let questions = $("#mode-number").val() > 34 ? 10 : $("#mode-number").val();
   questions = questions < 1 ? 10 : questions;
 //  cssStyle("#q-answers", "display", "flex");
-  callAPI(mode, questions, cat);
-  console.log(mode, questions);
-  $('.mode-container').css('display', 'none');// hide the modal
-  cssStyle("#next-btn", "visibility", "visible");
-  cssStyle(".q-font", "visibility", "visible");
-  cssStyle("#q-a", "display", "flex");
-  cssStyle("#flashcard-trophy", "visibility", "visible");
-  changeText("#q-number", `0/${questions}`);
+  if(cat){
+    callAPI(mode, questions, cat);
+    console.log(mode, questions);
+    $('.mode-container').css('display', 'none');// hide the modal
+    cssStyle("#next-btn", "visibility", "visible");
+    cssStyle(".q-font", "visibility", "visible");
+    cssStyle("#q-a", "display", "flex");
+    cssStyle("#flashcard-trophy", "visibility", "visible");
+    changeText("#q-number", `0/${questions}`);
+  }
   let highScore;
   if(localStorage.getItem("q-highScore")===null){
       console.log("HIGHSCORE EMPTY!!!")

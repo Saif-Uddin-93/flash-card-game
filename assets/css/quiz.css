@@ -38,6 +38,9 @@ html {
     .mode .btn{
       background-color: #282828;
       border-color: black;
+      &:hover{
+        background-color: #303030;
+      }
     }
     .q-font input[type='range']{
       &::-webkit-slider-thumb{
@@ -164,7 +167,7 @@ html {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 55%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -45%);
 }
@@ -227,6 +230,10 @@ html {
   } 
 } */
 
+.mode-container{
+  padding-top: 1rem;
+}
+
 .dropdown {
   & button, label{
     width: fit-content;
@@ -234,7 +241,7 @@ html {
     padding-left: 0.4rem;
     padding-right: 0.4rem;
   }
-  top: 11.3rem;
+  top: 8.5rem;
 }
 
 #footer-msg {
@@ -256,7 +263,7 @@ button#submit{
 }
 
 .mode-header, .mode-number {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .mode-number {
   margin-bottom: 1rem;
@@ -452,6 +459,14 @@ button#submit{
     z-index: 11;
   }
 
+  .dropdown {
+    top: 10rem;
+  }
+
+  .mode {
+    top: 52.5%
+  }
+
   #arrows {
     right: -7rem;    
   }
@@ -481,7 +496,7 @@ button#submit{
   .mode-number {
     display: block;
     position: absolute;
-    top: 2%;
+    top: 1%;
   }
 
   .timer {
