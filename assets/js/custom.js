@@ -207,7 +207,7 @@ $('#mode-level').on('click', 'button',function (){
   }else{qTooltip(true, 'difficulty')}
   let highScore;
   if(localStorage.getItem("q-highScore")===null){
-      console.log("HIGHSCORE EMPTY!!!")
+      //console.log("HIGHSCORE EMPTY!!!")
       highScore=0;
   }else{ 
       highScore = JSON.parse(localStorage.getItem("q-highScore"));
