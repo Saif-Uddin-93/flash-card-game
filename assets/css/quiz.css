@@ -25,6 +25,11 @@ html {
     }
   }
   &[data-theme='dark']{
+    .navbar-brand {
+      &:hover{
+        color:#D3D3D3;
+      }
+    }
     .card, .options, .navbar, .mode-container{
       background-color: #333333;
       color: white;
@@ -42,7 +47,8 @@ html {
         background-color: #303030;
       }
     }
-    .q-font input[type='range']{
+    /* CSS for slider thumb */
+    /* .q-font input[type='range']{
       &::-webkit-slider-thumb{
         background-color: #282828 !important;
       }
@@ -52,7 +58,7 @@ html {
       &::-moz-range-thumb{
         background-color: #282828 !important;
       }
-    }
+    } */
     button#submit{
       background-color: #282828;
       border-color: #282828;
