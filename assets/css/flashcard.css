@@ -262,11 +262,16 @@ button.cat-active {
 
 .screen-keyboard {
   /* position: relative; */
+  display: none;
   display: flex;
   /* flex-direction: column; */
   /* align-items: center; */
   justify-content: center;
   /* margin-top: 20px; */
+}
+
+#desktop{
+  display: none;
 }
 
 .keyboard {
