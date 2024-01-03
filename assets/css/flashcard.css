@@ -263,15 +263,24 @@ button.cat-active {
 .screen-keyboard {
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: center; */
-  margin-top: 20px;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  justify-content: center;
+  /* margin-top: 20px; */
 }
 
 .keyboard {
+  position: absolute;
+  right: 0;
+  top: -5px;
   display: none;
   border: none;
+
+  /* position: absolute;
+  right: 20%;
+  bottom: 8px;
+  display: none;
+  border: none; */
   background: transparent;
 }
 
@@ -280,7 +289,9 @@ button.cat-active {
   visibility: hidden;
   width: 30px;
   height: 25px;
-  left: 55%;
+  right: 0;
+  bottom: 0;
+  /* left: 55%; */
   /* visibility: hidden; */
   /* top: -9999px;
   left: -9999px; */
@@ -390,7 +401,7 @@ button.cat-active {
 .guess-word {
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   font-size: 1.25rem;
   font-weight: 700;
   visibility: hidden;
