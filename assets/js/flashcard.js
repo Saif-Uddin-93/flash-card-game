@@ -55,7 +55,7 @@ $(document).ready(function() {
   }
 
   // Initial check for screen size on page load
-  checkScreenSize();
+  // checkScreenSize();
   
   // Function to update data in localStorage
   const updateLocalStorage = (prop, change) => {   
@@ -249,7 +249,7 @@ $(document).ready(function() {
   // Function to update the word display on the screen
   const updateWordDisplay = () => {
     // const wordContainer = $('#guess-word');
-    const wordContainer = $('.input-word');
+    const wordContainer = $('#guess-word');
 
     // Clear the word container before updating display on the screen
     wordContainer.empty(); 
@@ -499,7 +499,7 @@ $(document).ready(function() {
           $('#flashcard-outer').show(); // Show flashcard category menu        
           $('#end-game-container').hide(); // Show the end game screen       
           // $('#guess-word').empty(); // Remove any existing word
-          $('.input-word').empty(); // Remove any existing word
+          $('#guess-word').empty(); // Remove any existing word
           $('#continue-game').remove(); // Remove
           $('#end-game-message').text('');
           incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
@@ -519,7 +519,7 @@ $(document).ready(function() {
 
     // Hide container of guessed words
     // $('#guess-word').css('visibility', 'hidden');
-    $('.input-word').css('visibility', 'hidden');
+    $('#guess-word').css('visibility', 'hidden');
 
     // Hide keyboard icon for smaller screens
     $('.keyboard').removeClass('keyboard-visible');
@@ -673,7 +673,7 @@ $(document).ready(function() {
     $('#flashcard-outer').show();
     $('#end-game-container').hide();
     // $('#guess-word').css('visibility', 'hidden');
-    $('.input-word').css('visibility', 'hidden');
+    $('#guess-word').css('visibility', 'hidden');
 
     progressBar(0); // Reset the progress bar
 
@@ -760,7 +760,8 @@ $(document).ready(function() {
     const hiddenInput = $('#hiddenInput');
     
     // Show the input field and focus on it
-    hiddenInput.show().focus();    
+    // hiddenInput.show().focus();    
+    hiddenInput.focus().show();       
   });
 
   // Event listener to detect when the user types in the input field
@@ -814,21 +815,21 @@ $(document).ready(function() {
   });
 
   // Event listener to zoom out when clicked ouside image
-  $(document).on('click', function() {    
+  // $(document).on('click', function() {    
     /**
      * checks if clicked target is not an image && 
      * checks if clicked target is not a descendant of the image
      */    
-    if (!$toggleImg.is($(this)) && !$toggleImg.has($(this)).length) {     
-      $toggleImg.removeClass('instructions-img-zoom');
-    }
-  });
+  //   if (!$toggleImg.is($(this)) && !$toggleImg.has($(this)).length) {     
+  //     $toggleImg.removeClass('instructions-img-zoom');
+  //   }
+  // });
 
 
   // Check screen size on window resize
-  $(window).on('resize', function () {
-    checkScreenSize();
-  });
+  // $(window).on('resize', function () {
+  //   checkScreenSize();
+  // });
 
 
   
