@@ -770,6 +770,34 @@ $(document).ready(function() {
     
     // Append images deppend of the game mode
     updateImage(mode);
-  })
+  });
+
+  // jQuery img object
+  const $toggleImg = $('.instructions-img'); 
+
+  // Event listener to image click
+  $toggleImg.on('click', function(e) {
+    // Prevents the click event from reaching the document
+    e.stopPropagation(); 
+   
+    // Toggle zoom in/out image 
+    $(this).toggleClass('instructions-img-zoom');   
+
+    // Zoom out other images
+    $toggleImg.not($(this)).removeClass('instructions-img-zoom');
+  });
+
+  // Event listener to zoom out when clicked ouside image
+  $(document).on('click', function() {    
+    /**
+     * checks if clicked target is not an image && 
+     * checks if clicked target is not a descendant of the image
+     */    
+    if (!$toggleImg.is($(this)) && !$toggleImg.has($(this)).length) {     
+      $toggleImg.removeClass('instructions-img-zoom');
+    }
+  });
+
+
 
 });

@@ -479,16 +479,25 @@ button.cat-active {
 
 /* INSTRUCTIONS */
 .instruction-zoom {
-  font-size: 0.75rem;
-  color: grey;
+  font-size: 0.70rem;
+  color: #808080;
 }
 
 .instruction-head {
-  padding-left: 20px;
+  padding: 10px 20px 5px;
+  margin: 0;
 }
 
 .instructions-img {
-  width: 100%;
+  width: 100%; 
+  margin-bottom: 10px;
+  transition: 0.5s all ease-in-out;
+  cursor: zoom-in;
+}
+
+.instructions-img-zoom {
+  transform: scale(1.25);
+  cursor: zoom-out;
 }
 
 .instruction-desc {
@@ -501,7 +510,7 @@ button.cat-active {
 }
 
 .resetInstructions {
-  padding-left: 25px;
+  padding: 0 25px;
 }
 
 @media (max-width: 768px) { 
