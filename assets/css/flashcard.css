@@ -261,7 +261,7 @@ button.cat-active {
 }
 
 .screen-keyboard {
-  position: relative;
+  /* position: relative; */
   display: flex;
   /* flex-direction: column; */
   /* align-items: center; */
@@ -270,9 +270,9 @@ button.cat-active {
 }
 
 .keyboard {
-  position: absolute;
+  /* position: absolute;
   right: 0;
-  top: -5px;
+  top: -5px; */
   display: none;
   border: none;
 
@@ -286,15 +286,15 @@ button.cat-active {
 
 #hiddenInput {
   position: absolute;
-  visibility: hidden;
+  /* visibility: hidden;
   width: 30px;
   height: 25px;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   /* left: 55%; */
   /* visibility: hidden; */
-  /* top: -9999px;
-  left: -9999px; */
+  top: -9999px; 
+  left: -9999px; 
 }
 
 /* .hide-keyboard::after { 
