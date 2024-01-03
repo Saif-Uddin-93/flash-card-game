@@ -164,9 +164,29 @@ function loadMsg(msg, hint=false) {
     if(hint)Timer.deductTime(10);
 }
 
-function qTooltip (focus=true) {
-    if (focus) cssStyle(".q-tip", "visibility", "visible");
-    else cssStyle(".q-tip", "visibility", "hidden");
+function qTooltip (focus=true, /* msgType,  */addClass="min-max") {
+    /* console.log(msgType);
+    switch (msgType) {
+        case 'numQuestions':
+            //msgType = "Number of questions will default to 10 if below 1 or above 34";
+            addClass = "min-max";
+            break;
+        case 'mode':
+            //msgType = "A category must be picked before starting quiz";
+            addClass = "difficulty";
+            break;
+        default:
+            break;
+    } */
+    //console.log(msgType)
+    if (focus) {
+        cssStyle(".q-tip", "visibility", "visible");
+        $(".q-tip").addClass(addClass);
+    }
+    else {
+        cssStyle(".q-tip", "visibility", "hidden");
+        $(".q-tip").removeClass(addClass);
+    }
 }
 
 function endScreen(){

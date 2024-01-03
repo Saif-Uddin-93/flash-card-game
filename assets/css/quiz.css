@@ -432,11 +432,16 @@ button#submit{
     font-size: 3rem;
     font-weight:bolder;
   }
-  &::after{
+  &.min-max::after, &.difficulty::after{
     font-weight: bold;
     font-size: large;
     color: rgb(255, 22, 22);
+  }
+  &.min-max::after{
     content: "Number of questions will default to 10 if below 1 or above 34";
+  }
+  &.difficulty::after{
+    content: "A category must be picked before starting the quiz";
   }
 }
 

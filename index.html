@@ -87,10 +87,10 @@
                             <h1>Trivia Quiz!</h1>
                             <div class="mode-number">
                                 <label class="mode-header" for="mode-number">Number of Questions</label>
-                                <input id="mode-number" type="number" min="1" max="50" step="1" class="mode-input" value="10" onclick="qTooltip()" onfocusout="qTooltip(false)">
+                                <input id="mode-number" type="number" min="1" max="50" step="1" class="mode-input" value="10" onclick="qTooltip()" onfocusout="qTooltip(false, 'min-max')">
                                 <div id="arrows">
-                                    <div class="arrow-up" onclick="qTooltip()" onfocusout="qTooltip(false)">▲</div>
-                                    <div class="arrow-down" onclick="qTooltip()" onfocusout="qTooltip(false)">▼</div>
+                                    <div class="arrow-up" onclick="qTooltip()" onfocusout="qTooltip(false, 'min-max')">▲</div>
+                                    <div class="arrow-down" onclick="qTooltip()" onfocusout="qTooltip(false, 'min-max')">▼</div>
                                 </div>
                             </div>
                             <div class="q-tip"></div>
@@ -111,9 +111,9 @@
                                 </ul>
                             </div>
                             <div id="mode-level" class="mode w-25"> <!-- ID mode-level needed to get load questions after selecting a difficulty -->
-                                <button class="btn mode-btn btn-primary mt-2 mb-2">Easy</button>
-                                <button class="btn mode-btn btn-primary mt-2 mb-2">Medium</button>
-                                <button class="btn mode-btn btn-primary mt-2">Hard</button>
+                                <button class="btn mode-btn btn-primary mt-2 mb-2" onfocusout="qTooltip(false, 'difficulty')">Easy</button>
+                                <button class="btn mode-btn btn-primary mt-2 mb-2" onfocusout="qTooltip(false, 'difficulty')">Medium</button>
+                                <button class="btn mode-btn btn-primary mt-2" onfocusout="qTooltip(false, 'difficulty')">Hard</button>
                             </div>
                         </div>
                         <!-- SU: Submit score section from code quiz challenge -->

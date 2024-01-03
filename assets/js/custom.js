@@ -204,7 +204,7 @@ $('#mode-level').on('click', 'button',function (){
     cssStyle("#q-a", "display", "flex");
     cssStyle("#flashcard-trophy", "visibility", "visible");
     changeText("#q-number", `0/${questions}`);
-  }
+  }else{qTooltip(true, 'difficulty')}
   let highScore;
   if(localStorage.getItem("q-highScore")===null){
       console.log("HIGHSCORE EMPTY!!!")
