@@ -35,10 +35,17 @@
       <section class="flashcard-container">         
            <div class="row">
                <div id="flashcard-settings" class="d-flex col col-md-2 col-xlg-2">
+
                 <!-- settings icon -->
-                <button id="f-settings" class="f-settings me-auto" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                <button id="f-settings" class="f-settings" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
                   <i class="fas fa-cog px-2"></i>               
                 </button>
+                
+                <!-- instruction icon -->
+                <button id="f-instructions" class="f-instructions" type="button" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+                  <i class="fas fa-info-circle"></i>             
+                </button>                
+
                </div>              
                <div id="flashcard-trophy" class="col col-md-8 col-xlg-8 header flashcard-trophy" title="Max Score">
                 <img src="./assets/svg/trophy.svg" alt="Icon represent max user score">              
@@ -323,6 +330,65 @@
           </div>            
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="restart-game">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Instructions modal -->
+  <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">           
+            <div class="modal-header d-flex justify-content-center">
+                <h3 class="modal-title">Game Instructions</h3>               
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <h4>Main screen</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img class="instructions-img" id="main-img" src="" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <ul>
+                      <li><span class="circle">1</span> text</li>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <h4>Gameplay</h4>
+                  <div class="col-md-6">
+                    <img class="instructions-img" id="gameplay-img" src="" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <ul>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                    </ul>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+                     
+            <div class="modal-body resetInstructions">
+              <h4>Reset the Game</h4>
+              <p>If you wish to start the game anew:</p>
+              <ol>
+                  <li>Go to the settings ⚙️ in the game.</li>
+                  <li>Find the reset option under <strong>Local Storage</strong>.</li>
+                  <li>Click on the <strong>Reset</strong> option to reset your game progress.</li>
+              </ol>
+            </div>            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="game-instructions">Close</button>
             </div>
         </div>
     </div>

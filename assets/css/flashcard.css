@@ -477,6 +477,19 @@ button.cat-active {
   color: var(--social-media-hover);
 }
 
+/* INSTRUCTIONS */
+.instructions-img {
+  width: 100%;
+}
+
+.circle {
+  border-radius: 50%;
+  padding: 0.5px 5px;
+  background: rgb(255, 0, 0, 0.2);
+  border: 1px solid #000;
+  text-align: center;
+  font-weight: 600;
+}
 
 @media (max-width: 768px) { 
   .w-md-100 {
@@ -498,7 +511,7 @@ button.cat-active {
 
 @media (max-width: 375px) {
   .flashcard {
-    height: 350px;
+    height: 370px;
   }
 
   .categories-pick {

@@ -98,7 +98,10 @@ $(document).ready(function() {
     console.log(`   
     - prep for slides
     - add sound
-    - if user won all categories show popup and ask if he want geset the game and score    
+    - disable exit when msg popup saying about lose or win and enable when its in next page 
+    - disable typing when setings modal open and reenable when close
+    - on mobile when user is trigering the keyboard it sould go down to show the word user typing ans stay there
+    
     - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
         
     - rewrite middle part and move absolute to one div for middle part and bottom  
@@ -749,5 +752,24 @@ $(document).ready(function() {
       $(this).val('');
     }
   });
+
+  // Function to handle the image swapping
+  const updateImage = (mode) => {
+    const mainImage = $('#main-img');
+    const gameplayImage = $('#gameplay-img');
+
+    const imageSuffix = mode === 'light' ? 'light' : 'dark';
+    
+    mainImage.attr('src', `./assets/images/main-${imageSuffix}.png`).attr('alt', imageSuffix);
+    gameplayImage.attr('src', `./assets/images/gameplay-${imageSuffix}.png`).attr('alt', imageSuffix);
+  }
+
+  // Event listener to show game instructions
+  $('#f-instructions').on('click', function() {
+    const mode = getLocalStorage().theme;
+    
+    // Append images deppend of the game mode
+    updateImage(mode);
+  })
 
 });
