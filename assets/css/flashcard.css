@@ -478,17 +478,30 @@ button.cat-active {
 }
 
 /* INSTRUCTIONS */
+.instruction-zoom {
+  font-size: 0.75rem;
+  color: grey;
+}
+
+.instruction-head {
+  padding-left: 20px;
+}
+
 .instructions-img {
   width: 100%;
 }
 
-.circle {
-  border-radius: 50%;
-  padding: 0.5px 5px;
-  background: rgb(255, 0, 0, 0.2);
-  border: 1px solid #000;
-  text-align: center;
-  font-weight: 600;
+.instruction-desc {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.instruction-desc li {
+  margin-bottom: 10px;
+}
+
+.resetInstructions {
+  padding-left: 25px;
 }
 
 @media (max-width: 768px) { 
