@@ -1,25 +1,20 @@
 $(document).ready(function() {
   // set the localStorage to default
   const setLocalStorage = {
-    "theme": "light",
-    "sound": true,
-    "categoryDone": [],           
-    // "categoryDone": ['fruits', 'clothing'],
-    // "categoryDone": ['fruits', 'clothing', 'sports', 'countries', 'professions'],
+    "theme": "light",    
+    "categoryDone": [],                    
     "notification": true,
     "maxScore": 0,
   }
 
   // Function to get data from the localStorage
-  const getLocalStorage = () => {
-   
+  const getLocalStorage = () => {   
     const storage = JSON.parse(localStorage.getItem('flashcard'));
     if(!storage){
       localStorage.setItem('flashcard', JSON.stringify(setLocalStorage));
     }
     return storage === null ? setLocalStorage : storage;
-  }
-  
+  }  
   
   // Initialize game variables
   const categories = words; // categories stored in 'assets/js/words.js' file
@@ -41,10 +36,10 @@ $(document).ready(function() {
     const screenSize = window.innerWidth;
   
     // If the screen size is smaller than 768px
-    if (screenSize < 768) {
+    if (screenSize <= 768) {
       // Show mobile version word input at the top of the image      
       $('#screen-keyboard').show();
-      // Hide   the desktop version word input below image
+      // Hide the desktop version word input below image
       $('#desktop').hide();
     } else {
       // Show desktop version
@@ -58,8 +53,7 @@ $(document).ready(function() {
   checkScreenSize();
   
   // Function to update data in localStorage
-  const updateLocalStorage = (prop, change) => {   
-    // const settingsObject = flashcardSettings[0];  
+  const updateLocalStorage = (prop, change) => {     
     
     // If prop is category is updated
     if(prop === 'categoryDone'){
@@ -115,22 +109,6 @@ $(document).ready(function() {
       nextCategory.addClass('cat-active');
     }    
   };
-
-  const showFinalMessage = () => {   
-    console.log(`   
-    - prep for slides
-    - add sound
-    - disable exit when msg popup saying about lose or win and enable when its in next page 
-    - disable typing when setings modal open and reenable when close
-    - on mobile when user is trigering the keyboard it sould go down to show the word user typing ans stay there
-    
-    - if user wont choose continue and he has some games cateories won, reset the game also show popup if you want reset the game
-        
-    - rewrite middle part and move absolute to one div for middle part and bottom  
-    - add function to setTimet content    
-    - create favicon for the app            
-    `)    
-  }
 
   // Check the localStorage if user alredy played any of the games
   const categoryDone = () => {          
@@ -209,7 +187,7 @@ $(document).ready(function() {
   // Function to get random image from Giphy API
   const getGiphyImage = () => {
 
-    const apiKey = '';
+    const apiKey = 'KxSLe48BfrpadglcvAuDFWOgO04g6hkD';
     const url = `https://api.giphy.com/v1/gifs/search?q=wizard&api_key=${apiKey}
     `;
 
@@ -227,7 +205,6 @@ $(document).ready(function() {
    
   // Function to track progress of completed words
   const progressBar = (numOfImages) => {    
-
     let progress = 0;
 
     if(numOfImages > 0) {
@@ -244,11 +221,11 @@ $(document).ready(function() {
     }else {
       $('#progress').css('border-right', '1px solid rgba(0, 59, 98,0.45)');
     }  
+
   }
  
-  // Function to update the word display on the screen
-  const updateWordDisplay = () => {
-    // const wordContainer = $('#guess-word');
+  // Function to update both versions top and bottom the word display on the screen
+  const updateWordDisplay = () => {    
     const wordContainerTop = $('#guess-word-top');
     const wordContainerBottom = $('#guess-word-bottom');
 
@@ -256,7 +233,7 @@ $(document).ready(function() {
     wordContainerTop.empty();
     wordContainerBottom.empty(); 
 
-    // Generate word on the screen
+    // Generate word for both top & bottom containers    
     for (const letter of currentWord) {
       const letterContainerTop = $('<div>');
       const letterContainerBottom = $('<div>');
@@ -273,20 +250,7 @@ $(document).ready(function() {
       wordContainerTop.append(letterContainerTop);
       wordContainerBottom.append(letterContainerBottom);
     }
-
-    // Show the generated word on the screen based on screen size
-    // const screenSize = window.innerWidth;
-    // if (screenSize < 768) {
-    //   // $('.guess-word').css('visibility', 'visible');
-    //   $('.screen-keyboard').show();
-    //   $('#desktop').hide();
-      
-    // } else {
-    //   // $('#input-word-top').css('visibility', 'visible');
-    //   // $('#input-word-bottom').css('visibility', 'hidden');
-    //   $('#desktop').show();
-    //   $('.screen-keyboard').hide();
-    // }
+    
     // show the generated word on the screen
     $('.guess-word').css('visibility', 'visible');    
   }
@@ -457,10 +421,9 @@ $(document).ready(function() {
   }
 
   // Function to show the end game screen
-  function showEndGameScreen(totalScore, win) {         
-
+  function showEndGameScreen(totalScore, win) {    
+   
     if(win){
-
       // Find active category
       const activeCategory =  $('.cat-active').data('cat');
 
@@ -469,12 +432,11 @@ $(document).ready(function() {
       
       // If youer completed all categories 
       if(categories.length === flashcardSettings.categoryDone.length){
-
-        // Create new button
-        const finalBtn = $('<button>');
-
         // Clear any elements in the container
         $('#end-game-buttons').empty();
+
+        // Create new button
+        const finalBtn = $('<button>');        
 
         // Create final message button
         finalBtn.attr('type', 'button')
@@ -487,10 +449,12 @@ $(document).ready(function() {
         getGiphyImage();
 
         // Append button to DOM
-        $('#end-game-buttons').append(button);   
+        $('#end-game-buttons').append(finalBtn);   
 
-      }else{            
-        
+      }else{         
+        // Hide buton is continuing game   
+        $('#reset-game').hide();
+
         // Get all buttons in the 'end-game-buttons' container
         const isOneButton = $('#end-game-buttons').find('button');
         
@@ -516,9 +480,9 @@ $(document).ready(function() {
   
           // Reset the elements state        
           $('#flashcard-outer').show(); // Show flashcard category menu        
-          $('#end-game-container').hide(); // Show the end game screen       
-          // $('#guess-word').empty(); // Remove any existing word
-          $('#guess-word-bottom').empty(); // Remove any existing word
+          $('#end-game-container').hide(); // Show the end game screen                
+          $('#guess-word-top').empty(); // Remove any existing word from the top
+          $('#guess-word-bottom').empty(); // Remove any existing word from the bottom
           $('#continue-game').remove(); // Remove
           $('#end-game-message').text('');
           incorrectGuessCounter = 0; // Reset the incorrect guess for the next category
@@ -536,15 +500,12 @@ $(document).ready(function() {
     // Display score after win or loss game
     $('#end-game-message').text(`Total Score: ${totalScore} points`);
 
-    // Hide container of guessed words
-    // $('#guess-word').css('visibility', 'hidden');
-    $('#guess-word-bottom').css('visibility', 'hidden');
+    // Hide container of guessed words  
+    $('#guess-word-top').css('visibility', 'hidden'); // Top
+    $('#guess-word-bottom').css('visibility', 'hidden'); // Bottom
 
     // Hide keyboard icon for smaller screens
     $('.keyboard').removeClass('keyboard-visible');
-
-    // // Disable key press   
-    // gameStarted = false;
 
     // Show user message how to exit the game
     if(showMessages) {
@@ -575,7 +536,7 @@ $(document).ready(function() {
 
   // Fuction to fetch image from Pexels API
   const fetchImage = (word) => {
-    const apiKey = '';
+    const apiKey = 'ncbwYPbVrmfLFi8cYdVirrVO4Jp1yTT0X4oGZ6VmOFOM7dcz8gbpBBZb';
     const url = `https://api.pexels.com/v1/search?query=${word}&per_page=40`;
     
     return fetch(url, {
@@ -619,6 +580,9 @@ $(document).ready(function() {
       messageDisplay('⌨️ Use the keyboard to input your answers', 'flashcard-msg-bottom', 5000);
     }
     
+    // Reset image opacity to 100%
+    imageDisplay(1);
+
     // Show the keyboard icon on tablets and smaller screens
     $('.keyboard').addClass('keyboard-visible');
 
@@ -647,27 +611,6 @@ $(document).ready(function() {
    
     gameStarted = true; // Start the game
 
-
-    /* TEMP VARIABLES FOR TESTING */
-    
-    // currentWord = wordsList[currentWordIndex].word.toUpperCase();
-    // //  TEMP code to mimic fetch
-    console.log(currentWord)
-    // console.log(wordsList)
-
-    // guessedLetters = [];
-    // gameStarted = true; // start the game
-
-    // updateWordDisplay();
-    // updateScoreDisplay();
-
-    // TEMP
-    // setTimeout(() => {
-    //   $('#loading-container').hide();
-    // }, 1000)
-  
-    /* END TEMP VARIABLES */
-
     $('#flashcard-outer').hide();
     
   });
@@ -690,14 +633,14 @@ $(document).ready(function() {
   // Event listeners for exit the game
   $('#flashcard-exit').on('click', function() {        
     $('#flashcard-outer').show();
-    $('#end-game-container').hide();
-    // $('#guess-word').css('visibility', 'hidden');
+    $('#end-game-container').hide();    
+    $('#guess-word-top').css('visibility', 'hidden');
     $('#guess-word-bottom').css('visibility', 'hidden');
 
     progressBar(0); // Reset the progress bar
 
     updateHeartDisplay(); // Reset the hearts display
-    score = 0; // Reset the score    
+    score = 0; // Reset the score        
     $('.keyboard').removeClass('keyboard-visible'); // Hide keyboard icon for smaller screens
   });
 
@@ -706,14 +649,12 @@ $(document).ready(function() {
     // Check the state of Apperance    
     const appearanceDark = $('#setting-appearance-dark').prop('checked');
     
-    // Check the state of the switches
-    const soundOn = $('#setting-sound').prop('checked');
+    // Check the state of the switches   
     const noteOn = $('#setting-note').prop('checked');
     
     // Get all current settings
     const changes = {
-      "theme": appearanceDark ? "dark" : "light",
-      "sound": soundOn,
+      "theme": appearanceDark ? "dark" : "light",     
       "notification": noteOn     
     };
 
@@ -747,10 +688,7 @@ $(document).ready(function() {
       appearanceLight.prop('checked', true); 
       appearanceDark.prop('checked', false);
     }
-    
-    const soundOn = $('#setting-sound');
-    storage['sound'] ? soundOn.prop('checked', true) : soundOn.prop('checked', false);
-    
+            
     const noteOn = $('#setting-note');
     storage['notification'] ? noteOn.prop('checked', true) : noteOn.prop('checked', false);
   });
@@ -760,9 +698,8 @@ $(document).ready(function() {
     localStorage.setItem('flashcard', JSON.stringify(setLocalStorage));  
     document.documentElement.setAttribute('data-theme', 'light');
 
-    $('#setting-appearance-light').prop('checked', true);
-        
-    $('#setting-sound').prop('checked', true);
+    $('#setting-appearance-light').prop('checked', true);        
+   
     $('#setting-note').prop('checked', true);
 
     window.location.reload();  
@@ -773,17 +710,15 @@ $(document).ready(function() {
     window.location.reload();
   });
 
-
   // Event listener to trigger off screen keyboard on small screens
   $('#keyboard').on('click', function() {
     const hiddenInput = $('#hiddenInput');
     
-    // Show the input field and focus on it
-    // hiddenInput.show().focus();    
+    // Show the input field and focus on it     
     hiddenInput.focus().show();       
   });
 
-  // Event listener to detect when the user types in the input field
+  // Event listener to detect when the user types in the mobile input field
   $('#hiddenInput').on('input', function() {
       const typedText = $(this).val();
             
@@ -806,8 +741,8 @@ $(document).ready(function() {
 
     const imageSuffix = mode === 'light' ? 'light' : 'dark';
     
-    mainImage.attr('src', `./assets/images/main-${imageSuffix}.png`).attr('alt', imageSuffix);
-    gameplayImage.attr('src', `./assets/images/gameplay-${imageSuffix}.png`).attr('alt', imageSuffix);
+    mainImage.attr('src', `./assets/images/main-${imageSuffix}.png`).attr('alt', `${imageSuffix} theme image`);
+    gameplayImage.attr('src', `./assets/images/gameplay-${imageSuffix}.png`).attr('alt', `${imageSuffix} theme image`);
   }
 
   // Event listener to show game instructions
@@ -844,15 +779,9 @@ $(document).ready(function() {
     }
   });
 
-
   // Check screen size on window resize
   $(window).on('resize', function () {
     checkScreenSize();
   });
-
-
-  
-
-
 
 });
