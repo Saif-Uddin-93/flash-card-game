@@ -194,7 +194,7 @@ $(document).ready(function() {
     fetch(url)
     .then(response => response.json())
     .then(data => {   
-      console.log(data.data)          
+               
       shuffleArray(data.data); // randomize fetched data
       
       // Crate the url with first random image 
@@ -337,8 +337,8 @@ $(document).ready(function() {
         if (!currentWord.split('').some(letter => !guessedLetters.includes(letter))) {         
           score += 1; // Update the score
          
-          // Update the localStorage score property
-          if(score > flashcardSettings.maxScore){
+          // Update the localStorage score property        
+          if(score >= flashcardSettings.maxScore){
             updateLocalStorage('maxScore', score);
           }
 
@@ -392,6 +392,8 @@ $(document).ready(function() {
   // Function to handle the next 'WORD' button click
   const handleNextWordClick = () => {
     currentWordIndex += 1; // Increment the current word index
+    
+    maxScoreDisplay(); // Update the max scofre with each new image
 
     // If the current word index is less than the current word length
     // then fetch the next image
