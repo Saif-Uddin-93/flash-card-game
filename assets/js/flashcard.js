@@ -380,7 +380,7 @@ $(document).ready(function() {
 
           // User lost meaasge
           messageDisplay('Sorry, you lost. Better luck next time.', 'flashcard-msg', 3000);
-
+          
           setTimeout(() => {            
             showEndGameScreen(score, false); // End the game with a loss
           }, 3000)
@@ -425,6 +425,8 @@ $(document).ready(function() {
   // Function to show the end game screen
   function showEndGameScreen(totalScore, win) {    
    
+    $('.guess-word').empty(); // Empty the 'WORD' container
+
     if(win){
       // Find active category
       const activeCategory =  $('.cat-active').data('cat');
@@ -640,6 +642,8 @@ $(document).ready(function() {
     $('#guess-word-bottom').css('visibility', 'hidden');
 
     progressBar(0); // Reset the progress bar
+
+    $('.guess-word').empty(); // Empty the 'WORD' container
 
     updateHeartDisplay(); // Reset the hearts display
     score = 0; // Reset the score        
