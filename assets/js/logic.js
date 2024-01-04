@@ -153,8 +153,8 @@ function checkAnswer(eventObj){
             element.disabled=false;
         });
         htmlElement(`#next-btn`).disabled=false;
+        nextBtn();
     }, 2);
-    Timer.timeoutSet(nextBtn, 2);
 }
 
 function loadMsg(msg, hint=false) {
