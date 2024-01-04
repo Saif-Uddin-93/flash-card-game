@@ -109,14 +109,6 @@
   width: 100%;
 }
 
-/* .pexels-logo {  
-  height: 27px;
-  background: rgb(0, 0, 0, 0.25);
-  padding-right: 5px;
-  border-radius: 2.5px;
-  border: 1px solid #05a081;
-} */
-
 .flashcard-number{
   color: var(--image-index-number);
   background: rgb(0, 0, 0, 0.25);
@@ -260,58 +252,31 @@ button.cat-active {
   text-shadow: none; 
 }
 
-.screen-keyboard {
-  /* position: relative; */
+.screen-keyboard { 
   display: none;
   display: flex;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  justify-content: center;
-  /* margin-top: 20px; */
+  justify-content: center; 
 }
 
 #desktop{
+  padding-top: 15px;
   display: none;
 }
 
 .keyboard {
-  /* position: absolute;
+  position: absolute;
   right: 0;
-  top: -5px; */
+  top: -5px;
   display: none;
   border: none;
-
-  /* position: absolute;
-  right: 20%;
-  bottom: 8px;
-  display: none;
-  border: none; */
   background: transparent;
 }
 
 #hiddenInput {
-  position: absolute;
-  /* visibility: hidden;
-  width: 30px;
-  height: 25px;
-  right: 0;
-  bottom: 0; */
-  /* left: 55%; */
-  /* visibility: hidden; */
+  position: absolute; 
   top: -9999px; 
   left: -9999px; 
 }
-
-/* .hide-keyboard::after { 
-  position: absolute;
-  content: '';
-  width: 24px;
-  height: 2px;
-  background-color: red;
-  top: 80.4%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-} */
 
 .categories-ring {
   position: absolute;
@@ -512,10 +477,12 @@ button.cat-active {
 }
 
 .instructions-img {
+  position: relative;
   width: 100%; 
   margin-bottom: 10px;
   transition: 0.5s all ease-in-out;
   cursor: zoom-in;
+  z-index: 1;
 }
 
 .instructions-img-zoom {
@@ -556,7 +523,7 @@ button.cat-active {
 
 @media (max-width: 375px) {
   .flashcard {
-    height: 370px;
+    height: 380px;
   }
 
   .categories-pick {

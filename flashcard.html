@@ -82,13 +82,11 @@
                 
                 <!-- Hidden input field -->
                 <input type="text" id="hiddenInput">
-              </div>
-  
+              </div>  
               
               <div class="flashcard-inner">
                 <div class="flashcard-front">
                   <div class="row justify-content-center">
-
 
                     <div id="flashcard-hint" class="col col-md-3 col-lg-2 flashcard-hint">Hint</div>
                     <div class="col col-md-6 col-lg-8 d-flex justify-content-center">
@@ -103,9 +101,8 @@
                   <div id="flashcard-blink" class="flashcard-blink">
                   </div>
 
-                  <!-- images -->
-                  <img id="find-image" class="find-image" src="./assets/images/img.jpeg" alt="template-img">  
-                  <!-- <img id="find-image" class="find-image" src="" alt="">   -->
+                  <!-- images -->                  
+                  <img id="find-image" class="find-image" src="" alt="">  
 
                   <!-- loadng bar -->
                   <div id="loading-container" class="loading-container">
@@ -119,17 +116,7 @@
                   <div class="image-index">
                     <div class="d-flex justify-content-end">
                       <span id="flashcard-number" class="flashcard-number"></span>
-                    </div>
-                    <!-- <div class="row justify-content-between">                      
-                      <div class="col col-md-3">
-                        <a href="https://www.pexels.com" target="_blank" title="Photos provided by Pexels">
-                        <img class="pexels-logo" src="https://images.pexels.com/lib/api/pexels-white.png" />
-                        </a>
-                      </div>
-                      <div class="col col-md-3"> 
-                        <span id="flashcard-number" class="flashcard-number"></span>                       
-                      </div>
-                    </div>               -->
+                    </div>                  
                   </div> 
 
                   <!-- end game message -->
@@ -194,24 +181,9 @@
                 </div>
               </div>  
             </div>          
-
-            
-            <!-- <div class="screen-keyboard">
-              <button class="keyboard" id="keyboard">
-                <i class="far fa-keyboard"></i>
-              </button>   
-              
-              
-              <input type="text" id="hiddenInput">
-            </div>
-
-            <div class="guess-word" id="guess-word">
-            </div> -->
             
             <div id="desktop">
               <div class="guess-word" id="guess-word-bottom">
-              <!-- <div class="guess-word" id="guess-word"> -->
-                
                 <!-- generated word goes here  -->
               </div>
             </div>
@@ -243,7 +215,7 @@
                             <p class="settings-header">Theme</p>
                             <div class="col">
                               <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="setting-appearance-light" id="setting-appearance-light" checked>
+                                  <input class="form-check-input" type="radio" name="setting-appearance" id="setting-appearance-light" checked>
                                   <label class="form-check-label" for="setting-appearance-light"> 
                                   Light
                                   </label>
@@ -251,7 +223,7 @@
                             </div>
                             <div class="col">
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="setting-appearance-dark" id="setting-appearance-dark">
+                                <input class="form-check-input" type="radio" name="setting-appearance" id="setting-appearance-dark">
                                 <label class="form-check-label" for="setting-appearance-dark"">
                                 Dark
                                 </label>
@@ -266,14 +238,7 @@
                             
                         </div>                        
                     </div>
-                    <div class="col">  
-                        <div class="setting-container">
-                            <p class="settings-header">Sound</p>               
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="setting-sound" checked>
-                                <label class="form-check-label" for="setting-sound">Off/On</label>
-                            </div>
-                        </div> 
+                    <div class="col">                        
                         <div class="setting-container">
                           <p class="settings-header">Notifications</p>               
                           <div class="form-check form-switch">
@@ -342,19 +307,11 @@
                       <img id="giphy" src="" alt="">
                   </div>
               </div>
-          </div>          
-          <div class="modal-body resetInstructions">
-            <h4>Game Reset Instructions</h4>
-            <p>If you wish to start the game anew:</p>
-            <ol>
-                <li>Go to the settings ⚙️ in the game.</li>
-                <li>Find the reset option under <strong>Local Storage</strong>.</li>
-                <li>Click on the <strong>Reset</strong> option to reset your game progress.</li>
-            </ol>
-          </div>            
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="restart-game">Close</button>
-            </div>
+          </div>        
+                    
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="restart-game">Close</button>
+          </div>
         </div>
     </div>
   </div>
