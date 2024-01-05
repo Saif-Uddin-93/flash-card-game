@@ -298,6 +298,7 @@ button.cat-active {
 }
 
 .find-image {
+  display: none;
   color: var(--image-alt-text);
   width: 100%;
   height: calc(100% - 24px);

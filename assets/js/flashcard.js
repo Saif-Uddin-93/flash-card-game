@@ -139,13 +139,9 @@ $(document).ready(function() {
 
   // Check all catetegories and disable completed
   categoryDone();
-  
+ 
   // Function to initialize or reset the game
-  function initializeGame() {
-    
-    // Reset the image before loading the new one
-    $('#find-image').attr('src', '');
-
+  const initializeGame = () => {
     // Show the spinner when fetching the image
     $('#loading-container').show(); // display 'block'
 
@@ -160,19 +156,21 @@ $(document).ready(function() {
     .then(data => {    
            
       // Shufle the fetched response images to give new image with the same word
-      const {src, alt} = shuffleArray(data.photos)[0];
-      
+      const {src, alt} = shuffleArray(data.photos)[0];   
+     
       // Append image to the flashcard container     
       $('#find-image').attr('src', src.large).attr('alt', alt);  
-
+      
       // Append hint to the image
       $('#flashcard-back-hint').text(currentHint);  
     })
     .catch(error => console.error('Error fetching image:', error))
-    .finally(() => {
-
+    .finally(() => {      
       // Hide the spinner once the fetch is complete, whether successful or not
       $('#loading-container').hide();
+
+      // Display image
+      $('.find-image').css('display', 'block');
     
       // Show progress for the current category
       progressBar(wordsList.length);
@@ -584,6 +582,9 @@ $(document).ready(function() {
       messageDisplay('⌨️ Use the keyboard to input your answers', 'flashcard-msg-bottom', 5000);
     }
     
+    // Reset the image
+    $('.find-image').css('display', 'none'); 
+
     // Reset image opacity to 100%
     imageDisplay(1);
 
@@ -635,7 +636,7 @@ $(document).ready(function() {
   }); 
 
   // Event listeners for exit the game
-  $('#flashcard-exit').on('click', function() {        
+  $('#flashcard-exit').on('click', function() {           
     $('#flashcard-outer').show();
     $('#end-game-container').hide();    
     $('#guess-word-top').css('visibility', 'hidden');
